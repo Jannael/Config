@@ -1,0 +1,15 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": [
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser"
+      ]
+    }
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    }
+  }
+}

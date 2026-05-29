@@ -1,3 +1,1 @@
-import PrintASCII from '@/ascii.js'
-
-PrintASCII()
+// import techMap from 'data'

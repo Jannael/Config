@@ -1,0 +1,12 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": []
+    }
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    }
+  }
+}
