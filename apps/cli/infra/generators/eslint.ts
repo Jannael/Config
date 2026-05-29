@@ -166,18 +166,22 @@ export function generateEslint({
 
   const seenImports = new Set<string>()
 
+  // Iterate requested linter plugins, collect unique import statements
+  // and their config snippets to include in the generated eslint file.
+  // - pluginMeta maps package name -> import & config info
+  // - skip entries that are missing or have no importStatement
+  // - ensure each import is only added once via seenImports
+  // - append any provided configSpread to the config entries
   for (const plugin of linterPlugins) {
     const meta = pluginMeta[plugin]
     if (!meta || !meta.importStatement) continue
 
-    if (meta.importStatement && !seenImports.has(meta.importStatement)) {
+    if (!seenImports.has(meta.importStatement)) {
       imports.push(meta.importStatement)
       seenImports.add(meta.importStatement)
     }
 
-    if (meta.configSpread) {
-      configEntries.push(meta.configSpread)
-    }
+    if (meta.configSpread) configEntries.push(meta.configSpread)
   }
 
   configEntries.push(`    {
