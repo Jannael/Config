@@ -3,7 +3,9 @@
     "eslint": {
       "plugins": ["eslint-config-next"]
     },
-    "oxlint": {},
+    "oxlint": {
+      "plugins": ["nextjs"]
+    },
     "biome": {}
   },
   "formatter": {

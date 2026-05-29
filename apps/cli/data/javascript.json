@@ -2,11 +2,15 @@
   "linter": {
     "eslint": {
       "plugins": []
-    }
+    },
+    "oxlint": {},
+    "biome": {}
   },
   "formatter": {
     "prettier": {
       "plugins": []
-    }
+    },
+    "oxfmt": {},
+    "biome": {}
   }
 }

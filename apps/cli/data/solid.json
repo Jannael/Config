@@ -3,14 +3,14 @@
     "eslint": {
       "plugins": ["eslint-plugin-solid"]
     },
-    "oxlint": {},
-    "biome": {}
+    "oxlint": {
+      "plugins": ["solid"]
+    }
   },
   "formatter": {
     "prettier": {
       "plugins": []
     },
-    "oxfmt": {},
-    "biome": {}
+    "oxfmt": {}
   }
 }

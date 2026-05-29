@@ -1,15 +1,16 @@
 {
   "linter": {
     "eslint": {
-      "plugins": [
-        "@typescript-eslint/eslint-plugin",
-        "@typescript-eslint/parser"
-      ]
-    }
+      "plugins": ["@typescript-eslint/eslint-plugin", "@typescript-eslint/parser"]
+    },
+    "oxlint": {},
+    "biome": {}
   },
   "formatter": {
     "prettier": {
       "plugins": []
-    }
+    },
+    "oxfmt": {},
+    "biome": {}
   }
 }

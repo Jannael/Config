@@ -3,7 +3,9 @@
     "eslint": {
       "plugins": ["@react-native/eslint-config"]
     },
-    "oxlint": {},
+    "oxlint": {
+      "plugins": ["react"]
+    },
     "biome": {}
   },
   "formatter": {

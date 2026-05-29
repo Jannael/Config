@@ -3,7 +3,9 @@
     "eslint": {
       "plugins": ["eslint-plugin-react", "eslint-plugin-react-hooks"]
     },
-    "oxlint": {},
+    "oxlint": {
+      "plugins": ["react"]
+    },
     "biome": {}
   },
   "formatter": {

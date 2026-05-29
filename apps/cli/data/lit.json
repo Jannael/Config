@@ -3,12 +3,14 @@
     "eslint": {
       "plugins": ["eslint-plugin-lit", "eslint-plugin-wc"]
     },
+    "oxlint": {},
     "biome": {}
   },
   "formatter": {
     "prettier": {
       "plugins": []
     },
+    "oxfmt": {},
     "biome": {}
   }
 }

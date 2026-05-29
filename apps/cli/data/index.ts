@@ -1,7 +1,7 @@
 const technologies: Record<string, string> = {
   angular: 'Angular',
-  javascript: 'JavaScript',
   astro: 'Astro',
+  javascript: 'JavaScript',
   lit: 'Lit',
   next: 'Next.js',
   nuxt: 'Nuxt',
@@ -12,8 +12,8 @@ const technologies: Record<string, string> = {
   solid: 'Solid',
   svelte: 'Svelte',
   sveltekit: 'SvelteKit',
-  typescript: 'TypeScript',
   tailwind: 'Tailwind CSS',
+  typescript: 'TypeScript',
   vue: 'Vue',
 }
 
