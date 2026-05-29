@@ -11,6 +11,7 @@ const technologies: Record<string, string> = {
   solid: "Solid",
   svelte: "Svelte",
   sveltekit: "SvelteKit",
+  tailwind: "Tailwind CSS",
   vue: "Vue",
 }
 

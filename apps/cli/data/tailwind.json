@@ -1,0 +1,12 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": ["eslint-plugin-tailwindcss"]
+    }
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": ["prettier-plugin-tailwindcss"]
+    }
+  }
+}
