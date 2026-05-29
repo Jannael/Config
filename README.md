@@ -21,4 +21,3 @@ biome, oxlint, oxfmt, eslint, prettier
 - tailwind
 - vue
 - astro
-- angular
