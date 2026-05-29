@@ -1,6 +1,6 @@
 import * as p from '@clack/prompts'
-import type { Terminal } from '../app/ports'
-import type { PackageManager } from '../domain/types'
+import type { Terminal } from '@/app/ports'
+import type { PackageManager } from '@/domain/types'
 
 export class ClackTerminal implements Terminal {
   intro(title: string): void {

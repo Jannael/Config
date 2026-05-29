@@ -1,6 +1,6 @@
-import type { Terminal, ConfigWriter, PackageInstaller } from './ports'
-import { resolve, collectPlugins, getAllDeps } from '../domain/resolver'
-import type { PackageManager } from '../domain/types'
+import type { Terminal, ConfigWriter, PackageInstaller } from '@/app/ports'
+import { resolve, collectPlugins, getAllDeps } from '@/domain/resolver'
+import type { PackageManager } from '@/domain/types'
 
 const linterNames: Record<string, string> = {
   eslint: 'ESLint',

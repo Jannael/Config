@@ -1,9 +1,9 @@
-import type { ConfigWriter } from '../app/ports'
-import { generateEslint } from './eslint'
-import { generatePrettier } from './prettier'
-import { generateBiome } from './biome'
-import { generateOxlint } from './oxlint'
-import { generateOxfmt } from './oxfmt'
+import type { ConfigWriter } from '@/app/ports'
+import { generateEslint } from '@/infra/eslint'
+import { generatePrettier } from '@/infra/prettier'
+import { generateBiome } from '@/infra/biome'
+import { generateOxlint } from '@/infra/oxlint'
+import { generateOxfmt } from '@/infra/oxfmt'
 
 export class FileConfigWriter implements ConfigWriter {
   writeLinterConfig(linter: string, plugins: string[], cwd: string): void {

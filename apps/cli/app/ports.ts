@@ -1,4 +1,4 @@
-import type { PackageManager } from '../domain/types'
+import type { PackageManager } from '@/domain/types'
 
 export interface Terminal {
   intro(title: string): void

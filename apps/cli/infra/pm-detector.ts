@@ -1,4 +1,4 @@
-import type { PackageManager } from '../domain/types'
+import type { PackageManager } from '@/domain/types'
 
 export function detectPackageManager(): PackageManager | null {
   if (typeof process.versions.bun !== 'undefined') return 'bun'
