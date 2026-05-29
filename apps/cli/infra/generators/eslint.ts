@@ -165,7 +165,7 @@ export function generateEslint({
   const configEntries: string[] = ['    js.configs.recommended,']
 
   const seenImports = new Set<string>()
-``
+
   for (const plugin of linterPlugins) {
     const meta = pluginMeta[plugin]
     if (!meta || !meta.importStatement) continue
