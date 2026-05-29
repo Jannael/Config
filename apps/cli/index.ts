@@ -24,10 +24,10 @@ const formatterNames: Record<string, string> = {
 
 async function main() {
   PrintASCII()
-  p.intro('Configurador de Linters y Formatters')
+  p.intro('Linter & Formatter Configurator')
 
   const pm = (await p.select({
-    message: 'Selecciona tu package manager',
+    message: 'Select your package manager',
     options: [
       { value: 'npm', label: 'npm' },
       { value: 'bun', label: 'bun' },
@@ -37,7 +37,7 @@ async function main() {
   })) as PackageManager | symbol
 
   if (p.isCancel(pm)) {
-    p.cancel('Operación cancelada')
+    p.cancel('Operation cancelled')
     process.exit(0)
   }
 
@@ -47,13 +47,13 @@ async function main() {
   }))
 
   const techs = (await p.multiselect({
-    message: 'Selecciona tus tecnologías',
+    message: 'Select your technologies',
     options: techOptions,
     required: true,
   })) as string[] | symbol
 
   if (p.isCancel(techs)) {
-    p.cancel('Operación cancelada')
+    p.cancel('Operation cancelled')
     process.exit(0)
   }
 
@@ -61,7 +61,7 @@ async function main() {
 
   if (linters.length === 0 || formatters.length === 0) {
     p.cancel(
-      'No hay combinación de linter/formatter compatible con todas las tecnologías seleccionadas.',
+      'No compatible linter/formatter combination for the selected technologies.',
     )
     process.exit(1)
   }
@@ -69,10 +69,10 @@ async function main() {
   let selectedLinter: string
   if (linters.length === 1) {
     selectedLinter = linters[0]!
-    p.log.info(`Linter: ${linterNames[selectedLinter]} (única opción compatible)`)
+    p.log.info(`Linter: ${linterNames[selectedLinter]} (only compatible option)`)
   } else {
     const linterChoice = (await p.select({
-      message: 'Selecciona tu linter',
+      message: 'Select your linter',
       options: linters.map((l) => ({
         value: l,
         label: linterNames[l] || l,
@@ -80,7 +80,7 @@ async function main() {
     })) as string | symbol
 
     if (p.isCancel(linterChoice)) {
-      p.cancel('Operación cancelada')
+      p.cancel('Operation cancelled')
       process.exit(0)
     }
     selectedLinter = linterChoice
@@ -89,10 +89,10 @@ async function main() {
   let selectedFormatter: string
   if (formatters.length === 1) {
     selectedFormatter = formatters[0]!
-    p.log.info(`Formatter: ${formatterNames[selectedFormatter]} (única opción compatible)`)
+    p.log.info(`Formatter: ${formatterNames[selectedFormatter]} (only compatible option)`)
   } else {
     const formatterChoice = (await p.select({
-      message: 'Selecciona tu formatter',
+      message: 'Select your formatter',
       options: formatters.map((f) => ({
         value: f,
         label: formatterNames[f] || f,
@@ -100,7 +100,7 @@ async function main() {
     })) as string | symbol
 
     if (p.isCancel(formatterChoice)) {
-      p.cancel('Operación cancelada')
+      p.cancel('Operation cancelled')
       process.exit(0)
     }
     selectedFormatter = formatterChoice
@@ -110,19 +110,19 @@ async function main() {
   const deps = getAllDeps(selectedLinter, selectedFormatter, plugins)
 
   const shouldInstall = await p.confirm({
-    message: `Se instalarán las siguientes dependencias:\n${deps.join(', ')}\n\n¿Continuar?`,
+    message: `The following dependencies will be installed:\n${deps.join(', ')}\n\nContinue?`,
     initialValue: true,
   })
 
   if (p.isCancel(shouldInstall) || !shouldInstall) {
-    p.cancel('Operación cancelada')
+    p.cancel('Operation cancelled')
     process.exit(0)
   }
 
   const cwd = process.cwd()
   const spinner = p.spinner()
 
-  spinner.start('Generando configuración...')
+  spinner.start('Generating configuration...')
 
   switch (selectedLinter) {
     case 'eslint':
@@ -150,20 +150,20 @@ async function main() {
       break
   }
 
-  spinner.stop('Configuración generada')
+  spinner.stop('Configuration generated')
 
-  spinner.start('Instalando dependencias...')
+  spinner.start('Installing dependencies...')
   try {
     install(pm, deps, cwd)
-    spinner.stop('Dependencias instaladas')
+    spinner.stop('Dependencies installed')
   } catch {
-    spinner.stop('Error al instalar dependencias')
+    spinner.stop('Error installing dependencies')
     p.log.error(
-      `Ejecuta manualmente: ${pm} ${pm === 'npm' || pm === 'pnpm' || pm === 'yarn' ? (pm === 'yarn' ? 'add -D' : 'install -D') : 'add -d'} ${deps.join(' ')}`,
+      `Run manually: ${pm} ${pm === 'npm' || pm === 'pnpm' || pm === 'yarn' ? (pm === 'yarn' ? 'add -D' : 'install -D') : 'add -d'} ${deps.join(' ')}`,
     )
   }
 
-  p.outro('Listo! Tu proyecto está configurado.')
+  p.outro('Done! Your project is configured.')
 }
 
 main()
