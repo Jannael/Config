@@ -3,7 +3,7 @@ import { ClackTerminal } from '@/infra/terminal'
 import { FileConfigWriter } from '@/infra/config-writer'
 import { NpmInstaller } from '@/infra/installer'
 import { PmDetector } from '@/infra/pm-detector'
-import { printAscii } from '@/infra/ascii'
+import { printAscii } from '@/ascii'
 
 printAscii()
 
