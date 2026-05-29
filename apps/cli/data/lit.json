@@ -1,0 +1,14 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": ["eslint-plugin-lit", "eslint-plugin-wc"]
+    },
+    "biome": {}
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    },
+    "biome": {}
+  }
+}

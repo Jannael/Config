@@ -1,0 +1,12 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": ["eslint-plugin-vue", "vue-eslint-parser"]
+    }
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    }
+  }
+}

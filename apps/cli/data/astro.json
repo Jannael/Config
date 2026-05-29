@@ -1,0 +1,12 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": ["eslint-plugin-astro", "astro-eslint-parser"]
+    }
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": ["prettier-plugin-astro"]
+    }
+  }
+}

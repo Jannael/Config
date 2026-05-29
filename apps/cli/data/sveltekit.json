@@ -1,0 +1,12 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": ["eslint-plugin-svelte", "svelte-eslint-parser"]
+    }
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": ["prettier-plugin-svelte"]
+    }
+  }
+}

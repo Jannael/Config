@@ -1,0 +1,16 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": [
+        "@angular-eslint/eslint-plugin",
+        "@angular-eslint/eslint-plugin-template",
+        "@angular-eslint/template-parser"
+      ]
+    }
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    }
+  }
+}

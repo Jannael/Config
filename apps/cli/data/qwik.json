@@ -1,0 +1,16 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": ["eslint-plugin-qwik"]
+    },
+    "oxlint": {},
+    "biome": {}
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    },
+    "oxfmt": {},
+    "biome": {}
+  }
+}

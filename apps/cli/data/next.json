@@ -1,0 +1,16 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": ["eslint-config-next"]
+    },
+    "oxlint": {},
+    "biome": {}
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    },
+    "oxfmt": {},
+    "biome": {}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "linter": {
+    "eslint": {
+      "plugins": ["eslint-plugin-react", "eslint-plugin-react-hooks"]
+    },
+    "oxlint": {},
+    "biome": {}
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    },
+    "oxfmt": {},
+    "biome": {}
+  }
+}
