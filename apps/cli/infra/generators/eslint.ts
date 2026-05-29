@@ -4,14 +4,12 @@ import { join } from 'node:path'
 
 type PluginMeta = {
   importStatement: string
-  varName: string
   configSpread: string
 }
 
 const pluginMeta: Record<string, PluginMeta> = {
   'eslint-plugin-react': {
     importStatement: `import react from "eslint-plugin-react"`,
-    varName: 'react',
     configSpread: `    {
       files: ["**/*.{js,jsx,ts,tsx}"],
       plugins: { react },
@@ -21,7 +19,6 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   'eslint-plugin-react-hooks': {
     importStatement: `import reactHooks from "eslint-plugin-react-hooks"`,
-    varName: 'reactHooks',
     configSpread: `    {
       files: ["**/*.{js,jsx,ts,tsx}"],
       plugins: { "react-hooks": reactHooks },
@@ -30,32 +27,26 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   'eslint-config-next': {
     importStatement: `import next from "eslint-config-next/flat.js"`,
-    varName: 'next',
     configSpread: `    ...next,`,
   },
   'eslint-plugin-solid': {
     importStatement: `import solid from "eslint-plugin-solid/configs/typescript.js"`,
-    varName: 'solid',
     configSpread: `    solid,`,
   },
   'eslint-plugin-qwik': {
     importStatement: `import qwik from "eslint-plugin-qwik"`,
-    varName: 'qwik',
     configSpread: `    ...qwik.configs.recommended,`,
   },
   '@react-native/eslint-config': {
     importStatement: `import reactNative from "@react-native/eslint-config"`,
-    varName: 'reactNative',
     configSpread: `    ...reactNative,`,
   },
   'eslint-plugin-vue': {
     importStatement: `import pluginVue from "eslint-plugin-vue"`,
-    varName: 'pluginVue',
     configSpread: `    ...pluginVue.configs["flat/recommended"],`,
   },
   'vue-eslint-parser': {
     importStatement: `import vueParser from "vue-eslint-parser"`,
-    varName: 'vueParser',
     configSpread: `    {
       files: ["**/*.vue"],
       languageOptions: { parser: vueParser },
@@ -63,17 +54,14 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   '@nuxt/eslint': {
     importStatement: `import nuxt from "@nuxt/eslint"`,
-    varName: 'nuxt',
     configSpread: `    ...nuxt.configs.flat,`,
   },
   'eslint-plugin-svelte': {
     importStatement: `import svelte from "eslint-plugin-svelte"`,
-    varName: 'svelte',
     configSpread: `    ...svelte.configs["flat/recommended"],`,
   },
   'svelte-eslint-parser': {
     importStatement: `import svelteParser from "svelte-eslint-parser"`,
-    varName: 'svelteParser',
     configSpread: `    {
       files: ["**/*.svelte"],
       languageOptions: { parser: svelteParser },
@@ -81,12 +69,10 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   'eslint-plugin-astro': {
     importStatement: `import astro from "eslint-plugin-astro"`,
-    varName: 'astro',
     configSpread: `    ...astro.configs.recommended,`,
   },
   'astro-eslint-parser': {
     importStatement: `import astroParser from "astro-eslint-parser"`,
-    varName: 'astroParser',
     configSpread: `    {
       files: ["**/*.astro"],
       languageOptions: { parser: astroParser },
@@ -94,7 +80,6 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   '@angular-eslint/eslint-plugin': {
     importStatement: `import angular from "@angular-eslint/eslint-plugin"`,
-    varName: 'angular',
     configSpread: `    {
       files: ["**/*.ts"],
       plugins: { "@angular-eslint": angular },
@@ -103,7 +88,6 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   '@angular-eslint/eslint-plugin-template': {
     importStatement: `import angularTemplate from "@angular-eslint/eslint-plugin-template"`,
-    varName: 'angularTemplate',
     configSpread: `    {
       files: ["**/*.html"],
       plugins: { "@angular-eslint/template": angularTemplate },
@@ -112,7 +96,6 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   '@angular-eslint/template-parser': {
     importStatement: `import angularTemplateParser from "@angular-eslint/template-parser"`,
-    varName: 'angularTemplateParser',
     configSpread: `    {
       files: ["**/*.html"],
       languageOptions: { parser: angularTemplateParser },
@@ -120,7 +103,6 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   'eslint-plugin-lit': {
     importStatement: `import lit from "eslint-plugin-lit"`,
-    varName: 'lit',
     configSpread: `    {
       plugins: { lit },
       rules: { ...lit.configs.recommended.rules },
@@ -128,7 +110,6 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   'eslint-plugin-wc': {
     importStatement: `import wc from "eslint-plugin-wc"`,
-    varName: 'wc',
     configSpread: `    {
       plugins: { wc },
       rules: { ...wc.configs.recommended.rules },
@@ -136,7 +117,6 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   'eslint-plugin-tailwindcss': {
     importStatement: `import tailwind from "eslint-plugin-tailwindcss"`,
-    varName: 'tailwind',
     configSpread: `    {
       plugins: { tailwind },
       rules: { ...tailwind.configs.recommended.rules },
@@ -144,12 +124,10 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
   '@typescript-eslint/eslint-plugin': {
     importStatement: `import tsEslint from "typescript-eslint"`,
-    varName: 'tsEslint',
     configSpread: `    ...tsEslint.configs.recommended,`,
   },
   '@typescript-eslint/parser': {
     importStatement: '',
-    varName: '',
     configSpread: '',
   },
 }
