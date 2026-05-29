@@ -17,19 +17,34 @@ Interactive CLI (`bun run dist/index.js`) that configures linters + formatters f
 
 ## Architecture
 
+Hex architecture. `domain/` is pure (types + resolver logic, zero I/O). `app/` defines ports (interfaces) and the orchestration use case. `infra/` provides adapters (@clack/prompts, file system, child_process).
+
 ```
 apps/cli/
-├── index.ts         → entry + orchestration
-├── resolver.ts      → intersection logic (set intersection on `data/*.json` keys)
-├── installer.ts     → `execSync` install via chosen package manager
-├── ascii.ts         → splash art
-├── generators/     → writes config files (eslint.config.js, .prettierrc, biome.json, .oxlintrc.json, .oxfmtrc.json)
-└── data/           → 16 JSON files: per-tech linter/formatter compatibility
+├── index.ts              → thin entry: wires infra adapters → calls use case
+├── domain/
+│   ├── types.ts          → PackageManager, TechConfig, ResolveResult, CollectedPlugins
+│   ├── resolver.ts       → resolve(), collectPlugins(), getAllDeps() (pure)
+│   └── data/             → 16 JSON files: per-tech linter/formatter compatibility
+├── app/
+│   ├── ports.ts          → Terminal, ConfigWriter, PackageInstaller interfaces
+│   └── configure-project.ts → orchestration use case (depends only on domain + ports)
+└── infra/
+    ├── terminal.ts       → @clack/prompts adapter (implements Terminal)
+    ├── config-writer.ts  → composes generators (implements ConfigWriter)
+    ├── installer.ts      → execSync install (implements PackageInstaller)
+    ├── pm-detector.ts    → auto-detect package manager from argv/env
+    ├── ascii.ts          → gradient-string splash art
+    ├── eslint.ts         → generates eslint.config.js
+    ├── prettier.ts       → generates .prettierrc
+    ├── biome.ts          → generates biome.json
+    ├── oxlint.ts         → generates .oxlintrc.json
+    └── oxfmt.ts          → generates .oxfmtrc.json
 ```
 
 **Resolver logic:** intersection of linter/formatter keys across all selected tech JSON files. If only one option survives, auto-select it.
 
-**Data file shape** (`apps/cli/data/*.json`):
+**Data file shape** (`domain/data/*.json`):
 
 ```json
 { "linter": { "eslint": { "plugins": [...] }, "oxlint": {}, "biome": {} },
@@ -47,7 +62,7 @@ apps/cli/
 
 - **Runtime:** Bun >=1.0 (required — `bunfig.toml` sets minimum release age 86400s)
 - **TS config:** `module: Preserve`, `moduleResolution: bundler`, `noEmit`, `verbatimModuleSyntax`
-- **Path aliases:** `@/*` → `./apps/cli/*`, `data` → `./apps/cli/data/index.ts`
+- **Path aliases:** `@/*` → `./apps/cli/*`, `data` → `./apps/cli/domain/data/index.ts`
 - **Peer dep:** TypeScript 6.0.3
 - **Lint:** ESLint 10 + typescript-eslint + plugins (astro, tailwindcss)
 - **Format:** Prettier 3 + prettier-plugin-tailwindcss
