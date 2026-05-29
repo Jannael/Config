@@ -1,5 +1,5 @@
 import { execSync } from 'node:child_process'
-import type { PackageInstaller } from '@/app/ports'
+import type { PackageInstaller } from '@/domain/ports'
 import type { PackageManager } from '@/domain/types'
 
 const installCommands: Record<PackageManager, string[]> = {
@@ -10,7 +10,7 @@ const installCommands: Record<PackageManager, string[]> = {
 }
 
 export class NpmInstaller implements PackageInstaller {
-  install(pm: PackageManager, deps: string[], cwd: string): void {
+  install({ pm, deps, cwd }: { pm: PackageManager; deps: string[]; cwd: string }): void {
     const [cmd, ...args] = installCommands[pm]!
     const fullCommand = [cmd, ...args, ...deps].join(' ')
     execSync(fullCommand, { cwd, stdio: 'inherit' })

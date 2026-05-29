@@ -1,4 +1,4 @@
-import type { ConfigWriter } from '@/app/ports'
+import type { ConfigWriter } from '@/domain/ports'
 import { generateEslint } from '@/infra/eslint'
 import { generatePrettier } from '@/infra/prettier'
 import { generateBiome } from '@/infra/biome'
@@ -6,30 +6,46 @@ import { generateOxlint } from '@/infra/oxlint'
 import { generateOxfmt } from '@/infra/oxfmt'
 
 export class FileConfigWriter implements ConfigWriter {
-  writeLinterConfig(linter: string, plugins: string[], cwd: string): void {
+  writeLinterConfig({
+    linter,
+    plugins,
+    cwd,
+  }: {
+    linter: string
+    plugins: string[]
+    cwd: string
+  }): void {
     switch (linter) {
       case 'eslint':
-        generateEslint(plugins, cwd)
+        generateEslint({ plugins, cwd })
         break
       case 'oxlint':
-        generateOxlint(plugins, cwd)
+        generateOxlint({ plugins, cwd })
         break
       case 'biome':
-        generateBiome(cwd)
+        generateBiome({ cwd })
         break
     }
   }
 
-  writeFormatterConfig(formatter: string, plugins: string[], cwd: string): void {
+  writeFormatterConfig({
+    formatter,
+    plugins,
+    cwd,
+  }: {
+    formatter: string
+    plugins: string[]
+    cwd: string
+  }): void {
     switch (formatter) {
       case 'prettier':
-        generatePrettier(plugins, cwd)
+        generatePrettier({ plugins, cwd })
         break
       case 'oxfmt':
-        generateOxfmt(cwd)
+        generateOxfmt({ cwd })
         break
       case 'biome':
-        generateBiome(cwd)
+        generateBiome({ cwd })
         break
     }
   }
