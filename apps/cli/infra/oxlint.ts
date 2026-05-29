@@ -1,7 +1,13 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-export function generateOxlint(oxlintPlugins: string[], cwd: string): void {
+export function generateOxlint({
+  plugins: oxlintPlugins,
+  cwd,
+}: {
+  plugins: string[]
+  cwd: string
+}): void {
   const config: Record<string, unknown> = {
     $schema: './node_modules/oxlint/configuration_schema.json',
     plugins: oxlintPlugins.length > 0 ? oxlintPlugins : undefined,

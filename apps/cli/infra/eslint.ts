@@ -154,7 +154,13 @@ const pluginMeta: Record<string, PluginMeta> = {
   },
 }
 
-export function generateEslint(linterPlugins: string[], cwd: string): void {
+export function generateEslint({
+  plugins: linterPlugins,
+  cwd,
+}: {
+  plugins: string[]
+  cwd: string
+}): void {
   const imports: string[] = [`import js from "@eslint/js"`]
   const configEntries: string[] = ['    js.configs.recommended,']
 

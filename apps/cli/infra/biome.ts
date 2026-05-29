@@ -1,7 +1,7 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-export function generateBiome(cwd: string): void {
+export function generateBiome({ cwd }: { cwd: string }): void {
   const config = {
     $schema: 'https://biomejs.dev/schemas/2.0.0/schema.json',
     formatter: {

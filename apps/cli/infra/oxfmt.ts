@@ -1,7 +1,7 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-export function generateOxfmt(cwd: string): void {
+export function generateOxfmt({ cwd }: { cwd: string }): void {
   const config = {
     $schema: './node_modules/oxfmt/configuration_schema.json',
     lineWidth: 100,

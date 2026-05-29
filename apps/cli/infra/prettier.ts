@@ -1,7 +1,13 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-export function generatePrettier(formatterPlugins: string[], cwd: string): void {
+export function generatePrettier({
+  plugins: formatterPlugins,
+  cwd,
+}: {
+  plugins: string[]
+  cwd: string
+}): void {
   const config: Record<string, unknown> = {
     semi: false,
     singleQuote: true,
