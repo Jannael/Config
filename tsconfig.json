@@ -27,7 +27,7 @@
     "noUnusedParameters": false,
     "paths": {
       "@/*": ["./apps/cli/*"],
-      "data": ["./apps/cli/domain/data/index.ts"]
+      "data": ["./apps/cli/data/index.ts"]
     }
   },
   "exclude": ["node_modules", "**/node_modules/**", "apps/**/node_modules/**", "dist"]

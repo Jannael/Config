@@ -29,5 +29,4 @@ export const formatterNames: Record<string, string> = {
   biome: 'Biome',
 }
 
-
 export default technologies
