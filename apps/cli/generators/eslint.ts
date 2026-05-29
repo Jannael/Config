@@ -1,0 +1,192 @@
+/* eslint-disable quotes */
+import { writeFileSync } from 'node:fs'
+import { join } from 'node:path'
+
+type PluginMeta = {
+  importStatement: string
+  varName: string
+  configSpread: string
+}
+
+const pluginMeta: Record<string, PluginMeta> = {
+  'eslint-plugin-react': {
+    importStatement: `import react from "eslint-plugin-react"`,
+    varName: 'react',
+    configSpread: `    {
+      files: ["**/*.{js,jsx,ts,tsx}"],
+      plugins: { react },
+      settings: { react: { version: "detect" } },
+      rules: { ...react.configs.recommended.rules },
+    },`,
+  },
+  'eslint-plugin-react-hooks': {
+    importStatement: `import reactHooks from "eslint-plugin-react-hooks"`,
+    varName: 'reactHooks',
+    configSpread: `    {
+      files: ["**/*.{js,jsx,ts,tsx}"],
+      plugins: { "react-hooks": reactHooks },
+      rules: { ...reactHooks.configs.recommended.rules },
+    },`,
+  },
+  'eslint-config-next': {
+    importStatement: `import next from "eslint-config-next/flat.js"`,
+    varName: 'next',
+    configSpread: `    ...next,`,
+  },
+  'eslint-plugin-solid': {
+    importStatement: `import solid from "eslint-plugin-solid/configs/typescript.js"`,
+    varName: 'solid',
+    configSpread: `    solid,`,
+  },
+  'eslint-plugin-qwik': {
+    importStatement: `import qwik from "eslint-plugin-qwik"`,
+    varName: 'qwik',
+    configSpread: `    ...qwik.configs.recommended,`,
+  },
+  '@react-native/eslint-config': {
+    importStatement: `import reactNative from "@react-native/eslint-config"`,
+    varName: 'reactNative',
+    configSpread: `    ...reactNative,`,
+  },
+  'eslint-plugin-vue': {
+    importStatement: `import pluginVue from "eslint-plugin-vue"`,
+    varName: 'pluginVue',
+    configSpread: `    ...pluginVue.configs["flat/recommended"],`,
+  },
+  'vue-eslint-parser': {
+    importStatement: `import vueParser from "vue-eslint-parser"`,
+    varName: 'vueParser',
+    configSpread: `    {
+      files: ["**/*.vue"],
+      languageOptions: { parser: vueParser },
+    },`,
+  },
+  '@nuxt/eslint': {
+    importStatement: `import nuxt from "@nuxt/eslint"`,
+    varName: 'nuxt',
+    configSpread: `    ...nuxt.configs.flat,`,
+  },
+  'eslint-plugin-svelte': {
+    importStatement: `import svelte from "eslint-plugin-svelte"`,
+    varName: 'svelte',
+    configSpread: `    ...svelte.configs["flat/recommended"],`,
+  },
+  'svelte-eslint-parser': {
+    importStatement: `import svelteParser from "svelte-eslint-parser"`,
+    varName: 'svelteParser',
+    configSpread: `    {
+      files: ["**/*.svelte"],
+      languageOptions: { parser: svelteParser },
+    },`,
+  },
+  'eslint-plugin-astro': {
+    importStatement: `import astro from "eslint-plugin-astro"`,
+    varName: 'astro',
+    configSpread: `    ...astro.configs.recommended,`,
+  },
+  'astro-eslint-parser': {
+    importStatement: `import astroParser from "astro-eslint-parser"`,
+    varName: 'astroParser',
+    configSpread: `    {
+      files: ["**/*.astro"],
+      languageOptions: { parser: astroParser },
+    },`,
+  },
+  '@angular-eslint/eslint-plugin': {
+    importStatement: `import angular from "@angular-eslint/eslint-plugin"`,
+    varName: 'angular',
+    configSpread: `    {
+      files: ["**/*.ts"],
+      plugins: { "@angular-eslint": angular },
+      rules: { ...angular.configs.recommended.rules },
+    },`,
+  },
+  '@angular-eslint/eslint-plugin-template': {
+    importStatement: `import angularTemplate from "@angular-eslint/eslint-plugin-template"`,
+    varName: 'angularTemplate',
+    configSpread: `    {
+      files: ["**/*.html"],
+      plugins: { "@angular-eslint/template": angularTemplate },
+      rules: { ...angularTemplate.configs.recommended.rules },
+    },`,
+  },
+  '@angular-eslint/template-parser': {
+    importStatement: `import angularTemplateParser from "@angular-eslint/template-parser"`,
+    varName: 'angularTemplateParser',
+    configSpread: `    {
+      files: ["**/*.html"],
+      languageOptions: { parser: angularTemplateParser },
+    },`,
+  },
+  'eslint-plugin-lit': {
+    importStatement: `import lit from "eslint-plugin-lit"`,
+    varName: 'lit',
+    configSpread: `    {
+      plugins: { lit },
+      rules: { ...lit.configs.recommended.rules },
+    },`,
+  },
+  'eslint-plugin-wc': {
+    importStatement: `import wc from "eslint-plugin-wc"`,
+    varName: 'wc',
+    configSpread: `    {
+      plugins: { wc },
+      rules: { ...wc.configs.recommended.rules },
+    },`,
+  },
+  'eslint-plugin-tailwindcss': {
+    importStatement: `import tailwind from "eslint-plugin-tailwindcss"`,
+    varName: 'tailwind',
+    configSpread: `    {
+      plugins: { tailwind },
+      rules: { ...tailwind.configs.recommended.rules },
+    },`,
+  },
+  '@typescript-eslint/eslint-plugin': {
+    importStatement: `import tsEslint from "typescript-eslint"`,
+    varName: 'tsEslint',
+    configSpread: `    ...tsEslint.configs.recommended,`,
+  },
+  '@typescript-eslint/parser': {
+    importStatement: '',
+    varName: '',
+    configSpread: '',
+  },
+}
+
+export function generateEslint(linterPlugins: string[], cwd: string): void {
+  const imports: string[] = [`import js from "@eslint/js"`]
+  const configEntries: string[] = ['    js.configs.recommended,']
+
+  const seenImports = new Set<string>()
+
+  for (const plugin of linterPlugins) {
+    const meta = pluginMeta[plugin]
+    if (!meta || !meta.importStatement) continue
+
+    if (meta.importStatement && !seenImports.has(meta.importStatement)) {
+      imports.push(meta.importStatement)
+      seenImports.add(meta.importStatement)
+    }
+
+    if (meta.configSpread) {
+      configEntries.push(meta.configSpread)
+    }
+  }
+
+  configEntries.push(`    {
+      rules: {
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+      },
+    },`)
+
+  const content = `${imports.join('\n')}
+
+export default [
+${configEntries.join('\n')}
+]
+`
+
+  writeFileSync(join(cwd, 'eslint.config.js'), content)
+}
