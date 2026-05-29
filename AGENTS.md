@@ -6,34 +6,36 @@ Interactive CLI (`bun run dist/index.js`) that configures linters + formatters f
 
 ## Commands
 
-| Command             | What                                                    |
-| ------------------- | ------------------------------------------------------- |
-| `bun run build`     | Bundle `apps/cli/index.ts` → `dist/index.js` (Bun)      |
-| `bun run lint`      | ESLint flat config check                                |
-| `bun run fmt`       | Prettier --write                                        |
-| `bun run fmt:check` | Prettier --check                                        |
+| Command             | What                                               |
+| ------------------- | -------------------------------------------------- |
+| `bun run build`     | Bundle `apps/cli/index.ts` → `dist/index.js` (Bun) |
+| `bun run lint`      | ESLint flat config check                           |
+| `bun run fmt`       | Prettier --write                                   |
+| `bun run fmt:check` | Prettier --check                                   |
 
 No tests exist (no test framework configured).
 
 ## Architecture (hexagonal)
 
-`domain/` is pure I/O-free logic. `app/` defines interfaces + orchestration. `infra/` provides adapters.
+`domain/` is pure I/O-free logic (classes + ports). `app/` orchestrates use cases. `infra/` provides adapters. All methods use object params (`{ key: value }`) for readability.
 
 ```
 apps/cli/
-├── index.ts             → wires adapters → calls configureProject()
+├── index.ts             → wires DI → calls new ConfigureProject(...).run()
 ├── domain/
 │   ├── types.ts         → core types
-│   ├── resolver.ts      → resolve(), collectPlugins(), getAllDeps() (pure)
-│   └── data/            → per-tech JSON: linter/formatter compatibility matrices
+│   ├── ports.ts         → Terminal, ConfigWriter, PackageInstaller, PackageManagerDetector interfaces
+│   └── resolver.ts      → class Resolver: resolve(), collectPlugins(), getAllDeps() (pure)
+├── data/
+│   ├── index.ts         → technology/linter/formatter display names
+│   └── *.json           → per-tech linter/formatter compatibility matrices
 ├── app/
-│   ├── ports.ts         → Terminal, ConfigWriter, PackageInstaller
-│   └── configure-project.ts → use case
+│   └── configure-project.ts → class ConfigureProject (constructor DI + run())
 └── infra/
-    ├── terminal.ts      → @clack/prompts
-    ├── config-writer.ts → dispatches generators
-    ├── installer.ts     → execSync
-    ├── pm-detector.ts   → auto-detect from argv/env
+    ├── terminal.ts      → class ClackTerminal implements Terminal (@clack/prompts)
+    ├── config-writer.ts → class FileConfigWriter implements ConfigWriter
+    ├── installer.ts     → class NpmInstaller implements PackageInstaller
+    ├── pm-detector.ts   → class PmDetector implements PackageManagerDetector
     └── *.ts             → per-tool config generators
 ```
 
@@ -49,7 +51,7 @@ apps/cli/
 ## Toolchain quirks
 
 - **Bun only** — `bun install`, `bun run build`. Not Node/npm.
-- **Path aliases:** `@/*` → `./apps/cli/*`, `data` → `./apps/cli/domain/data/index.ts`
+- **Path aliases:** `@/*` → `./apps/cli/*`, `data` → `./apps/cli/data/index.ts`
 - **Lockfile:** `bun.lock` (not package-lock.json)
 - **bunfig.toml:** `minimumReleaseAge = 86400` — may delay fresh package installs
 - **prepublishOnly:** runs `bun run build`
