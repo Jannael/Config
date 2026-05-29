@@ -1,24 +1,20 @@
-import angular from '@/data/angular.json'
-import astro from '@/data/astro.json'
-import javascript from '@/data/javascript.json'
-import lit from '@/data/lit.json'
-import next from '@/data/next.json'
-import nuxt from '@/data/nuxt.json'
-import qwik from '@/data/qwik.json'
-import react from '@/data/react.json'
-import reactNative from '@/data/react-native.json'
-import remix from '@/data/remix.json'
-import solid from '@/data/solid.json'
-import svelte from '@/data/svelte.json'
-import sveltekit from '@/data/sveltekit.json'
-import tailwind from '@/data/tailwind.json'
-import typescript from '@/data/typescript.json'
-import vue from '@/data/vue.json'
-
-export type TechConfig = {
-  linter: Record<string, { plugins?: string[] }>
-  formatter: Record<string, { plugins?: string[] }>
-}
+import angular from './data/angular.json'
+import astro from './data/astro.json'
+import javascript from './data/javascript.json'
+import lit from './data/lit.json'
+import next from './data/next.json'
+import nuxt from './data/nuxt.json'
+import qwik from './data/qwik.json'
+import react from './data/react.json'
+import reactNative from './data/react-native.json'
+import remix from './data/remix.json'
+import solid from './data/solid.json'
+import svelte from './data/svelte.json'
+import sveltekit from './data/sveltekit.json'
+import tailwind from './data/tailwind.json'
+import typescript from './data/typescript.json'
+import vue from './data/vue.json'
+import type { TechConfig, ResolveResult, CollectedPlugins } from './types'
 
 const dataMap: Record<string, TechConfig> = {
   angular,
@@ -37,11 +33,6 @@ const dataMap: Record<string, TechConfig> = {
   tailwind,
   typescript,
   vue,
-}
-
-export type ResolveResult = {
-  linters: string[]
-  formatters: string[]
 }
 
 export function resolve(techs: string[]): ResolveResult {
@@ -64,12 +55,6 @@ export function resolve(techs: string[]): ResolveResult {
     linters: [...linterSet].sort(),
     formatters: [...formatterSet].sort(),
   }
-}
-
-export type CollectedPlugins = {
-  linterPlugins: string[]
-  formatterPlugins: string[]
-  oxlintPlugins: string[]
 }
 
 export function collectPlugins(
@@ -116,7 +101,7 @@ export function collectPlugins(
   }
 }
 
-export function getBaseDeps(linter: string, formatter: string): string[] {
+function getBaseDeps(linter: string, formatter: string): string[] {
   const deps: string[] = []
 
   switch (linter) {
