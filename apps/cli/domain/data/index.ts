@@ -17,4 +17,17 @@ const technologies: Record<string, string> = {
   vue: 'Vue',
 }
 
+export const linterNames: Record<string, string> = {
+  eslint: 'ESLint',
+  oxlint: 'Oxlint',
+  biome: 'Biome',
+}
+
+export const formatterNames: Record<string, string> = {
+  prettier: 'Prettier',
+  oxfmt: 'Oxfmt',
+  biome: 'Biome',
+}
+
+
 export default technologies

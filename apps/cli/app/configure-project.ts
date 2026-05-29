@@ -1,37 +1,7 @@
 import type { Terminal, ConfigWriter, PackageInstaller } from '@/app/ports'
 import { resolve, collectPlugins, getAllDeps } from '@/domain/resolver'
 import type { PackageManager } from '@/domain/types'
-
-const linterNames: Record<string, string> = {
-  eslint: 'ESLint',
-  oxlint: 'Oxlint',
-  biome: 'Biome',
-}
-
-const formatterNames: Record<string, string> = {
-  prettier: 'Prettier',
-  oxfmt: 'Oxfmt',
-  biome: 'Biome',
-}
-
-const technologies: Record<string, string> = {
-  angular: 'Angular',
-  astro: 'Astro',
-  javascript: 'JavaScript',
-  lit: 'Lit',
-  next: 'Next.js',
-  nuxt: 'Nuxt',
-  qwik: 'Qwik',
-  react: 'React',
-  'react-native': 'React Native',
-  remix: 'Remix',
-  solid: 'Solid',
-  svelte: 'Svelte',
-  sveltekit: 'SvelteKit',
-  tailwind: 'Tailwind CSS',
-  typescript: 'TypeScript',
-  vue: 'Vue',
-}
+import technologies, { linterNames, formatterNames } from '@/domain/data/index'
 
 export async function configureProject(
   terminal: Terminal,
