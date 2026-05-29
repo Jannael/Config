@@ -45,6 +45,7 @@
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
+    "@clack/prompts": "^1.4.0",
     "gradient-string": "3.0.0"
   },
   "devDependencies": {
