@@ -1,8 +1,8 @@
-import { configureProject } from '@/app/configure-project'
+import { ConfigureProject } from '@/app/configure-project'
 import { ClackTerminal } from '@/infra/terminal'
 import { FileConfigWriter } from '@/infra/config-writer'
 import { NpmInstaller } from '@/infra/installer'
-import { detectPackageManager } from '@/infra/pm-detector'
+import { PmDetector } from '@/infra/pm-detector'
 import { printAscii } from '@/infra/ascii'
 
 printAscii()
@@ -10,6 +10,7 @@ printAscii()
 const terminal = new ClackTerminal()
 const configWriter = new FileConfigWriter()
 const installer = new NpmInstaller()
-const detectedPm = detectPackageManager()
+const pmDetector = new PmDetector()
+const detectedPm = pmDetector.detect()
 
-configureProject(terminal, configWriter, installer, detectedPm)
+new ConfigureProject(terminal, configWriter, installer, detectedPm).run()
