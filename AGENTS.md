@@ -6,12 +6,12 @@ Interactive CLI (`bun run dist/index.js`) that configures linters + formatters f
 
 ## Commands
 
-| Command | What |
-|---|---|
-| `bun run build` | Bundle `apps/cli/index.ts` → `dist/index.js` (Bun target) |
-| `bun run lint` | ESLint flat config check |
-| `bun run fmt` | Prettier --write |
-| `bun run fmt:check` | Prettier --check |
+| Command             | What                                                      |
+| ------------------- | --------------------------------------------------------- |
+| `bun run build`     | Bundle `apps/cli/index.ts` → `dist/index.js` (Bun target) |
+| `bun run lint`      | ESLint flat config check                                  |
+| `bun run fmt`       | Prettier --write                                          |
+| `bun run fmt:check` | Prettier --check                                          |
 
 **Known gotcha:** `bun run copy-template` in build script has no corresponding script — the second half of the build command (`&& bun run copy-template`) will fail. Run just `bun build ./apps/cli/index.ts --outfile=./dist/index.js --target=bun`.
 
@@ -30,6 +30,7 @@ apps/cli/
 **Resolver logic:** intersection of linter/formatter keys across all selected tech JSON files. If only one option survives, auto-select it.
 
 **Data file shape** (`apps/cli/data/*.json`):
+
 ```json
 { "linter": { "eslint": { "plugins": [...] }, "oxlint": {}, "biome": {} },
   "formatter": { "prettier": { "plugins": [...] }, "oxfmt": {}, "biome": {} } }

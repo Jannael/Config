@@ -10,6 +10,22 @@ import { generateOxlint } from '@/generators/oxlint'
 import { generateOxfmt } from '@/generators/oxfmt'
 import { install } from '@/installer'
 
+function detectPackageManager(): PackageManager | null {
+  if (typeof process.versions.bun !== 'undefined') return 'bun'
+
+  const binPath = process.argv[1] ?? ''
+  if (binPath.includes('pnpm')) return 'pnpm'
+  if (binPath.includes('yarn')) return 'yarn'
+  if (binPath.includes('npx') || binPath.includes('npm')) return 'npm'
+
+  const userAgent = process.env.npm_config_user_agent ?? ''
+  if (userAgent.startsWith('pnpm')) return 'pnpm'
+  if (userAgent.startsWith('yarn')) return 'yarn'
+  if (userAgent.startsWith('npm')) return 'npm'
+
+  return null
+}
+
 const linterNames: Record<string, string> = {
   eslint: 'ESLint',
   oxlint: 'Oxlint',
@@ -26,19 +42,28 @@ async function main() {
   PrintASCII()
   p.intro('Linter & Formatter Configurator')
 
-  const pm = (await p.select({
-    message: 'Select your package manager',
-    options: [
-      { value: 'npm', label: 'npm' },
-      { value: 'bun', label: 'bun' },
-      { value: 'pnpm', label: 'pnpm' },
-      { value: 'yarn', label: 'yarn' },
-    ],
-  })) as PackageManager | symbol
+  let pm: PackageManager
+  const detectedPm = detectPackageManager()
 
-  if (p.isCancel(pm)) {
-    p.cancel('Operation cancelled')
-    process.exit(0)
+  if (detectedPm) {
+    pm = detectedPm
+    p.log.info(`Package manager: ${pm} (auto-detected)`)
+  } else {
+    const pmChoice = (await p.select({
+      message: 'Select your package manager',
+      options: [
+        { value: 'npm', label: 'npm' },
+        { value: 'bun', label: 'bun' },
+        { value: 'pnpm', label: 'pnpm' },
+        { value: 'yarn', label: 'yarn' },
+      ],
+    })) as PackageManager | symbol
+
+    if (p.isCancel(pmChoice)) {
+      p.cancel('Operation cancelled')
+      process.exit(0)
+    }
+    pm = pmChoice
   }
 
   const techOptions = Object.entries(technologies).map(([key, label]) => ({
@@ -60,9 +85,7 @@ async function main() {
   const { linters, formatters } = resolve(techs)
 
   if (linters.length === 0 || formatters.length === 0) {
-    p.cancel(
-      'No compatible linter/formatter combination for the selected technologies.',
-    )
+    p.cancel('No compatible linter/formatter combination for the selected technologies.')
     process.exit(1)
   }
 
