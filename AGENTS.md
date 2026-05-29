@@ -13,7 +13,6 @@ Interactive CLI (`bun run dist/index.js`) that configures linters + formatters f
 | `bun run fmt`       | Prettier --write                                          |
 | `bun run fmt:check` | Prettier --check                                          |
 
-**Known gotcha:** `bun run copy-template` in build script has no corresponding script — the second half of the build command (`&& bun run copy-template`) will fail. Run just `bun build ./apps/cli/index.ts --outfile=./dist/index.js --target=bun`.
 
 ## Architecture
 
