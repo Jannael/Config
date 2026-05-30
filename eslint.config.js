@@ -5,6 +5,7 @@ import astro from "eslint-plugin-astro"
 import tailwind from "eslint-plugin-tailwindcss"
 
 export default [
+    { ignores: ["dist/**", "apps/web/dist/**"] },
     js.configs.recommended,
     ...tsEslint.configs.recommended,
     {
@@ -13,6 +14,7 @@ export default [
     },
     ...astro.configs.recommended,
     {
+      files: ["apps/web/**/*.{js,jsx,ts,tsx,astro}"],
       plugins: { tailwindcss: tailwind },
       rules: { ...tailwind.configs.recommended.rules },
     },

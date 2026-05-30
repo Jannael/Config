@@ -112,5 +112,6 @@ describe('generateEslint', () => {
 
     expect(content).toContain('import tailwind from "eslint-plugin-tailwindcss"')
     expect(content).toContain('plugins: { tailwindcss: tailwind }')
+    expect(content).toContain('files: ["**/*.{js,jsx,ts,tsx,astro,html,vue,svelte}"]')
   })
 })
