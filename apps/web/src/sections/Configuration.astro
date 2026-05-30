@@ -1,0 +1,91 @@
+---
+const formattingRules = [
+  { label: 'No semicolons', value: 'semi: false' },
+  { label: 'Single quotes', value: "quoteStyle: 'single'" },
+  { label: 'Print width', value: '100 characters' },
+  { label: 'Indent style', value: 'Spaces' },
+  { label: 'Indent width', value: '2 spaces' },
+]
+
+const technologies = [
+  'JavaScript',
+  'TypeScript',
+  'React',
+  'React Native',
+  'Next.js',
+  'Remix',
+  'Vue',
+  'Nuxt',
+  'Angular',
+  'Svelte',
+  'SvelteKit',
+  'Solid',
+  'Qwik',
+  'Astro',
+  'Lit',
+  'Tailwind CSS',
+  'HTML',
+  'CSS',
+]
+---
+
+<section class="relative bg-[#0a0a0a] py-24">
+  <div class="absolute inset-0 opacity-[0.02]">
+    <div
+      class="size-full"
+      style="background-image: linear-gradient(rgba(34, 197, 94, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.3) 1px, transparent 1px); background-size: 50px 50px;"
+    >
+    </div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <h2 class="mb-4 text-4xl font-bold text-white sm:text-5xl">
+        Consistent by default,<br />
+        <span class="bg-linear-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent"
+          >compatible everywhere</span
+        >
+      </h2>
+      <p class="mx-auto max-w-2xl text-lg text-gray-400">
+        All formatters share the same opinionated style, and we support the frameworks you love.
+      </p>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2">
+      <!-- Formatting rules -->
+      <div class="rounded-2xl border border-gray-800 bg-gray-900/50 p-8">
+        <h3 class="mb-6 text-2xl font-semibold text-white">Formatting Style</h3>
+        <div class="space-y-4">
+          {
+            formattingRules.map((rule) => (
+              <div class="flex items-center justify-between border-b border-gray-800 pb-4 last:border-0">
+                <span class="text-gray-300">{rule.label}</span>
+                <code class="rounded bg-gray-800 px-3 py-1 font-mono text-sm text-green-400">
+                  {rule.value}
+                </code>
+              </div>
+            ))
+          }
+        </div>
+        <p class="mt-6 text-sm text-gray-500">
+          Applied consistently across Prettier, Biome and Oxfmt.
+        </p>
+      </div>
+
+      <!-- Supported technologies -->
+      <div class="rounded-2xl border border-gray-800 bg-gray-900/50 p-8">
+        <h3 class="mb-6 text-2xl font-semibold text-white">Supported Technologies</h3>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {
+            technologies.map((tech) => (
+              <div class="flex items-center gap-2 rounded-lg border border-gray-800 bg-gray-950/50 px-3 py-2 transition-colors hover:border-green-500/50">
+                <span class="size-2 rounded-full bg-green-400" />
+                <span class="text-sm text-gray-300">{tech}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

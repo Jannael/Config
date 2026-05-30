@@ -1,0 +1,96 @@
+---
+const features = [
+  {
+    icon: '⚡',
+    title: 'Automatic Configuration',
+    description:
+      'Generates config files for ESLint, Prettier, Biome and more with a single command. No manual setup required.',
+  },
+  {
+    icon: '🎯',
+    title: 'Smart Detection',
+    description:
+      'Automatically detects your package manager and project technologies to configure only what you need.',
+  },
+  {
+    icon: '🔧',
+    title: 'Multiple Linters',
+    description:
+      'Support for ESLint, Oxlint and Biome. Choose the one that best fits your project.',
+  },
+  {
+    icon: '✨',
+    title: 'Multiple Formatters',
+    description: 'Support for Prettier, Oxfmt and Biome. Optimized configuration for each one.',
+  },
+  {
+    icon: '🚀',
+    title: 'Modern Frameworks',
+    description: 'Native support for React, Vue, Angular, Svelte, Astro, Next.js, Nuxt and more.',
+  },
+  {
+    icon: '🎨',
+    title: 'Tailwind CSS',
+    description:
+      'Automatic Tailwind plugin configuration for ESLint and Prettier with class sorting.',
+  },
+  {
+    icon: '🔒',
+    title: 'Git Hooks',
+    description:
+      'Optional integration with Husky and lint-staged to run linters and formatters before each commit.',
+  },
+  {
+    icon: '⚙️',
+    title: 'VSCode Settings',
+    description:
+      'Automatically configures .vscode/settings.json with formatOnSave and the correct formatter.',
+  },
+  {
+    icon: '📦',
+    title: 'Ready Scripts',
+    description:
+      'Adds lint, lint:fix, fmt and fmt:check scripts to your package.json automatically.',
+  },
+]
+---
+
+<section class="relative bg-[#0a0a0a] py-24">
+  <div class="absolute inset-0 opacity-[0.02]">
+    <div
+      class="size-full"
+      style="background-image: linear-gradient(rgba(34, 197, 94, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.3) 1px, transparent 1px); background-size: 50px 50px;"
+    >
+    </div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <h2 class="mb-4 text-4xl font-bold text-white sm:text-5xl">
+        Everything you need,<br />
+        <span class="bg-linear-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent"
+          >nothing you don't</span
+        >
+      </h2>
+      <p class="mx-auto max-w-2xl text-lg text-gray-400">
+        Config analyzes your project and automatically configures only the tools compatible with
+        your tech stack.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        features.map((feature) => (
+          <div class="group relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900/50 p-6 transition-all hover:border-green-500/50 hover:bg-gray-900/80">
+            <div class="absolute inset-0 bg-linear-to-br from-green-500/5 to-cyan-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
+            <div class="relative z-10">
+              <div class="mb-4 text-4xl">{feature.icon}</div>
+              <h3 class="mb-2 text-xl font-semibold text-white">{feature.title}</h3>
+              <p class="text-gray-400">{feature.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
