@@ -1,8 +1,8 @@
 <article
-	class="lg:h-7/10 lg:flex-2/6 flex w-full flex-col items-center justify-center py-6 font-mono lg:py-12"
+	class="flex w-full flex-col items-center justify-center py-6 font-mono"
 >
 	<div
-		class="flex h-[380px] w-full flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/20 sm:h-[420px] lg:h-full"
+		class="flex h-[380px] w-full flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/20 sm:h-[420px]"
 		id="terminal"
 		data-version="0.0.0"
 	>
@@ -25,10 +25,8 @@
 </article>
 
 <script>
-	import { ALIASES } from 'alias'
-
-	// ── Terminal animation ────────────────────────────────────
-	const pkgInstall = 'g setup'
+	// ── Terminal animation for Config CLI ────────────────────────────────────
+	const pkgInstall = 'npx @jannael/config'
 	const space = '   '
 	const C = {
 		g: 'color:#666', //gray
@@ -58,7 +56,6 @@
 
 	function buildSteps() {
 		const steps: Step[] = []
-		// d => delay
 		const stepDelay = (delay: number, html: string, cls?: string) =>
 			steps.push({ html, delay, class: cls })
 
@@ -66,95 +63,81 @@
 			type: 'char',
 			text: pkgInstall,
 			target: 'cmd-line',
-			charDelay: 100,
+			charDelay: 80,
 			delay: 400,
 		})
 
-		// glinter setup
+		// Select technologies
 		stepDelay(200, '')
-		stepDelay(0, `${s(C.g, '|')}${space}${s(C.pk, 'Glinter Setup')}`)
+		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Select your technologies'))
+		stepDelay(0, s(C.ct, '│') + space + s(C.cy, '[space] to select'))
+		stepDelay(0, s(C.ct, '│') + space + s(C.gn, '[enter] to confirm'))
+		stepDelay(100, s(C.ct, '│'))
+		stepDelay(100, s(C.ct, '│') + space + s(C.ct, '[•] ') + s(C.yw, 'React'))
+		stepDelay(100, s(C.ct, '│') + space + s(C.ct, '[•] ') + s(C.yw, 'TypeScript'))
+		stepDelay(100, s(C.ct, '│') + space + s(C.ct, '[•] ') + s(C.yw, 'Tailwind CSS'))
+		stepDelay(100, s(C.ct, '└'))
 
-		stepDelay(0, '')
-		stepDelay(0, s(C.yw, 'The following aliases will be set globally: '))
-		stepDelay(0, '')
+		// Select linter
+		stepDelay(200, '')
+		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Select your linter'))
+		stepDelay(100, s(C.ct, '│'))
+		stepDelay(100, s(C.ct, '│') + space + s(C.gn, '● ') + s(C.w, 'ESLint'))
+		stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Oxlint'))
+		stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Biome'))
+		stepDelay(100, s(C.ct, '└'))
 
-		for (const alias of ALIASES) {
-			const tag =
-				alias.kind === 'glinter' ? s(C.pk, '[glinter]') : s(C.cy, '[git]    ')
-			const { name, command } = alias
+		// Select formatter
+		stepDelay(200, '')
+		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Select your formatter'))
+		stepDelay(100, s(C.ct, '│'))
+		stepDelay(100, s(C.ct, '│') + space + s(C.gn, '● ') + s(C.w, 'Prettier'))
+		stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Oxfmt'))
+		stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Biome'))
+		stepDelay(100, s(C.ct, '└'))
 
-			stepDelay(
-				0,
-				`  ${tag}    ${s(C.gn, name.padEnd(10))}` +
-					'→' +
-					s(C.w, `  ${command}`),
-			)
-		}
+		// Install dependencies
+		stepDelay(200, '')
+		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'The following dependencies will be installed:'))
+		stepDelay(0, s(C.ct, '│') + space + s(C.g, 'eslint, @eslint/js, eslint-plugin-react,'))
+		stepDelay(0, s(C.ct, '│') + space + s(C.g, 'eslint-plugin-react-hooks, prettier,'))
+		stepDelay(0, s(C.ct, '│') + space + s(C.g, 'prettier-plugin-tailwindcss'))
+		stepDelay(100, s(C.ct, '│'))
+		stepDelay(0, s(C.ct, '└') + space + s(C.w, 'Continue?') + space + s(C.gn, 'Yes') + s(C.g, ' / No'))
+		stepDelay(800, s(C.ct, '-'))
 
-		// apply aliases selector
-		stepDelay(0, '')
-		stepDelay(0, s(C.g, '|'))
-		stepDelay(
-			0,
-			s(C.ct, '*') +
-				space +
-				s(C.w, 'Apply these aliases to your global git config?'),
-		)
-		stepDelay(0, s(C.ct, '|') + space + s(C.gn, '> ') + s(C.w, 'Yes /   No'))
-		stepDelay(1000, s(C.ct, '-'))
-
-		for (const alias of ALIASES) {
-			stepDelay(
-				200,
-				`  ${s(C.pk, alias.name.padEnd(8))} set ${s(C.gn, 'successfully'.padStart(10))}`,
-			)
-		}
-
+		// Generating configuration
 		stepDelay(100, '')
-		stepDelay(
-			0,
-			s(C.w, '○') +
-				space +
-				s(C.gn, '✔ ') +
-				s(C.w, '25 aliases configured successfully'),
-		)
-		stepDelay(0, s(C.g, '|'))
-		stepDelay(
-			0,
-			s(C.g, '-') +
-				s(C.gn, ' GLINTER') +
-				s(C.w, ', if you like the project, give it a star on GitHub: '),
-		)
-		stepDelay(0, s(C.w, 'https://github.com/jannael/glinter'))
+		stepDelay(0, s(C.w, '◌') + space + s(C.w, 'Generating configuration...'))
+		stepDelay(600, s(C.em, '✔') + space + s(C.em, 'Configuration generated'))
 
-		stepDelay(0, '')
-		stepDelay(0, '')
-		stepDelay(0, s(C.pk, 'To use the aliases, please restart your terminal.'))
-		stepDelay(0, '')
+		// Installing dependencies
+		stepDelay(200, '')
+		stepDelay(0, s(C.w, '◌') + space + s(C.w, 'Installing dependencies...'))
+		stepDelay(800, s(C.em, '✔') + space + s(C.em, 'Dependencies installed'))
 
-		steps.push({
-			type: 'char',
-			text: 'ga',
-			target: 'cmd-line',
-			charDelay: 300,
-			delay: 400,
-		})
+		// Extension links
+		stepDelay(200, '')
+		stepDelay(0, s(C.ct, 'ℹ') + space + s(C.w, 'Install the ESLint extension in your IDE:'))
+		stepDelay(0, s(C.g, '  VSCode: ') + s(C.cy, 'https://marketplace.visualstudio.com/...'))
+		stepDelay(0, s(C.ct, 'ℹ') + space + s(C.w, 'Install the Prettier extension in your IDE:'))
+		stepDelay(0, s(C.g, '  VSCode: ') + s(C.cy, 'https://marketplace.visualstudio.com/...'))
 
-		stepDelay(100, s(C.g, '|'))
-		stepDelay(
-			0,
-			s(C.ct, '*') + space + s(C.w, 'Select the changes you want to commit.'),
-		)
-		stepDelay(0, s(C.ct, '|') + space + s(C.cy, '[space] to select'))
-		stepDelay(0, s(C.ct, '|') + space + s(C.gn, '[enter] to confirm'))
-		stepDelay(0, s(C.ct, '|') + space + s(C.pk, '[a] to select all'))
-		stepDelay(0, s(C.ct, '|') + space + s(C.r, '[esc] to cancel'))
-		stepDelay(100, s(C.ct, '|'))
-		stepDelay(
-			100,
-			s(C.ct, '|') + space + s(C.ct, '[•] ') + s(C.yw, 'modified: README.md'),
-		)
-		stepDelay(100, s(C.ct, '-'))
+		// VSCode settings
+		stepDelay(200, '')
+		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Add extension configuration to .vscode/settings.json?'))
+		stepDelay(100, s(C.ct, '└') + space + s(C.gn, 'Yes') + s(C.g, ' / No'))
+		stepDelay(600, s(C.em, 'ℹ') + space + s(C.em, 'VSCode settings configured'))
+
+		// Package scripts
+		stepDelay(200, '')
+		stepDelay(0, s(C.em, 'ℹ') + space + s(C.em, 'Package scripts configured'))
+		stepDelay(0, s(C.g, '  lint, lint:fix, fmt, fmt:check'))
+
+		// Done
+		stepDelay(300, '')
+		stepDelay(0, s(C.em, '✔') + space + s(C.em, 'Done! Your project is configured.'))
+		stepDelay(0, '')
 
 		return steps
 	}
@@ -196,39 +179,6 @@
 				html: string
 				delay: number
 				class?: string
-			}
-
-			// Special: answer Y
-			if (html === '__ANSWER_Y__') {
-				const cursor = document.getElementById('term-cursor')
-				if (cursor) cursor.outerHTML = s(C.w, 'Y')
-				await sleep(delay)
-				continue
-			}
-
-			// Special: spinner
-			if (html.startsWith('__SPINNER__')) {
-				const skill = html.replace('__SPINNER__', '')
-				const line = document.createElement('p')
-				line.id = 'install-line'
-				line.innerHTML = s(C.w, '   ◌  ') + s(C.w, skill + '...')
-				body.appendChild(line)
-				body.scrollTop = body.scrollHeight
-				await sleep(delay)
-				continue
-			}
-
-			// Special: done
-			if (html.startsWith('__DONE__')) {
-				const inst = JSON.parse(html.replace('__DONE__', ''))
-				const line = document.getElementById('install-line')
-				if (line) {
-					line.innerHTML = s(C.em, '   ✔ ' + inst.skill)
-					line.removeAttribute('id')
-				}
-				body.scrollTop = body.scrollHeight
-				await sleep(delay)
-				continue
 			}
 
 		const line = document.createElement('p')

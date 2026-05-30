@@ -1,4 +1,5 @@
 ---
+import TerminalAnimation from '@/components/terninal-animation.astro'
 ---
 
 <section class="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0a0a0a]">
@@ -72,76 +73,13 @@
         </div>
       </div>
 
-      <!-- Right: Terminal -->
+      <!-- Right: Terminal Animation -->
       <div class="animate-slide-up">
         <div class="relative">
           <!-- Glow behind terminal -->
           <div class="absolute -inset-4 rounded-2xl bg-gradient-to-r from-green-500/20 to-cyan-500/20 blur-2xl"></div>
-          
-          <!-- Terminal window -->
-          <div class="relative overflow-hidden rounded-xl border border-gray-800 bg-[#0d1117] shadow-2xl">
-            <!-- Terminal header -->
-            <div class="flex items-center gap-2 border-b border-gray-800 bg-[#161b22] px-4 py-3">
-              <div class="flex gap-2">
-                <div class="size-3 rounded-full bg-red-500"></div>
-                <div class="size-3 rounded-full bg-yellow-500"></div>
-                <div class="size-3 rounded-full bg-green-500"></div>
-              </div>
-              <div class="flex-1 text-center">
-                <span class="font-mono text-xs text-gray-500">bash</span>
-              </div>
-            </div>
-            
-            <!-- Terminal content -->
-            <div class="space-y-4 p-6 font-mono text-sm">
-              <!-- Command 1 -->
-              <div class="flex items-start gap-2">
-                <span class="select-none text-green-400">❯</span>
-                <div class="flex-1">
-                  <span class="text-gray-300">npx @jannael/config</span>
-                </div>
-              </div>
-              
-              <!-- Output -->
-              <div class="space-y-2 pl-6 text-gray-400">
-                <div class="text-cyan-400">◆</div>
-                <div>Select your technologies</div>
-                <div class="space-y-1 pl-4">
-                  <div class="text-green-400">✓ React</div>
-                  <div class="text-green-400">✓ TypeScript</div>
-                  <div class="text-green-400">✓ Tailwind CSS</div>
-                </div>
-              </div>
-              
-              <div class="space-y-2 pl-6 text-gray-400">
-                <div class="text-cyan-400">◆</div>
-                <div>Select your linter</div>
-                <div class="pl-4">
-                  <div class="text-green-400">✓ ESLint</div>
-                </div>
-              </div>
-              
-              <div class="space-y-2 pl-6 text-gray-400">
-                <div class="text-cyan-400">◆</div>
-                <div>Select your formatter</div>
-                <div class="pl-4">
-                  <div class="text-green-400">✓ Prettier</div>
-                </div>
-              </div>
-              
-              <!-- Success message -->
-              <div class="border-t border-gray-800 pt-4">
-                <div class="flex items-center gap-2 text-green-400">
-                  <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Configuration complete!</span>
-                </div>
-                <div class="mt-2 text-xs text-gray-500">
-                  Generated: eslint.config.js, .prettierrc, package.json scripts
-                </div>
-              </div>
-            </div>
+          <div class="relative">
+            <TerminalAnimation />
           </div>
         </div>
       </div>
