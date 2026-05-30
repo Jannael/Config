@@ -1,9 +1,5 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": [
-    "oxfmt",
-    "oxlint",
-    "biome"
-  ]
+  "cSpell.words": ["oxfmt", "oxlint", "biome"]
 }
