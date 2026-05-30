@@ -19,6 +19,7 @@ export default [
     rules: {
       ...tailwind.configs.recommended.rules,
       'tailwindcss/no-custom-classname': 'off',
+      'tailwindcss/classnames-order': 'off',
     },
     settings: {
       tailwindcss: {
@@ -29,7 +30,7 @@ export default [
   {
     rules: {
       'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn'
     },
   },
 ]
