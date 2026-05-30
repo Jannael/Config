@@ -41,7 +41,7 @@
     "lint": "eslint .",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check .",
-    "test": "vitest",
+    "test": "vitest --run",
     "build": "bun build ./apps/cli/index.ts --outfile=./dist/index.js --target=bun",
     "prepublishOnly": "bun run build"
   },
