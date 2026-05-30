@@ -1,0 +1,95 @@
+---
+const features = [
+  {
+    icon: '⚡',
+    title: 'Configuración Automática',
+    description:
+      'Genera archivos de configuración para ESLint, Prettier, Biome y más con un solo comando. Sin configuraciones manuales.',
+  },
+  {
+    icon: '🎯',
+    title: 'Detección Inteligente',
+    description:
+      'Detecta automáticamente tu package manager y las tecnologías de tu proyecto para configurar solo lo necesario.',
+  },
+  {
+    icon: '🔧',
+    title: 'Múltiples Linters',
+    description: 'Soporte para ESLint, Oxlint y Biome. Elige el que mejor se adapte a tu proyecto.',
+  },
+  {
+    icon: '✨',
+    title: 'Múltiples Formatters',
+    description: 'Soporte para Prettier, Oxfmt y Biome. Configuración optimizada para cada uno.',
+  },
+  {
+    icon: '🚀',
+    title: 'Frameworks Modernos',
+    description: 'Soporte nativo para React, Vue, Angular, Svelte, Astro, Next.js, Nuxt y más.',
+  },
+  {
+    icon: '🎨',
+    title: 'Tailwind CSS',
+    description:
+      'Configuración automática de plugins de Tailwind para ESLint y Prettier con ordenamiento de clases.',
+  },
+  {
+    icon: '🔒',
+    title: 'Git Hooks',
+    description:
+      'Integración opcional con Husky y lint-staged para ejecutar linters y formatters antes de cada commit.',
+  },
+  {
+    icon: '⚙️',
+    title: 'VSCode Settings',
+    description:
+      'Configura automáticamente .vscode/settings.json con formatOnSave y el formatter correcto.',
+  },
+  {
+    icon: '📦',
+    title: 'Scripts Listos',
+    description:
+      'Agrega scripts lint, lint:fix, fmt y fmt:check a tu package.json automáticamente.',
+  },
+]
+---
+
+<section class="relative bg-[#0a0a0a] py-24">
+  <div class="absolute inset-0 opacity-[0.02]">
+    <div
+      class="size-full"
+      style="background-image: linear-gradient(rgba(34, 197, 94, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.3) 1px, transparent 1px); background-size: 50px 50px;"
+    >
+    </div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <h2 class="mb-4 text-4xl font-bold text-white sm:text-5xl">
+        Todo lo que necesitas,<br />
+        <span class="bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent"
+          >nada que no necesitas</span
+        >
+      </h2>
+      <p class="mx-auto max-w-2xl text-lg text-gray-400">
+        Config analiza tu proyecto y configura automáticamente solo las herramientas compatibles con
+        tu stack tecnológico.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        features.map((feature) => (
+          <div class="group relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900/50 p-6 transition-all hover:border-green-500/50 hover:bg-gray-900/80">
+            <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 to-cyan-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
+            <div class="relative z-10">
+              <div class="mb-4 text-4xl">{feature.icon}</div>
+              <h3 class="mb-2 text-xl font-semibold text-white">{feature.title}</h3>
+              <p class="text-gray-400">{feature.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
