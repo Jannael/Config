@@ -12,16 +12,6 @@
   </div>
 
   <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <!-- Pacman animation -->
-    <div class="mb-8 flex justify-center">
-      <div class="pacman-track">
-        <div class="pacman-dots">
-          {'·'.repeat(20)}
-        </div>
-        <div class="pacman">ᗧ</div>
-      </div>
-    </div>
-
     <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
       <div class="text-center sm:text-left">
         <p class="text-gray-400">
@@ -71,50 +61,3 @@
     </div>
   </div>
 </footer>
-
-<style>
-  .pacman-track {
-    position: relative;
-    width: 300px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-  }
-
-  .pacman-dots {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    color: #facc15;
-    font-size: 24px;
-    letter-spacing: 8px;
-  }
-
-  .pacman {
-    position: absolute;
-    font-size: 32px;
-    color: #facc15;
-    animation: eat 3s linear infinite;
-  }
-
-  @keyframes eat {
-    0% {
-      left: -40px;
-      transform: scaleX(1);
-    }
-    49% {
-      transform: scaleX(1);
-    }
-    50% {
-      left: calc(100% + 40px);
-      transform: scaleX(-1);
-    }
-    99% {
-      transform: scaleX(-1);
-    }
-    100% {
-      left: -40px;
-      transform: scaleX(1);
-    }
-  }
-</style>
