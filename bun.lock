@@ -8,7 +8,6 @@
         "@clack/prompts": "1.4.0",
         "gradient-string": "3.0.0",
         "jsonc-parser": "3.3.1",
-        "lint-staged": "17.0.5",
       },
       "devDependencies": {
         "@eslint/js": "10.0.1",
@@ -20,6 +19,7 @@
         "eslint-plugin-astro": "1.7.0",
         "eslint-plugin-tailwindcss": "3.18.3",
         "husky": "9.1.7",
+        "lint-staged": "17.0.5",
         "prettier": "3.8.3",
         "prettier-plugin-astro": "0.14.1",
         "prettier-plugin-tailwindcss": "0.8.0",
