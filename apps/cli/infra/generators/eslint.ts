@@ -127,6 +127,11 @@ const pluginMeta: Record<string, PluginMeta> = {
       files: ["**/*.{js,jsx,ts,tsx,astro,html,vue,svelte}"],
       plugins: { tailwindcss: tailwind },
       rules: { ...tailwind.configs.recommended.rules },
+      settings: {
+        tailwindcss: {
+          config: {},
+        },
+      },
     },`,
   },
   '@typescript-eslint/eslint-plugin': {
@@ -147,7 +152,10 @@ export function generateEslint({
   cwd: string
 }): void {
   const imports: string[] = [`import js from "@eslint/js"`]
-  const configEntries: string[] = ['    js.configs.recommended,']
+  const configEntries: string[] = [
+    `    { ignores: ["dist/**", "node_modules/**", "build/**"] },`,
+    `    js.configs.recommended,`,
+  ]
 
   const seenImports = new Set<string>()
 
