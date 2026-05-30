@@ -5,5 +5,8 @@
     "oxfmt",
     "oxlint",
     "biome"
-  ]
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }
