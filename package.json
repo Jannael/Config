@@ -38,12 +38,13 @@
     "access": "public"
   },
   "scripts": {
-    "lint": "eslint .",
-    "fmt": "prettier --write .",
-    "fmt:check": "prettier --check .",
     "test": "vitest --run",
     "build": "bun build ./apps/cli/index.ts --outfile=./dist/index.js --target=bun",
     "prepublishOnly": "bun run build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
     "prepare": "husky"
   },
   "dependencies": {
