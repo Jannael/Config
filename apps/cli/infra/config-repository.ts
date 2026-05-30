@@ -8,6 +8,7 @@ import { generateOxlint } from '@/infra/generators/oxlint'
 import { generateOxfmt } from '@/infra/generators/oxfmt'
 import { generatePrettier } from '@/infra/generators/prettier'
 import { generateVscodeSettings } from '@/infra/generators/vscode-settings'
+import { generateLintStaged } from '@/infra/generators/lint-staged'
 
 const installCommands: Record<PackageManager, string[]> = {
   npm: ['npm', 'install', '-D'],
@@ -43,6 +44,15 @@ export class FileConfigRepository implements ConfigRepository {
 
   configVscodeSettings(formatter: string, cwd: string): void {
     generateVscodeSettings({ formatter, cwd })
+  }
+
+  configLintStaged(linter: string, formatter: string, cwd: string): void {
+    generateLintStaged({ linter, formatter, cwd })
+  }
+
+  initHusky(pm: PackageManager, cwd: string): void {
+    const execCmd = pm === 'bun' ? 'bunx' : pm === 'pnpm' ? 'pnpx' : pm === 'yarn' ? 'yarn dlx' : 'npx'
+    execSync(`${execCmd} husky init`, { cwd, stdio: 'inherit' })
   }
 
   install(pm: PackageManager, deps: string[], cwd: string): void {

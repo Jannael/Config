@@ -10,6 +10,7 @@ import { MultiSelect } from '@/utils/multiselect'
 import { Confirm } from '@/utils/confirm'
 import { startSpinner, stopSpinner } from '@/utils/spinner'
 import technologies, { linterNames, formatterNames } from 'data'
+import { join } from 'node:path'
 
 export class ConfigureProject {
   constructor(private readonly repo: ConfigRepository) {}
@@ -28,6 +29,14 @@ export class ConfigureProject {
     if (!shouldInstall) {
       logInfo('Operation cancelled')
       process.exit(0)
+    }
+
+    const shouldConfigureHusky = await Confirm({
+      message: 'Configure husky + lint-staged for pre-commit hooks?',
+    })
+
+    if (shouldConfigureHusky) {
+      deps.push('husky', 'lint-staged')
     }
 
     const cwd = process.cwd()
@@ -56,6 +65,14 @@ export class ConfigureProject {
     if (shouldConfigureVscode) {
       this.repo.configVscodeSettings(formatter, cwd)
       logInfo('VSCode settings configured')
+    }
+
+    if (shouldConfigureHusky) {
+      startSpinner('Configuring husky...')
+      this.repo.initHusky(pm, cwd)
+      this.repo.configLintStaged(linter, formatter, cwd)
+      this.repo.writeFile(join(cwd, '.husky', 'pre-commit'), 'npx lint-staged\n')
+      stopSpinner('Husky + lint-staged configured')
     }
 
     Outro('Done! Your project is configured.')
