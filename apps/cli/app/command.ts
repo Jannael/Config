@@ -2,7 +2,6 @@ import type { ConfigRepository } from '@/domain/repository'
 import type { PackageManager } from '@/domain/types'
 import { resolve, collectPlugins, getAllDeps } from '@/domain/resolver'
 import { detectPackageManager } from '@/infra/pm-detector'
-import { Intro } from '@/utils/intro'
 import { Outro } from '@/utils/outro'
 import { logInfo, logError } from '@/utils/log'
 import { Select } from '@/utils/select'
@@ -15,8 +14,6 @@ export class ConfigureProject {
   constructor(private readonly repo: ConfigRepository) {}
 
   async execute(): Promise<void> {
-    Intro('Linter & Formatter Configurator')
-
     const pm = await this.resolvePackageManager()
     const techs = await this.selectTechnologies()
     const { linter, formatter } = await this.selectTools(techs)
