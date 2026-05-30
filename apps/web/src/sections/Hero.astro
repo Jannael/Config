@@ -23,9 +23,13 @@
 
         <!-- Title -->
         <div class="space-y-4">
-          <h1 class="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-            <span class="text-white">Config</span>
-          </h1>
+          <pre class="ascii-art font-mono text-xs leading-none sm:text-sm md:text-base">
+ ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗ 
+██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝ 
+██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
+██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
+╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
+ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝</pre>
           <p class="text-2xl font-semibold text-gray-300 sm:text-3xl lg:text-4xl">
             One command.<br />
             <span class="text-cyan-400">Zero configuration.</span>
@@ -146,6 +150,14 @@
 </section>
 
 <style>
+  .ascii-art {
+    background: linear-gradient(135deg, #3f7 0%, #27c492 50%, #89fbff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+  }
+
   @keyframes fade-in {
     from {
       opacity: 0;
