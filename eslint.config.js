@@ -16,7 +16,17 @@ export default [
     {
       files: ["apps/web/**/*.{js,jsx,ts,tsx,astro}"],
       plugins: { tailwindcss: tailwind },
-      rules: { ...tailwind.configs.recommended.rules },
+      rules: {
+        ...tailwind.configs.recommended.rules,
+        "tailwindcss/no-custom-classname": "off",
+      },
+      settings: {
+        tailwindcss: {
+          config: {
+            content: ["apps/web/src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+          },
+        },
+      },
     },
     {
       rules: {
