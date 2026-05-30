@@ -71,7 +71,8 @@ export class ConfigureProject {
       startSpinner('Configuring husky...')
       this.repo.initHusky(pm, cwd)
       this.repo.configLintStaged(linter, formatter, cwd)
-      this.repo.writeFile(join(cwd, '.husky', 'pre-commit'), 'npx lint-staged\n')
+      const execCmd = pm === 'bun' ? 'bunx' : pm === 'pnpm' ? 'pnpx' : pm === 'yarn' ? 'yarn dlx' : 'npx'
+      this.repo.writeFile(join(cwd, '.husky', 'pre-commit'), `${execCmd} lint-staged\n`)
       stopSpinner('Husky + lint-staged configured')
     }
 
