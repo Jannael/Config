@@ -1,11 +1,11 @@
-import { cancel, isCancel, multiselect } from '@clack/prompts'
+import { cancel, isCancel, multiselect, type Option } from '@clack/prompts'
 
 export async function MultiSelect<T extends string>({
   message,
   options,
 }: {
   message: string
-  options: { value: T; label: string; hint?: string; disabled?: boolean }[]
+  options: Option<T>[]
 }): Promise<T[]> {
   const result = await multiselect({ message, options, required: true })
 
