@@ -72,7 +72,8 @@ export class ConfigureProject {
       this.repo.initHusky(pm, cwd)
       const extensions = collectExtensions(techs)
       this.repo.configLintStaged(linter, formatter, extensions, cwd)
-      const execCmd = pm === 'bun' ? 'bunx' : pm === 'pnpm' ? 'pnpx' : pm === 'yarn' ? 'yarn dlx' : 'npx'
+      const execCmd =
+        pm === 'bun' ? 'bunx' : pm === 'pnpm' ? 'pnpx' : pm === 'yarn' ? 'yarn dlx' : 'npx'
       this.repo.writeFile(join(cwd, '.husky', 'pre-commit'), `${execCmd} lint-staged\n`)
       stopSpinner('Husky + lint-staged configured')
     }
@@ -176,7 +177,9 @@ export class ConfigureProject {
   private showExtensionLinks(linter: string, formatter: string): void {
     const extensions = getExtensionsToShow(linter, formatter)
     for (const ext of extensions) {
-      logInfo(`Install the ${ext.name} extension in your IDE:\n  VSCode: ${ext.vsc}\n  VSX:    ${ext.vsx}`)
+      logInfo(
+        `Install the ${ext.name} extension in your IDE:\n  VSCode: ${ext.vsc}\n  VSX:    ${ext.vsx}`,
+      )
     }
   }
 }

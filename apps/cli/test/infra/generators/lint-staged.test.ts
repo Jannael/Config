@@ -70,7 +70,12 @@ describe('generateLintStaged', () => {
       2. Verify config contains eslint --fix and oxfmt commands
     */
     const cwd = '/test/project'
-    generateLintStaged({ linter: 'eslint', formatter: 'oxfmt', extensions: ['js', 'jsx', 'ts', 'tsx'], cwd })
+    generateLintStaged({
+      linter: 'eslint',
+      formatter: 'oxfmt',
+      extensions: ['js', 'jsx', 'ts', 'tsx'],
+      cwd,
+    })
 
     const [, content] = vi.mocked(writeFileSync).mock.calls[0]!
     const config = JSON.parse(content as string)

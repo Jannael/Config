@@ -20,7 +20,12 @@ const formatterCommands: Record<string, string> = {
   biome: 'biome format --write',
 }
 
-export function generateLintStaged({ linter, formatter, extensions, cwd }: LintStagedOptions): void {
+export function generateLintStaged({
+  linter,
+  formatter,
+  extensions,
+  cwd,
+}: LintStagedOptions): void {
   const commands: string[] = []
 
   const linterCmd = linterCommands[linter]
@@ -30,7 +35,8 @@ export function generateLintStaged({ linter, formatter, extensions, cwd }: LintS
   if (formatterCmd && formatterCmd !== linterCmd) commands.push(formatterCmd)
 
   const sortedExtensions = [...extensions].sort()
-  const filePattern = sortedExtensions.length > 0 ? `*.{${sortedExtensions.join(',')}}` : '*.{js,jsx,ts,tsx}'
+  const filePattern =
+    sortedExtensions.length > 0 ? `*.{${sortedExtensions.join(',')}}` : '*.{js,jsx,ts,tsx}'
 
   const config: Record<string, string[]> = {
     [filePattern]: commands,

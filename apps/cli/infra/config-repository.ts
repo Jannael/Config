@@ -51,7 +51,8 @@ export class FileConfigRepository implements ConfigRepository {
   }
 
   initHusky(pm: PackageManager, cwd: string): void {
-    const execCmd = pm === 'bun' ? 'bunx' : pm === 'pnpm' ? 'pnpx' : pm === 'yarn' ? 'yarn dlx' : 'npx'
+    const execCmd =
+      pm === 'bun' ? 'bunx' : pm === 'pnpm' ? 'pnpx' : pm === 'yarn' ? 'yarn dlx' : 'npx'
     execSync(`${execCmd} husky init`, { cwd, stdio: 'inherit' })
   }
 
