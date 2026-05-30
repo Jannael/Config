@@ -1,225 +1,217 @@
-<article
-	class="flex w-full flex-col items-center justify-center py-6 font-mono"
->
-	<div
-		class="flex h-[380px] w-full flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/20 sm:h-[420px]"
-		id="terminal"
-		data-version="0.0.0"
-	>
-		<div
-			class="flex shrink-0 items-center gap-1.5 rounded-xl border-b border-zinc-800 px-3 py-2"
-		>
-			<span class="size-3 rounded-full border border-[#e0443e] bg-[#ff5f56]"
-			></span>
-			<span class="size-3 rounded-full border border-[#dea123] bg-[#ffbd2e]"
-			></span>
-			<span class="size-3 rounded-full border border-[#1aab29] bg-[#27c93f]"
-			></span>
-		</div>
-		<div
-			class="min-h-0 w-full flex-1 overflow-auto whitespace-pre p-3 text-[10px] leading-relaxed sm:text-xs lg:p-4"
-			id="term-body"
-		>
-		</div>
-	</div>
+<article class="flex w-full flex-col items-center justify-center py-6 font-mono">
+  <div
+    class="flex h-95 w-full flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/20 sm:h-95"
+    id="terminal"
+    data-version="0.0.0"
+  >
+    <div class="flex shrink-0 items-center gap-1.5 rounded-xl border-b border-zinc-800 px-3 py-2">
+      <span class="size-3 rounded-full border border-[#e0443e] bg-[#ff5f56]"></span>
+      <span class="size-3 rounded-full border border-[#dea123] bg-[#ffbd2e]"></span>
+      <span class="size-3 rounded-full border border-[#1aab29] bg-[#27c93f]"></span>
+    </div>
+    <div
+      class="min-h-0 w-full flex-1 overflow-auto p-3 text-[10px] leading-relaxed whitespace-pre sm:text-xs lg:p-4"
+      id="term-body"
+    >
+    </div>
+  </div>
 </article>
 
 <script>
-	// ── Terminal animation for Config CLI ────────────────────────────────────
-	const pkgInstall = 'npx @jannael/config'
-	const space = '   '
-	const C = {
-		g: 'color:#666', //gray
-		w: 'color:#ddd', // white
-		em: 'color:#34d399', // emerald-400
-		gn: 'color:#22c55e', // green-500
-		cy: 'color:#22d3ee', // cyan-400
-		ct: 'color:#aaffff', // cyan-100
-		yw: 'color:#facc15', // yellow-400
-		pk: 'color:#f472b6', // pink-400,
-		r: 'color:#ef4444', // red-500
-	}
+  // ── Terminal animation for Config CLI ────────────────────────────────────
+  const pkgInstall = 'npx @jannael/config'
+  const space = '   '
+  const C = {
+    g: 'color:#666', //gray
+    w: 'color:#ddd', // white
+    em: 'color:#34d399', // emerald-400
+    gn: 'color:#22c55e', // green-500
+    cy: 'color:#22d3ee', // cyan-400
+    ct: 'color:#aaffff', // cyan-100
+    yw: 'color:#facc15', // yellow-400
+    pk: 'color:#f472b6', // pink-400,
+    r: 'color:#ef4444', // red-500
+  }
 
-	function s(style: string, text: string) {
-		return `<span style="${style}">${text}</span>`
-	}
+  function s(style: string, text: string) {
+    return `<span style="${style}">${text}</span>`
+  }
 
-	type Step =
-		| { html: string; delay: number; class?: string }
-		| {
-				type: 'char'
-				text: string
-				target: string
-				charDelay: number
-				delay: number
-		  }
+  type Step =
+    | { html: string; delay: number; class?: string }
+    | {
+        type: 'char'
+        text: string
+        target: string
+        charDelay: number
+        delay: number
+      }
 
-	function buildSteps() {
-		const steps: Step[] = []
-		const stepDelay = (delay: number, html: string, cls?: string) =>
-			steps.push({ html, delay, class: cls })
+  function buildSteps() {
+    const steps: Step[] = []
+    const stepDelay = (delay: number, html: string, cls?: string) =>
+      steps.push({ html, delay, class: cls })
 
-		steps.push({
-			type: 'char',
-			text: pkgInstall,
-			target: 'cmd-line',
-			charDelay: 80,
-			delay: 400,
-		})
+    steps.push({
+      type: 'char',
+      text: pkgInstall,
+      target: 'cmd-line',
+      charDelay: 80,
+      delay: 400,
+    })
 
-		// Select technologies
-		stepDelay(200, '')
-		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Select your technologies'))
-		stepDelay(0, s(C.ct, '│') + space + s(C.cy, '[space] to select'))
-		stepDelay(0, s(C.ct, '│') + space + s(C.gn, '[enter] to confirm'))
-		stepDelay(100, s(C.ct, '│'))
-		stepDelay(100, s(C.ct, '│') + space + s(C.ct, '[•] ') + s(C.yw, 'React'))
-		stepDelay(100, s(C.ct, '│') + space + s(C.ct, '[•] ') + s(C.yw, 'TypeScript'))
-		stepDelay(100, s(C.ct, '│') + space + s(C.ct, '[•] ') + s(C.yw, 'Tailwind CSS'))
-		stepDelay(100, s(C.ct, '└'))
+    // Select technologies
+    stepDelay(200, '')
+    stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Select your technologies'))
+    stepDelay(0, s(C.ct, '│') + space + s(C.cy, '[space] to select'))
+    stepDelay(0, s(C.ct, '│') + space + s(C.gn, '[enter] to confirm'))
+    stepDelay(100, s(C.ct, '│'))
+    stepDelay(100, s(C.ct, '│') + space + s(C.ct, '[•] ') + s(C.yw, 'React'))
+    stepDelay(100, s(C.ct, '│') + space + s(C.ct, '[•] ') + s(C.yw, 'TypeScript'))
+    stepDelay(100, s(C.ct, '│') + space + s(C.ct, '[•] ') + s(C.yw, 'Tailwind CSS'))
+    stepDelay(100, s(C.ct, '└'))
 
-		// Select linter
-		stepDelay(200, '')
-		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Select your linter'))
-		stepDelay(100, s(C.ct, '│'))
-		stepDelay(100, s(C.ct, '│') + space + s(C.gn, '● ') + s(C.w, 'ESLint'))
-		stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Oxlint'))
-		stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Biome'))
-		stepDelay(100, s(C.ct, '└'))
+    // Select linter
+    stepDelay(200, '')
+    stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Select your linter'))
+    stepDelay(100, s(C.ct, '│'))
+    stepDelay(100, s(C.ct, '│') + space + s(C.gn, '● ') + s(C.w, 'ESLint'))
+    stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Oxlint'))
+    stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Biome'))
+    stepDelay(100, s(C.ct, '└'))
 
-		// Select formatter
-		stepDelay(200, '')
-		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Select your formatter'))
-		stepDelay(100, s(C.ct, '│'))
-		stepDelay(100, s(C.ct, '│') + space + s(C.gn, '● ') + s(C.w, 'Prettier'))
-		stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Oxfmt'))
-		stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Biome'))
-		stepDelay(100, s(C.ct, '└'))
+    // Select formatter
+    stepDelay(200, '')
+    stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Select your formatter'))
+    stepDelay(100, s(C.ct, '│'))
+    stepDelay(100, s(C.ct, '│') + space + s(C.gn, '● ') + s(C.w, 'Prettier'))
+    stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Oxfmt'))
+    stepDelay(50, s(C.ct, '│') + space + s(C.g, '○ ') + s(C.g, 'Biome'))
+    stepDelay(100, s(C.ct, '└'))
 
-		// Install dependencies
-		stepDelay(200, '')
-		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'The following dependencies will be installed:'))
-		stepDelay(0, s(C.ct, '│') + space + s(C.g, 'eslint, @eslint/js, eslint-plugin-react,'))
-		stepDelay(0, s(C.ct, '│') + space + s(C.g, 'eslint-plugin-react-hooks, prettier,'))
-		stepDelay(0, s(C.ct, '│') + space + s(C.g, 'prettier-plugin-tailwindcss'))
-		stepDelay(100, s(C.ct, '│'))
-		stepDelay(0, s(C.ct, '└') + space + s(C.w, 'Continue?') + space + s(C.gn, 'Yes') + s(C.g, ' / No'))
-		stepDelay(800, s(C.ct, '-'))
+    // Install dependencies
+    stepDelay(200, '')
+    stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'The following dependencies will be installed:'))
+    stepDelay(0, s(C.ct, '│') + space + s(C.g, 'eslint, @eslint/js, eslint-plugin-react,'))
+    stepDelay(0, s(C.ct, '│') + space + s(C.g, 'eslint-plugin-react-hooks, prettier,'))
+    stepDelay(0, s(C.ct, '│') + space + s(C.g, 'prettier-plugin-tailwindcss'))
+    stepDelay(100, s(C.ct, '│'))
+    stepDelay(
+      0,
+      s(C.ct, '└') + space + s(C.w, 'Continue?') + space + s(C.gn, 'Yes') + s(C.g, ' / No'),
+    )
+    stepDelay(800, s(C.ct, '-'))
 
-		// Generating configuration
-		stepDelay(100, '')
-		stepDelay(0, s(C.w, '◌') + space + s(C.w, 'Generating configuration...'))
-		stepDelay(600, s(C.em, '✔') + space + s(C.em, 'Configuration generated'))
+    // Generating configuration
+    stepDelay(100, '')
+    stepDelay(0, s(C.w, '◌') + space + s(C.w, 'Generating configuration...'))
+    stepDelay(600, s(C.em, '✔') + space + s(C.em, 'Configuration generated'))
 
-		// Installing dependencies
-		stepDelay(200, '')
-		stepDelay(0, s(C.w, '◌') + space + s(C.w, 'Installing dependencies...'))
-		stepDelay(800, s(C.em, '✔') + space + s(C.em, 'Dependencies installed'))
+    // Installing dependencies
+    stepDelay(200, '')
+    stepDelay(0, s(C.w, '◌') + space + s(C.w, 'Installing dependencies...'))
+    stepDelay(800, s(C.em, '✔') + space + s(C.em, 'Dependencies installed'))
 
-		// Extension links
-		stepDelay(200, '')
-		stepDelay(0, s(C.ct, 'ℹ') + space + s(C.w, 'Install the ESLint extension in your IDE:'))
-		stepDelay(0, s(C.g, '  VSCode: ') + s(C.cy, 'https://marketplace.visualstudio.com/...'))
-		stepDelay(0, s(C.ct, 'ℹ') + space + s(C.w, 'Install the Prettier extension in your IDE:'))
-		stepDelay(0, s(C.g, '  VSCode: ') + s(C.cy, 'https://marketplace.visualstudio.com/...'))
+    // Extension links
+    stepDelay(200, '')
+    stepDelay(0, s(C.ct, 'ℹ') + space + s(C.w, 'Install the ESLint extension in your IDE:'))
+    stepDelay(0, s(C.g, '  VSCode: ') + s(C.cy, 'https://marketplace.visualstudio.com/...'))
+    stepDelay(0, s(C.ct, 'ℹ') + space + s(C.w, 'Install the Prettier extension in your IDE:'))
+    stepDelay(0, s(C.g, '  VSCode: ') + s(C.cy, 'https://marketplace.visualstudio.com/...'))
 
-		// VSCode settings
-		stepDelay(200, '')
-		stepDelay(0, s(C.ct, '◆') + space + s(C.w, 'Add extension configuration to .vscode/settings.json?'))
-		stepDelay(100, s(C.ct, '└') + space + s(C.gn, 'Yes') + s(C.g, ' / No'))
-		stepDelay(600, s(C.em, 'ℹ') + space + s(C.em, 'VSCode settings configured'))
+    // VSCode settings
+    stepDelay(200, '')
+    stepDelay(
+      0,
+      s(C.ct, '◆') + space + s(C.w, 'Add extension configuration to .vscode/settings.json?'),
+    )
+    stepDelay(100, s(C.ct, '└') + space + s(C.gn, 'Yes') + s(C.g, ' / No'))
+    stepDelay(600, s(C.em, 'ℹ') + space + s(C.em, 'VSCode settings configured'))
 
-		// Package scripts
-		stepDelay(200, '')
-		stepDelay(0, s(C.em, 'ℹ') + space + s(C.em, 'Package scripts configured'))
-		stepDelay(0, s(C.g, '  lint, lint:fix, fmt, fmt:check'))
+    // Package scripts
+    stepDelay(200, '')
+    stepDelay(0, s(C.em, 'ℹ') + space + s(C.em, 'Package scripts configured'))
+    stepDelay(0, s(C.g, '  lint, lint:fix, fmt, fmt:check'))
 
-		// Done
-		stepDelay(300, '')
-		stepDelay(0, s(C.em, '✔') + space + s(C.em, 'Done! Your project is configured.'))
-		stepDelay(0, '')
+    // Done
+    stepDelay(300, '')
+    stepDelay(0, s(C.em, '✔') + space + s(C.em, 'Done! Your project is configured.'))
+    stepDelay(0, '')
 
-		return steps
-	}
+    return steps
+  }
 
-	async function runAnimation() {
-		const body = document.getElementById('term-body')!
-		body.innerHTML = ''
-		const steps = buildSteps()
+  async function runAnimation() {
+    const body = document.getElementById('term-body')!
+    body.innerHTML = ''
+    const steps = buildSteps()
 
-		for (const step of steps) {
-			if ('type' in step && step.type === 'char') {
-				const line = document.createElement('p')
-				line.id = step.target
-				body.appendChild(line)
-				const cursor =
-					'<span class="animate-pulse" style="' + C.w + '">▋</span>'
+    for (const step of steps) {
+      if ('type' in step && step.type === 'char') {
+        const line = document.createElement('p')
+        line.id = step.target
+        body.appendChild(line)
+        const cursor = '<span class="animate-pulse" style="' + C.w + '">▋</span>'
 
-			for (let i = 0; i < step.text.length; i++) {
-				const sofar = step.text.slice(0, i + 1)
-				const colored = sofar
+        for (let i = 0; i < step.text.length; i++) {
+          const sofar = step.text.slice(0, i + 1)
+          const colored = sofar
 
-				line.innerHTML = colored + cursor
-				await sleep(step.charDelay)
-			}
+          line.innerHTML = colored + cursor
+          await sleep(step.charDelay)
+        }
 
-				line.innerHTML =
-					'<span style="' +
-					C.w +
-					'"></span><span style="' +
-					C.w +
-					'">' +
-					step.text +
-					'</span>'
-				await sleep(step.delay)
-				continue
-			}
+        line.innerHTML =
+          '<span style="' + C.w + '"></span><span style="' + C.w + '">' + step.text + '</span>'
+        await sleep(step.delay)
+        continue
+      }
 
-			const { html, delay } = step as {
-				html: string
-				delay: number
-				class?: string
-			}
+      const { html, delay } = step as {
+        html: string
+        delay: number
+        class?: string
+      }
 
-		const line = document.createElement('p')
-		line.innerHTML = html || '&nbsp;'
-		if ('class' in step && step.class) line.className = step.class
-		body.appendChild(line)
-			body.scrollTop = body.scrollHeight
-			if (delay > 0) await sleep(delay)
-		}
-	}
+      const line = document.createElement('p')
+      line.innerHTML = html || '&nbsp;'
+      if ('class' in step && step.class) line.className = step.class
+      body.appendChild(line)
+      body.scrollTop = body.scrollHeight
+      if (delay > 0) await sleep(delay)
+    }
+  }
 
-	// -------- execute animation --------
-	// Desktop: start immediately. Mobile: start when terminal scrolls into view.
-	const terminal = document.getElementById('terminal')
-	const isDesktop = window.matchMedia('(min-width: 1024px)').matches
+  // -------- execute animation --------
+  // Desktop: start immediately. Mobile: start when terminal scrolls into view.
+  const terminal = document.getElementById('terminal')
+  const isDesktop = window.matchMedia('(min-width: 1024px)').matches
 
-	async function sleep(ms: number) {
-		return new Promise((r) => setTimeout(r, ms))
-	}
+  async function sleep(ms: number) {
+    return new Promise((r) => setTimeout(r, ms))
+  }
 
-	async function loop() {
-		while (true) {
-			await runAnimation()
-			await sleep(4000)
-		}
-	}
+  async function loop() {
+    while (true) {
+      await runAnimation()
+      await sleep(4000)
+    }
+  }
 
-	if (isDesktop) {
-		loop()
-	} else if (terminal) {
-		let running = false
-		const observer = new IntersectionObserver(
-			async (entries) => {
-				if (entries[0].isIntersecting && !running) {
-					running = true
-					observer.disconnect()
-					loop()
-				}
-			},
-			{ threshold: 0.3 },
-		)
-		observer.observe(terminal)
-	}
+  if (isDesktop) {
+    loop()
+  } else if (terminal) {
+    let running = false
+    const observer = new IntersectionObserver(
+      async (entries) => {
+        if (entries[0].isIntersecting && !running) {
+          running = true
+          observer.disconnect()
+          loop()
+        }
+      },
+      { threshold: 0.3 },
+    )
+    observer.observe(terminal)
+  }
 </script>
