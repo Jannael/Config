@@ -95,9 +95,5 @@ export function getAllDeps(linter: string, formatter: string, plugins: Collected
     deps.add(p)
   }
 
-  for (const p of plugins.oxlintPlugins) {
-    deps.add(p)
-  }
-
   return [...deps].sort()
 }
