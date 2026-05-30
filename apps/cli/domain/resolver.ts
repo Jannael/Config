@@ -1,4 +1,4 @@
-import { dataMap } from '@/data/index'
+import { dataMap } from '
 import type { ResolveResult, CollectedPlugins } from '@/domain/types'
 
 export function resolve(techs: string[]): ResolveResult {

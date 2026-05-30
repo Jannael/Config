@@ -9,7 +9,7 @@ import { Select } from '@/utils/select'
 import { MultiSelect } from '@/utils/multiselect'
 import { Confirm } from '@/utils/confirm'
 import { startSpinner, stopSpinner } from '@/utils/spinner'
-import technologies, { linterNames, formatterNames } from '@/data/index'
+import technologies, { linterNames, formatterNames } from 'data'
 
 export class ConfigureProject {
   constructor(private readonly repo: ConfigRepository) {}
