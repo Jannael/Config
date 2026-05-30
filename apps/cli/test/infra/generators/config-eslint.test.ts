@@ -76,10 +76,11 @@ describe('generateEslint', () => {
     generateEslint({ plugins: ['eslint-plugin-react', 'eslint-plugin-react-hooks'], cwd })
 
     const [, content] = vi.mocked(writeFileSync).mock.calls[0]!
+    const contentStr = content as string
 
-    expect(content).toContain('import react from "eslint-plugin-react"')
-    expect(content).toContain('import reactHooks from "eslint-plugin-react-hooks"')
-    expect(content.match(/import react from/g)?.length).toBe(1)
+    expect(contentStr).toContain('import react from "eslint-plugin-react"')
+    expect(contentStr).toContain('import reactHooks from "eslint-plugin-react-hooks"')
+    expect(contentStr.match(/import react from/g)?.length).toBe(1)
   })
 
   it('eslint config with vue plugins', () => {
