@@ -19,6 +19,7 @@ describe('generateEslint', () => {
       1. Call generateEslint with empty plugins array
       2. Verify writeFileSync called with eslint.config.js path
       3. Verify content contains @eslint/js import and js.configs.recommended
+      4. Verify content contains ignores for dist, node_modules, and build
     */
     const cwd = '/test/project'
     generateEslint({ plugins: [], cwd })
@@ -30,6 +31,7 @@ describe('generateEslint', () => {
     expect(content).toContain('import js from "@eslint/js"')
     expect(content).toContain('js.configs.recommended')
     expect(content).toContain('export default [')
+    expect(content).toContain('ignores: ["dist/**", "node_modules/**", "build/**"]')
   })
 
   it('eslint config with react plugin', () => {
@@ -104,6 +106,7 @@ describe('generateEslint', () => {
       Flow:
       1. Call generateEslint with eslint-plugin-tailwindcss
       2. Verify tailwind import and config spread are present
+      3. Verify settings.tailwindcss.config is set to empty object
     */
     const cwd = '/test/project'
     generateEslint({ plugins: ['eslint-plugin-tailwindcss'], cwd })
@@ -113,5 +116,8 @@ describe('generateEslint', () => {
     expect(content).toContain('import tailwind from "eslint-plugin-tailwindcss"')
     expect(content).toContain('plugins: { tailwindcss: tailwind }')
     expect(content).toContain('files: ["**/*.{js,jsx,ts,tsx,astro,html,vue,svelte}"]')
+    expect(content).toContain('settings: {')
+    expect(content).toContain('tailwindcss: {')
+    expect(content).toContain('config: {},')
   })
 })
