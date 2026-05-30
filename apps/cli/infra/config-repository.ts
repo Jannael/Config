@@ -7,6 +7,7 @@ import { generateBiome } from '@/infra/generators/biome'
 import { generateOxlint } from '@/infra/generators/oxlint'
 import { generateOxfmt } from '@/infra/generators/oxfmt'
 import { generatePrettier } from '@/infra/generators/prettier'
+import { generateVscodeSettings } from '@/infra/generators/vscode-settings'
 
 const installCommands: Record<PackageManager, string[]> = {
   npm: ['npm', 'install', '-D'],
@@ -38,6 +39,10 @@ export class FileConfigRepository implements ConfigRepository {
 
   configPrettier(plugins: string[], cwd: string): void {
     generatePrettier({ plugins, cwd })
+  }
+
+  configVscodeSettings(formatter: string, cwd: string): void {
+    generateVscodeSettings({ formatter, cwd })
   }
 
   install(pm: PackageManager, deps: string[], cwd: string): void {

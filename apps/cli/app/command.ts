@@ -48,6 +48,16 @@ export class ConfigureProject {
     }
 
     this.showExtensionLinks(linter, formatter)
+
+    const shouldConfigureVscode = await Confirm({
+      message: 'Add extension configuration to .vscode/settings.json?',
+    })
+
+    if (shouldConfigureVscode) {
+      this.repo.configVscodeSettings(formatter, cwd)
+      logInfo('VSCode settings configured')
+    }
+
     Outro('Done! Your project is configured.')
   }
 

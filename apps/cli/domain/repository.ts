@@ -7,5 +7,6 @@ export interface ConfigRepository {
   configOxlint(plugins: string[], cwd: string): void
   configOxfmt(cwd: string): void
   configPrettier(plugins: string[], cwd: string): void
+  configVscodeSettings(formatter: string, cwd: string): void
   install(pm: PackageManager, deps: string[], cwd: string): void
 }
