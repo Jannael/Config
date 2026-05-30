@@ -23,6 +23,21 @@ export function resolve(techs: string[]): ResolveResult {
   }
 }
 
+export function collectExtensions(techs: string[]): string[] {
+  const extensionSet = new Set<string>()
+
+  for (const tech of techs) {
+    const config = dataMap[tech]
+    if (!config) continue
+
+    for (const ext of config.extensions) {
+      extensionSet.add(ext)
+    }
+  }
+
+  return [...extensionSet].sort()
+}
+
 export function collectPlugins(
   techs: string[],
   linter: string,

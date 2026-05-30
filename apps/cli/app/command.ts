@@ -1,6 +1,6 @@
 import type { ConfigRepository } from '@/domain/repository'
 import type { PackageManager } from '@/domain/types'
-import { resolve, collectPlugins, getAllDeps } from '@/domain/resolver'
+import { resolve, collectPlugins, getAllDeps, collectExtensions } from '@/domain/resolver'
 import { detectPackageManager } from '@/infra/pm-detector'
 import { Outro } from '@/utils/outro'
 import { logInfo, logError } from '@/utils/log'
@@ -70,7 +70,8 @@ export class ConfigureProject {
     if (shouldConfigureHusky) {
       startSpinner('Configuring husky...')
       this.repo.initHusky(pm, cwd)
-      this.repo.configLintStaged(linter, formatter, cwd)
+      const extensions = collectExtensions(techs)
+      this.repo.configLintStaged(linter, formatter, extensions, cwd)
       const execCmd = pm === 'bun' ? 'bunx' : pm === 'pnpm' ? 'pnpx' : pm === 'yarn' ? 'yarn dlx' : 'npx'
       this.repo.writeFile(join(cwd, '.husky', 'pre-commit'), `${execCmd} lint-staged\n`)
       stopSpinner('Husky + lint-staged configured')

@@ -46,8 +46,8 @@ export class FileConfigRepository implements ConfigRepository {
     generateVscodeSettings({ formatter, cwd })
   }
 
-  configLintStaged(linter: string, formatter: string, cwd: string): void {
-    generateLintStaged({ linter, formatter, cwd })
+  configLintStaged(linter: string, formatter: string, extensions: string[], cwd: string): void {
+    generateLintStaged({ linter, formatter, extensions, cwd })
   }
 
   initHusky(pm: PackageManager, cwd: string): void {

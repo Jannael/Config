@@ -1,6 +1,7 @@
 export type PackageManager = 'npm' | 'bun' | 'pnpm' | 'yarn'
 
 export type TechConfig = {
+  extensions: string[]
   linter: Record<string, { plugins?: string[] }>
   formatter: Record<string, { plugins?: string[] }>
 }
