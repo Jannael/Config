@@ -1,39 +1,5 @@
-import angular from '@/data/angular.json'
-import astro from '@/data/astro.json'
-import javascript from '@/data/javascript.json'
-import lit from '@/data/lit.json'
-import next from '@/data/next.json'
-import nuxt from '@/data/nuxt.json'
-import qwik from '@/data/qwik.json'
-import react from '@/data/react.json'
-import reactNative from '@/data/react-native.json'
-import remix from '@/data/remix.json'
-import solid from '@/data/solid.json'
-import svelte from '@/data/svelte.json'
-import sveltekit from '@/data/sveltekit.json'
-import tailwind from '@/data/tailwind.json'
-import typescript from '@/data/typescript.json'
-import vue from '@/data/vue.json'
-import type { TechConfig, ResolveResult, CollectedPlugins } from '@/domain/types'
-
-const dataMap: Record<string, TechConfig> = {
-  angular,
-  astro,
-  javascript,
-  lit,
-  next,
-  nuxt,
-  qwik,
-  react,
-  'react-native': reactNative,
-  remix,
-  solid,
-  svelte,
-  sveltekit,
-  tailwind,
-  typescript,
-  vue,
-}
+import { dataMap } from '@/data/index'
+import type { ResolveResult, CollectedPlugins } from '@/domain/types'
 
 export function resolve(techs: string[]): ResolveResult {
   const configs = techs.map((t) => dataMap[t]).filter(Boolean)
