@@ -1,0 +1,12 @@
+{
+  "extensions": ["css"],
+  "linter": {
+    "biome": {}
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    },
+    "biome": {}
+  }
+}

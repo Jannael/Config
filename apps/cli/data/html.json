@@ -1,0 +1,15 @@
+{
+  "extensions": ["html"],
+  "linter": {
+    "eslint": {
+      "plugins": ["eslint-plugin-html"]
+    },
+    "biome": {}
+  },
+  "formatter": {
+    "prettier": {
+      "plugins": []
+    },
+    "biome": {}
+  }
+}
