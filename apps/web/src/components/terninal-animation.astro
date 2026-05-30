@@ -1,0 +1,275 @@
+<article
+	class="lg:h-7/10 lg:flex-2/6 flex w-full flex-col items-center justify-center py-6 font-mono lg:py-12"
+>
+	<div
+		class="flex h-[380px] w-full flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/20 sm:h-[420px] lg:h-full"
+		id="terminal"
+		data-version="0.0.0"
+	>
+		<div
+			class="flex shrink-0 items-center gap-1.5 rounded-xl border-b border-zinc-800 px-3 py-2"
+		>
+			<span class="size-3 rounded-full border border-[#e0443e] bg-[#ff5f56]"
+			></span>
+			<span class="size-3 rounded-full border border-[#dea123] bg-[#ffbd2e]"
+			></span>
+			<span class="size-3 rounded-full border border-[#1aab29] bg-[#27c93f]"
+			></span>
+		</div>
+		<div
+			class="min-h-0 w-full flex-1 overflow-auto whitespace-pre p-3 text-[10px] leading-relaxed sm:text-xs lg:p-4"
+			id="term-body"
+		>
+		</div>
+	</div>
+</article>
+
+<script>
+	import { ALIASES } from 'alias'
+
+	// ── Terminal animation ────────────────────────────────────
+	const pkgInstall = 'g setup'
+	const space = '   '
+	const C = {
+		g: 'color:#666', //gray
+		w: 'color:#ddd', // white
+		em: 'color:#34d399', // emerald-400
+		gn: 'color:#22c55e', // green-500
+		cy: 'color:#22d3ee', // cyan-400
+		ct: 'color:#aaffff', // cyan-100
+		yw: 'color:#facc15', // yellow-400
+		pk: 'color:#f472b6', // pink-400,
+		r: 'color:#ef4444', // red-500
+	}
+
+	function s(style: string, text: string) {
+		return `<span style="${style}">${text}</span>`
+	}
+
+	type Step =
+		| { html: string; delay: number; class?: string }
+		| {
+				type: 'char'
+				text: string
+				target: string
+				charDelay: number
+				delay: number
+		  }
+
+	function buildSteps() {
+		const steps: Step[] = []
+		// d => delay
+		const stepDelay = (delay: number, html: string, cls?: string) =>
+			steps.push({ html, delay, class: cls })
+
+		steps.push({
+			type: 'char',
+			text: pkgInstall,
+			target: 'cmd-line',
+			charDelay: 100,
+			delay: 400,
+		})
+
+		// glinter setup
+		stepDelay(200, '')
+		stepDelay(0, `${s(C.g, '|')}${space}${s(C.pk, 'Glinter Setup')}`)
+
+		stepDelay(0, '')
+		stepDelay(0, s(C.yw, 'The following aliases will be set globally: '))
+		stepDelay(0, '')
+
+		for (const alias of ALIASES) {
+			const tag =
+				alias.kind === 'glinter' ? s(C.pk, '[glinter]') : s(C.cy, '[git]    ')
+			const { name, command } = alias
+
+			stepDelay(
+				0,
+				`  ${tag}    ${s(C.gn, name.padEnd(10))}` +
+					'→' +
+					s(C.w, `  ${command}`),
+			)
+		}
+
+		// apply aliases selector
+		stepDelay(0, '')
+		stepDelay(0, s(C.g, '|'))
+		stepDelay(
+			0,
+			s(C.ct, '*') +
+				space +
+				s(C.w, 'Apply these aliases to your global git config?'),
+		)
+		stepDelay(0, s(C.ct, '|') + space + s(C.gn, '> ') + s(C.w, 'Yes /   No'))
+		stepDelay(1000, s(C.ct, '-'))
+
+		for (const alias of ALIASES) {
+			stepDelay(
+				200,
+				`  ${s(C.pk, alias.name.padEnd(8))} set ${s(C.gn, 'successfully'.padStart(10))}`,
+			)
+		}
+
+		stepDelay(100, '')
+		stepDelay(
+			0,
+			s(C.w, '○') +
+				space +
+				s(C.gn, '✔ ') +
+				s(C.w, '25 aliases configured successfully'),
+		)
+		stepDelay(0, s(C.g, '|'))
+		stepDelay(
+			0,
+			s(C.g, '-') +
+				s(C.gn, ' GLINTER') +
+				s(C.w, ', if you like the project, give it a star on GitHub: '),
+		)
+		stepDelay(0, s(C.w, 'https://github.com/jannael/glinter'))
+
+		stepDelay(0, '')
+		stepDelay(0, '')
+		stepDelay(0, s(C.pk, 'To use the aliases, please restart your terminal.'))
+		stepDelay(0, '')
+
+		steps.push({
+			type: 'char',
+			text: 'ga',
+			target: 'cmd-line',
+			charDelay: 300,
+			delay: 400,
+		})
+
+		stepDelay(100, s(C.g, '|'))
+		stepDelay(
+			0,
+			s(C.ct, '*') + space + s(C.w, 'Select the changes you want to commit.'),
+		)
+		stepDelay(0, s(C.ct, '|') + space + s(C.cy, '[space] to select'))
+		stepDelay(0, s(C.ct, '|') + space + s(C.gn, '[enter] to confirm'))
+		stepDelay(0, s(C.ct, '|') + space + s(C.pk, '[a] to select all'))
+		stepDelay(0, s(C.ct, '|') + space + s(C.r, '[esc] to cancel'))
+		stepDelay(100, s(C.ct, '|'))
+		stepDelay(
+			100,
+			s(C.ct, '|') + space + s(C.ct, '[•] ') + s(C.yw, 'modified: README.md'),
+		)
+		stepDelay(100, s(C.ct, '-'))
+
+		return steps
+	}
+
+	async function runAnimation() {
+		const body = document.getElementById('term-body')!
+		body.innerHTML = ''
+		const steps = buildSteps()
+
+		for (const step of steps) {
+			if ('type' in step && step.type === 'char') {
+				const line = document.createElement('p')
+				line.id = step.target
+				body.appendChild(line)
+				const cursor =
+					'<span class="animate-pulse" style="' + C.w + '">▋</span>'
+
+			for (let i = 0; i < step.text.length; i++) {
+				const sofar = step.text.slice(0, i + 1)
+				const colored = sofar
+
+				line.innerHTML = colored + cursor
+				await sleep(step.charDelay)
+			}
+
+				line.innerHTML =
+					'<span style="' +
+					C.w +
+					'"></span><span style="' +
+					C.w +
+					'">' +
+					step.text +
+					'</span>'
+				await sleep(step.delay)
+				continue
+			}
+
+			const { html, delay } = step as {
+				html: string
+				delay: number
+				class?: string
+			}
+
+			// Special: answer Y
+			if (html === '__ANSWER_Y__') {
+				const cursor = document.getElementById('term-cursor')
+				if (cursor) cursor.outerHTML = s(C.w, 'Y')
+				await sleep(delay)
+				continue
+			}
+
+			// Special: spinner
+			if (html.startsWith('__SPINNER__')) {
+				const skill = html.replace('__SPINNER__', '')
+				const line = document.createElement('p')
+				line.id = 'install-line'
+				line.innerHTML = s(C.w, '   ◌  ') + s(C.w, skill + '...')
+				body.appendChild(line)
+				body.scrollTop = body.scrollHeight
+				await sleep(delay)
+				continue
+			}
+
+			// Special: done
+			if (html.startsWith('__DONE__')) {
+				const inst = JSON.parse(html.replace('__DONE__', ''))
+				const line = document.getElementById('install-line')
+				if (line) {
+					line.innerHTML = s(C.em, '   ✔ ' + inst.skill)
+					line.removeAttribute('id')
+				}
+				body.scrollTop = body.scrollHeight
+				await sleep(delay)
+				continue
+			}
+
+		const line = document.createElement('p')
+		line.innerHTML = html || '&nbsp;'
+		if ('class' in step && step.class) line.className = step.class
+		body.appendChild(line)
+			body.scrollTop = body.scrollHeight
+			if (delay > 0) await sleep(delay)
+		}
+	}
+
+	// -------- execute animation --------
+	// Desktop: start immediately. Mobile: start when terminal scrolls into view.
+	const terminal = document.getElementById('terminal')
+	const isDesktop = window.matchMedia('(min-width: 1024px)').matches
+
+	async function sleep(ms: number) {
+		return new Promise((r) => setTimeout(r, ms))
+	}
+
+	async function loop() {
+		while (true) {
+			await runAnimation()
+			await sleep(4000)
+		}
+	}
+
+	if (isDesktop) {
+		loop()
+	} else if (terminal) {
+		let running = false
+		const observer = new IntersectionObserver(
+			async (entries) => {
+				if (entries[0].isIntersecting && !running) {
+					running = true
+					observer.disconnect()
+					loop()
+				}
+			},
+			{ threshold: 0.3 },
+		)
+		observer.observe(terminal)
+	}
+</script>

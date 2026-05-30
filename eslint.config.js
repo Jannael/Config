@@ -5,7 +5,7 @@ import astro from "eslint-plugin-astro"
 import tailwind from "eslint-plugin-tailwindcss"
 
 export default [
-    { ignores: ["dist/**", "node_modules/**", "build/**"] },
+    { ignores: ["dist/**", "node_modules/**", "build/**", "apps/web/.astro/**", "apps/web/dist/**"] },
     js.configs.recommended,
     ...tsEslint.configs.recommended,
     {
@@ -16,7 +16,10 @@ export default [
     {
       files: ["**/*.{js,jsx,ts,tsx,astro,html,vue,svelte}"],
       plugins: { tailwindcss: tailwind },
-      rules: { ...tailwind.configs.recommended.rules },
+      rules: {
+        ...tailwind.configs.recommended.rules,
+        "tailwindcss/no-custom-classname": "off",
+      },
       settings: {
         tailwindcss: {
           config: {},
