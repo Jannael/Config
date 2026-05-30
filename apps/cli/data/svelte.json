@@ -1,4 +1,5 @@
 {
+  "extensions": ["svelte"],
   "linter": {
     "eslint": {
       "plugins": ["eslint-plugin-svelte", "svelte-eslint-parser"]

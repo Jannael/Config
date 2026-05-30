@@ -1,4 +1,5 @@
 {
+  "extensions": ["astro"],
   "linter": {
     "eslint": {
       "plugins": ["eslint-plugin-astro", "astro-eslint-parser"]

@@ -1,4 +1,5 @@
 {
+  "extensions": ["vue", "ts"],
   "linter": {
     "eslint": {
       "plugins": ["@nuxt/eslint", "eslint-plugin-vue", "vue-eslint-parser"]

@@ -1,4 +1,5 @@
 {
+  "extensions": ["ts"],
   "linter": {
     "eslint": {
       "plugins": ["@typescript-eslint/eslint-plugin", "@typescript-eslint/parser"]

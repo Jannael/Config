@@ -1,4 +1,5 @@
 {
+  "extensions": ["ts", "html"],
   "linter": {
     "eslint": {
       "plugins": [

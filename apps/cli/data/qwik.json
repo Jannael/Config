@@ -1,4 +1,5 @@
 {
+  "extensions": ["jsx", "tsx"],
   "linter": {
     "eslint": {
       "plugins": ["eslint-plugin-qwik"]
