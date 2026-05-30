@@ -4,6 +4,7 @@ import { resolve, collectPlugins, getAllDeps } from '@/domain/resolver'
 import { detectPackageManager } from '@/infra/pm-detector'
 import { Outro } from '@/utils/outro'
 import { logInfo, logError } from '@/utils/log'
+import { getExtensionsToShow } from '@/data/extensions'
 import { Select } from '@/utils/select'
 import { MultiSelect } from '@/utils/multiselect'
 import { Confirm } from '@/utils/confirm'
@@ -46,6 +47,7 @@ export class ConfigureProject {
       logError(`Run manually: ${pm} ${flag} ${deps.join(' ')}`)
     }
 
+    this.showExtensionLinks(linter, formatter)
     Outro('Done! Your project is configured.')
   }
 
@@ -139,6 +141,13 @@ export class ConfigureProject {
       this.repo.configOxfmt(cwd)
     } else if (formatter === 'biome') {
       this.repo.configBiome(cwd)
+    }
+  }
+
+  private showExtensionLinks(linter: string, formatter: string): void {
+    const extensions = getExtensionsToShow(linter, formatter)
+    for (const ext of extensions) {
+      logInfo(`Install the ${ext.name} extension in your IDE:\n  VSCode: ${ext.vsc}\n  VSX:    ${ext.vsx}`)
     }
   }
 }
