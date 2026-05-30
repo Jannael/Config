@@ -8,6 +8,13 @@ type PluginMeta = {
 }
 
 const pluginMeta: Record<string, PluginMeta> = {
+  'eslint-plugin-html': {
+    importStatement: `import html from "eslint-plugin-html"`,
+    configSpread: `    {
+      files: ["**/*.html"],
+      plugins: { html },
+    },`,
+  },
   'eslint-plugin-react': {
     importStatement: `import react from "eslint-plugin-react"`,
     configSpread: `    {

@@ -1,5 +1,7 @@
 import angular from '@/data/angular.json'
 import astro from '@/data/astro.json'
+import css from '@/data/css.json'
+import html from '@/data/html.json'
 import javascript from '@/data/javascript.json'
 import lit from '@/data/lit.json'
 import next from '@/data/next.json'
@@ -19,6 +21,8 @@ import type { TechConfig } from '@/domain/types'
 const technologies: Record<string, string> = {
   angular: 'Angular',
   astro: 'Astro',
+  css: 'CSS',
+  html: 'HTML',
   javascript: 'JavaScript',
   lit: 'Lit',
   next: 'Next.js',
@@ -38,6 +42,8 @@ const technologies: Record<string, string> = {
 export const dataMap: Record<string, TechConfig> = {
   angular,
   astro,
+  css,
+  html,
   javascript,
   lit,
   next,
