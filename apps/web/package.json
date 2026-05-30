@@ -9,12 +9,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "astro build && wrangler pages deploy"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
     "@tailwindcss/vite": "4.3.0",
     "astro": "6.4.2",
     "tailwindcss": "4.3.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.95.0"
   }
 }
