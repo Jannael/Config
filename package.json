@@ -72,7 +72,7 @@
     "bun": ">=1.0.0"
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint --fix",
+    "*.{js,ts,astro}": "eslint --fix",
     "*.{js,ts,json,css,md}": "prettier --write"
   }
 }
