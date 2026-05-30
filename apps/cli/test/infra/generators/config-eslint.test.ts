@@ -111,6 +111,6 @@ describe('generateEslint', () => {
     const [, content] = vi.mocked(writeFileSync).mock.calls[0]!
 
     expect(content).toContain('import tailwind from "eslint-plugin-tailwindcss"')
-    expect(content).toContain('plugins: { tailwind }')
+    expect(content).toContain('plugins: { tailwindcss: tailwind }')
   })
 })

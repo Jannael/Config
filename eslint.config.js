@@ -1,27 +1,25 @@
-import js from '@eslint/js'
-import tseslint from 'typescript-eslint'
-import astro from 'eslint-plugin-astro'
-import tailwindcss from 'eslint-plugin-tailwindcss'
+import js from "@eslint/js"
+import tsEslint from "typescript-eslint"
+import astroParser from "astro-eslint-parser"
+import astro from "eslint-plugin-astro"
+import tailwind from "eslint-plugin-tailwindcss"
 
 export default [
-  { ignores: ['dist/**'] },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...astro.configs['flat/recommended'],
-  ...tailwindcss.configs['flat/recommended'],
-  {
-    rules: {
-      semi: ['error', 'never'],
-      quotes: ['error', 'single'],
+    js.configs.recommended,
+    ...tsEslint.configs.recommended,
+    {
+      files: ["**/*.astro"],
+      languageOptions: { parser: astroParser },
     },
-    settings: {
-      tailwindcss: {
-        config: {
-          content: [],
-          theme: { extend: {} },
-          plugins: [],
-        },
+    ...astro.configs.recommended,
+    {
+      plugins: { tailwindcss: tailwind },
+      rules: { ...tailwind.configs.recommended.rules },
+    },
+    {
+      rules: {
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
       },
     },
-  },
 ]

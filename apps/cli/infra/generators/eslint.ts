@@ -125,7 +125,7 @@ const pluginMeta: Record<string, PluginMeta> = {
   'eslint-plugin-tailwindcss': {
     importStatement: `import tailwind from "eslint-plugin-tailwindcss"`,
     configSpread: `    {
-      plugins: { tailwind },
+      plugins: { tailwindcss: tailwind },
       rules: { ...tailwind.configs.recommended.rules },
     },`,
   },
