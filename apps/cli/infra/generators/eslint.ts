@@ -156,12 +156,14 @@ export function generateEslint({
     if (meta.configSpread) configEntries.push(meta.configSpread)
   }
 
-  configEntries.push(`    {
+  if (linterPlugins.includes('@typescript-eslint/eslint-plugin')) {
+    configEntries.push(`    {
       rules: {
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "warn",
       },
     },`)
+  }
 
   const content = `${imports.join('\n')}
 
