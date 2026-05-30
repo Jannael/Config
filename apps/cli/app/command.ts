@@ -67,6 +67,9 @@ export class ConfigureProject {
       logInfo('VSCode settings configured')
     }
 
+    this.repo.configPackageScripts(linter, formatter, cwd)
+    logInfo('Package scripts configured')
+
     if (shouldConfigureHusky) {
       startSpinner('Configuring husky...')
       this.repo.initHusky(pm, cwd)
