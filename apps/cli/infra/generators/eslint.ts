@@ -134,13 +134,9 @@ const pluginMeta: Record<string, PluginMeta> = {
       },
     },`,
   },
-  '@typescript-eslint/eslint-plugin': {
+  'typescript-eslint': {
     importStatement: `import tsEslint from "typescript-eslint"`,
     configSpread: `    ...tsEslint.configs.recommended,`,
-  },
-  '@typescript-eslint/parser': {
-    importStatement: '',
-    configSpread: '',
   },
 }
 
@@ -171,7 +167,7 @@ export function generateEslint({
     if (meta.configSpread) configEntries.push(meta.configSpread)
   }
 
-  if (linterPlugins.includes('@typescript-eslint/eslint-plugin')) {
+  if (linterPlugins.includes('typescript-eslint')) {
     configEntries.push(`    {
       rules: {
         "no-unused-vars": "off",

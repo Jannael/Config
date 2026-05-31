@@ -53,12 +53,12 @@ describe('generateEslint', () => {
   it('eslint config with typescript plugin', () => {
     /*
       Flow:
-      1. Call generateEslint with @typescript-eslint/eslint-plugin
+      1. Call generateEslint with typescript-eslint
       2. Verify content contains typescript-eslint import
       3. Verify no-unused-vars rule is overridden for typescript
     */
     const cwd = '/test/project'
-    generateEslint({ plugins: ['@typescript-eslint/eslint-plugin'], cwd })
+    generateEslint({ plugins: ['typescript-eslint'], cwd })
 
     const [, content] = vi.mocked(writeFileSync).mock.calls[0]!
 

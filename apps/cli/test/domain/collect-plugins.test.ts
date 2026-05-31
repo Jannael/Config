@@ -37,8 +37,7 @@ describe('collectPlugins', () => {
     const result = collectPlugins(['react', 'typescript'], 'eslint', 'prettier')
 
     expect(result.linterPlugins).toContain('eslint-plugin-react')
-    expect(result.linterPlugins).toContain('@typescript-eslint/eslint-plugin')
-    expect(result.linterPlugins).toContain('@typescript-eslint/parser')
+    expect(result.linterPlugins).toContain('typescript-eslint')
     expect(result.linterPlugins.length).toBe(new Set(result.linterPlugins).size)
   })
 
