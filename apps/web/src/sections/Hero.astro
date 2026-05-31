@@ -28,17 +28,19 @@ import TerminalAnimation from '@/components/terminal-animation.astro'
   <div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
     <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
       <!-- Left content -->
-      <div class="animate-fade-in space-y-8">
+      <div class="animate-fade-in min-w-0 space-y-8">
         <!-- Title -->
         <div class="space-y-4">
-          <pre
-            class="ascii-art font-mono text-xs leading-none sm:text-sm md:text-base">
+          <div class="overflow-hidden">
+            <pre
+              class="ascii-art origin-left scale-[0.65] font-mono text-sm leading-none sm:scale-[0.8] md:scale-[0.9] lg:scale-100">
  ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗ 
 ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝ 
 ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
 ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
 ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝</pre>
+          </div>
           <p class="text-2xl font-semibold text-gray-300 sm:text-3xl lg:text-4xl">
             One command.<br />
             <span class="text-cyan-400">Zero configuration.</span>
@@ -97,7 +99,7 @@ import TerminalAnimation from '@/components/terminal-animation.astro'
       </div>
 
       <!-- Right: Terminal Animation -->
-      <div class="animate-slide-up">
+      <div class="animate-slide-up min-w-0">
         <div class="relative">
           <!-- Glow behind terminal -->
           <div

@@ -84,27 +84,20 @@ const pluginMeta: Record<string, PluginMeta> = {
       languageOptions: { parser: astroParser },
     },`,
   },
-  '@angular-eslint/eslint-plugin': {
-    importStatement: `import angular from "@angular-eslint/eslint-plugin"`,
+  'angular-eslint': {
+    importStatement: `import angular from "angular-eslint"`,
     configSpread: `    {
       files: ["**/*.ts"],
-      plugins: { "@angular-eslint": angular },
-      rules: { ...angular.configs.recommended.rules },
-    },`,
-  },
-  '@angular-eslint/eslint-plugin-template': {
-    importStatement: `import angularTemplate from "@angular-eslint/eslint-plugin-template"`,
-    configSpread: `    {
+      plugins: angular.configs.tsRecommended[0].plugins,
+      languageOptions: angular.configs.tsRecommended[0].languageOptions,
+      rules: { ...angular.configs.tsRecommended[1].rules },
+      processor: angular.processInlineTemplates,
+    },
+    {
       files: ["**/*.html"],
-      plugins: { "@angular-eslint/template": angularTemplate },
-      rules: { ...angularTemplate.configs.recommended.rules },
-    },`,
-  },
-  '@angular-eslint/template-parser': {
-    importStatement: `import angularTemplateParser from "@angular-eslint/template-parser"`,
-    configSpread: `    {
-      files: ["**/*.html"],
-      languageOptions: { parser: angularTemplateParser },
+      plugins: angular.configs.templateRecommended[0].plugins,
+      languageOptions: angular.configs.templateRecommended[0].languageOptions,
+      rules: { ...angular.configs.templateRecommended[1].rules },
     },`,
   },
   'eslint-plugin-lit': {

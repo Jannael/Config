@@ -2,11 +2,7 @@
   "extensions": ["ts", "html"],
   "linter": {
     "eslint": {
-      "plugins": [
-        "@angular-eslint/eslint-plugin",
-        "@angular-eslint/eslint-plugin-template",
-        "@angular-eslint/template-parser"
-      ]
+      "plugins": ["angular-eslint"]
     }
   },
   "formatter": {
