@@ -39,7 +39,6 @@ apps/cli/
 │   ├── qwik.json
 │   ├── react-native.json
 │   ├── vue.json
-│   ├── nuxt.json
 │   ├── svelte.json
 │   ├── sveltekit.json
 │   ├── astro.json
@@ -67,7 +66,6 @@ const technologies: Record<string, string> = {
   javascript: 'JavaScript',
   lit: 'Lit',
   next: 'Next.js',
-  nuxt: 'Nuxt',
   qwik: 'Qwik',
   react: 'React',
   'react-native': 'React Native',
@@ -104,7 +102,6 @@ Cada JSON tiene la estructura:
 | qwik         | eslint (eslint-plugin-qwik)                                 | prettier                               |
 | react-native | eslint (@react-native/eslint-config)                        | prettier                               |
 | vue          | eslint (eslint-plugin-vue, vue-eslint-parser)               | prettier                               |
-| nuxt         | eslint (@nuxt/eslint, eslint-plugin-vue, vue-eslint-parser) | prettier                               |
 | svelte       | eslint (eslint-plugin-svelte, svelte-eslint-parser)         | prettier (prettier-plugin-svelte)      |
 | sveltekit    | eslint (eslint-plugin-svelte, svelte-eslint-parser)         | prettier (prettier-plugin-svelte)      |
 | astro        | eslint (eslint-plugin-astro, astro-eslint-parser)           | prettier (prettier-plugin-astro)       |

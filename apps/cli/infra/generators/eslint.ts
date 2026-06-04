@@ -58,10 +58,6 @@ const pluginMeta: Record<string, PluginMeta> = {
       languageOptions: { parser: vueParser },
     },`,
   },
-  '@nuxt/eslint': {
-    importStatement: `import nuxt from "@nuxt/eslint"`,
-    configSpread: `    ...nuxt.configs.flat,`,
-  },
   'eslint-plugin-svelte': {
     importStatement: `import svelte from "eslint-plugin-svelte"`,
     configSpread: `    ...svelte.configs["flat/recommended"],`,
