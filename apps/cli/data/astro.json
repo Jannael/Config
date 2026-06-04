@@ -2,17 +2,37 @@
   "extensions": ["astro"],
   "linter": {
     "eslint": {
+      "commands": {
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
+      },
       "plugins": ["eslint-plugin-astro", "@typescript-eslint/parser"],
       "config": {
         "path": "eslint.config.js",
         "importStatement": "import eslintPluginAstro from 'eslint-plugin-astro'\nimport typescriptEslintParser from '@typescript-eslint/parser'",
-        "configSpread": ["...eslintPluginAstro.configs.recommended", "{ languageOptions: { parser: tsParser } }"]
+        "configSpread": [
+          "...eslintPluginAstro.configs.recommended",
+          "{ languageOptions: { parser: tsParser } }"
+        ]
       }
     }
   },
   "formatter": {
     "prettier": {
-      "plugins": ["prettier-plugin-astro"]
+      "commands": {
+        "fmt": "prettier --write .",
+        "fmt:check": "prettier --check ."
+      },
+      "config": {
+        "path": ".prettierrc",
+        "importStatement": null,
+        "configSpread": {
+          "semi": false,
+          "singleQuote": true,
+          "printWidth": 150,
+          "plugins": ["prettier-plugin-astro"]
+        }
+      }
     }
   }
 }
