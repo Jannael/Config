@@ -7,8 +7,8 @@
         "path": "eslint.config.js",
         "importStatement": "import eslintPluginAstro from 'eslint-plugin-astro'\nimport typescriptEslintParser from '@typescript-eslint/parser'",
         "configSpread": [
-          "...eslintPluginAstro.configs.recommended",
-          "{ languageOptions: { parser: tsParser } }"
+          "...eslintPluginAstro.configs.recommended,",
+          "{ languageOptions: { parser: tsParser }, },"
         ],
         "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"],
         "fileExtensions": [".ts", ".tsx", ".astro"]
