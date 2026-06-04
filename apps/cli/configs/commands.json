@@ -10,5 +10,25 @@
       "fmt": "prettier --write .",
       "fmt:check": "prettier --check ."
     }
+  },
+  "oxfmt": {
+    "commands": {
+      "fmt": "oxfmt .",
+      "fmt:check": "oxfmt --check ."
+    }
+  },
+  "oxlint": {
+    "commands": {
+      "lint": "oxlint .",
+      "lint:fix": "oxlint . --fix"
+    }
+  },
+  "biome": {
+    "commands": {
+      "lint": "biome lint .",
+      "lint:fix": "biome lint --write .",
+      "fmt": "biome format .",
+      "fmt:check": "biome check ."
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { FORMAT_CONFIG } from '@/.config/format-config'
+import { FORMAT_CONFIG } from '@/constants/format-config'
 
 export function generateOxfmt({ cwd }: { cwd: string }): void {
   const config = {
