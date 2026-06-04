@@ -54,17 +54,6 @@ const pluginMeta: Record<string, PluginMeta> = {
       languageOptions: { parser: vueParser },
     },`,
   },
-  'eslint-plugin-svelte': {
-    importStatement: `import svelte from "eslint-plugin-svelte"`,
-    configSpread: `    ...svelte.configs["flat/recommended"],`,
-  },
-  'svelte-eslint-parser': {
-    importStatement: `import svelteParser from "svelte-eslint-parser"`,
-    configSpread: `    {
-      files: ["**/*.svelte"],
-      languageOptions: { parser: svelteParser },
-    },`,
-  },
   '@typescript-eslint/parser': {
     importStatement: `import tsParser from "@typescript-eslint/parser"`,
     configSpread: `    {
@@ -88,7 +77,7 @@ const pluginMeta: Record<string, PluginMeta> = {
   'eslint-plugin-tailwindcss': {
     importStatement: `import tailwind from "eslint-plugin-tailwindcss"`,
     configSpread: `    {
-      files: ["**/*.{js,jsx,ts,tsx,astro,html,vue,svelte}"],
+      files: ["**/*.{js,jsx,ts,tsx,astro,html,vue}"],
       plugins: { tailwindcss: tailwind },
       rules: { ...tailwind.configs.recommended.rules },
       settings: {
