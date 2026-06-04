@@ -1,5 +1,5 @@
 {
-  "language": "Vue",
+  "label": "Vue",
   "linter": {
     "eslint": {
       "plugins": ["eslint-plugin-vue", "vue-eslint-parser", "globals"],
