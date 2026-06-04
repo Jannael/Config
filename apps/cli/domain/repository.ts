@@ -9,4 +9,10 @@ export interface Repository {
   writeOxLintConfig(techs: string[]): Promise<void>
   writeOxFmtConfig(techs: string[]): Promise<void>
   writePackageJsonScripts(formatter: Formatters, linter: Linters): Promise<void>
+  writeEditorConfig(techs: string[]): Promise<void>
+  writeLintStagedConfig(formatter: Formatters, linter: Linters, techs: string[]): Promise<void>
+
+  getAutoApproveFlag(): boolean
+
+  initHusky(): Promise<void>
 }
