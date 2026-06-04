@@ -8,7 +8,7 @@ export function generateBiome({ cwd }: { cwd: string }): void {
     formatter: {
       enabled: true,
       lineWidth: 150,
-      indentStyle: 'space',
+      indentStyle: 'tab',
       indentWidth: 2,
     },
     javascript: {

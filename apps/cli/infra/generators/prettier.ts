@@ -17,7 +17,8 @@ export function generatePrettier({
   const config: Record<string, unknown> = {
     semi: false,
     singleQuote: true,
-    printWidth: 100,
+    printWidth: 150,
+    useTabs: true,
   }
 
   if (formatterPlugins.length > 0) {

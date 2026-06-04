@@ -4,8 +4,8 @@ import { join } from 'node:path'
 export function generateOxfmt({ cwd }: { cwd: string }): void {
   const config = {
     $schema: './node_modules/oxfmt/configuration_schema.json',
-    lineWidth: 100,
-    indentStyle: 'space',
+    lineWidth: 150,
+    indentStyle: 'tab',
     indentWidth: 2,
     semicolons: false,
     quoteStyle: 'single',
