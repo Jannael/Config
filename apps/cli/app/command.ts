@@ -12,6 +12,7 @@ export class Command {
   constructor(private readonly repository: Repository) {}
 
   async execute(): Promise<void> {
+    const AutoApproveFlag = this.repository.getAutoApproveFlag()
     const selectedConfigs = await MultiSelect({
       message: 'Select your technologies:',
       options: Object.keys(configs.techs).map((key) => ({
@@ -32,12 +33,16 @@ export class Command {
       linter,
       selectedConfigs,
     )
-    await Confirm({
-      message: `The following dependencies will be installed: ${dependenciesToInstall.join(', ')}. Do you want to proceed?`,
-    })
+    const installConfirm = AutoApproveFlag
+      ? AutoApproveFlag
+      : await Confirm({
+          message: `The following dependencies will be installed: ${dependenciesToInstall.join(', ')}. Do you want to proceed?`,
+        })
 
-    await this.repository.installDependencies({ dependencies: dependenciesToInstall })
-    Print.success('Dependencies installed successfully.')
+    if (installConfirm || AutoApproveFlag) {
+      await this.repository.installDependencies({ dependencies: dependenciesToInstall })
+      Print.success('Dependencies installed successfully.')
+    }
 
     await this.WriteLinterConfig(linter, selectedConfigs)
     Print.success('Linter configuration file created successfully.')
@@ -48,10 +53,36 @@ export class Command {
     await this.repository.writePackageJsonScripts(formatter, linter)
     Print.success('package.json scripts updated successfully.')
 
-    
-    // Print.success(
-    //   `All done! Your project is now set up with the selected technologies: ${selectedConfigs.join(', ')}, formatter: ${formatter} and linter: ${linter}.`,
-    // )
+    const editorConfigConfirm = AutoApproveFlag
+      ? AutoApproveFlag
+      : await Confirm({
+          message: 'You want to configure your editor to use the installed formatter and linter?',
+        })
+
+    if (editorConfigConfirm || AutoApproveFlag) {
+      this.repository.writeEditorConfig(selectedConfigs)
+      Print.success('Editor configuration file created successfully.')
+    }
+
+    const HuskyConfigConfirm = AutoApproveFlag
+      ? AutoApproveFlag
+      : await Confirm({
+          message:
+            'You want to set up Husky pre-commit hooks to run your formatter and linter before each commit?',
+        })
+
+    if (HuskyConfigConfirm || AutoApproveFlag) {
+      this.repository.installDependencies({ dependencies: ['husky', 'lint-staged'] })
+      Print.success('Husky and lint-staged installed successfully.')
+      await this.repository.initHusky()
+      Print.success('package.json scripts updated successfully with Husky pre-commit hooks.')
+      await this.repository.writeLintStagedConfig(formatter, linter, selectedConfigs)
+      Print.success('lint-staged configuration file created successfully.')
+    }
+
+    Print.success(
+      `All done! Your project is now set up with the selected technologies: ${selectedConfigs.join(', ')}, formatter: ${formatter} and linter: ${linter}.`,
+    )
   }
 
   private async GetCommonLinters(selectedConfigs: string[]): Promise<string[]> {
