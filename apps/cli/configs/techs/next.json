@@ -23,9 +23,7 @@
     "biome": {}
   },
   "formatter": {
-    "prettier": {
-      "plugins": []
-    },
+    "prettier": {},
     "oxfmt": {},
     "biome": {}
   }

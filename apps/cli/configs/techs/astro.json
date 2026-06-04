@@ -19,13 +19,7 @@
   },
   "formatter": {
     "prettier": {
-      "config": {
-        "path": ".prettierrc",
-        "importStatement": null,
-        "configSpread": {
-          "plugins": ["prettier-plugin-astro"]
-        }
-      }
+      "plugins": ["prettier-plugin-astro"]
     }
   }
 }
