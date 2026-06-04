@@ -77,11 +77,10 @@ const pluginMeta: Record<string, PluginMeta> = {
     importStatement: `import astro from "eslint-plugin-astro"`,
     configSpread: `    ...astro.configs.recommended,`,
   },
-  'astro-eslint-parser': {
-    importStatement: `import astroParser from "astro-eslint-parser"`,
+  '@typescript-eslint/parser': {
+    importStatement: `import tsParser from "@typescript-eslint/parser"`,
     configSpread: `    {
-      files: ["**/*.astro"],
-      languageOptions: { parser: astroParser },
+      languageOptions: { parser: tsParser },
     },`,
   },
   'eslint-plugin-lit': {

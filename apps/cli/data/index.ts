@@ -18,7 +18,7 @@ import vue from '@/data/vue.json'
 import type { TechConfig } from '@/domain/types'
 
 const technologies: Record<string, string> = {
-  astro: 'Astro',
+  astro: 'Astro (typescript included)',
   css: 'CSS',
   html: 'HTML',
   javascript: 'JavaScript',

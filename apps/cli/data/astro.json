@@ -2,7 +2,7 @@
   "extensions": ["astro"],
   "linter": {
     "eslint": {
-      "plugins": ["eslint-plugin-astro", "astro-eslint-parser"]
+      "plugins": ["eslint-plugin-astro", "@typescript-eslint/parser"]
     }
   },
   "formatter": {
