@@ -1,5 +1,4 @@
 export interface LinterConfig {
-  label: string
   linter: {
     eslint: {
       plugins: string[]
@@ -9,6 +8,9 @@ export interface LinterConfig {
         ignorePatterns: string[]
         fileExtensions: string[]
       }
+    }
+    oxlint: {
+      plugins: string[]
     }
   }
 }

@@ -1,8 +1,21 @@
 {
-  "extensions": ["jsx", "tsx"],
+  "label": "Next.js",
   "linter": {
     "eslint": {
-      "plugins": ["eslint-config-next"]
+      "plugins": ["eslint-config-next"],
+      "config": {
+        "importStatements": ["import eslintConfigNext from 'eslint-config-next'"],
+        "configSpread": ["...eslintConfigNext"],
+        "ignorePatterns": [
+          "**/dist/**",
+          "**/node_modules/**",
+          "**/build/**",
+          "**/.next/**",
+          "**/out/**",
+          "**/next-env.d.ts"
+        ],
+        "fileExtensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     },
     "oxlint": {
       "plugins": ["nextjs"]
