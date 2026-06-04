@@ -1,4 +1,5 @@
 {
+  "label": "HTML",
   "linter": {
     "biome": {}
   },

@@ -1,16 +1,12 @@
 {
   "extensions": ["js"],
   "linter": {
-    "eslint": {
-      "plugins": []
-    },
+    "eslint": {},
     "oxlint": {},
     "biome": {}
   },
   "formatter": {
-    "prettier": {
-      "plugins": []
-    },
+    "prettier": {},
     "oxfmt": {},
     "biome": {}
   }
