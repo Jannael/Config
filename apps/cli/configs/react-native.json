@@ -1,8 +1,14 @@
 {
-  "extensions": ["jsx", "tsx"],
+  "label": "React Native",
   "linter": {
     "eslint": {
-      "plugins": ["@react-native/eslint-config"]
+      "plugins": ["@react-native/eslint-config"],
+      "config": {
+        "importStatements": ["import eslintConfigReactNative from '@react-native/eslint-config'"],
+        "configSpread": ["...eslintConfigReactNative,"],
+        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+        "fileExtensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     },
     "oxlint": {
       "plugins": ["react"]
