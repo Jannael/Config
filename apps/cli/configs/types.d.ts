@@ -1,30 +1,30 @@
 export interface LinterConfig {
   linter: {
-    eslint: {
-      plugins: string[]
-      config: {
+    eslint?: {
+      plugins?: string[]
+      config?: {
         importStatements: string[]
         configSpread: string[]
         ignorePatterns: string[]
         fileExtensions: string[]
       }
     }
-    oxlint: {
-      plugins: string[]
+    oxlint?: {
+      plugins?: string[]
     }
+    biome?: {}
   }
 }
 
 export interface FormatterConfig {
   formatter: {
-    prettier: {
-      config: {
-        path: string
-        importStatement: string
-        configSpread: {
-          plugins: string[]
-        }
-      }
+    prettier?: {
+      plugins?: string[]
     }
+    biome?: {}
+    oxfmt?: {}
   }
 }
+
+export type Linters = 'eslint' | 'oxlint' | 'biome'
+export type Formatters = 'prettier' | 'oxfmt' | 'biome'
