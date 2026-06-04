@@ -1,13 +1,21 @@
 {
-  "extensions": ["vue"],
+  "language": "Vue",
   "linter": {
     "eslint": {
-      "plugins": ["eslint-plugin-vue", "vue-eslint-parser"]
+      "plugins": ["eslint-plugin-vue", "vue-eslint-parser", "globals"],
+      "config": {
+        "importStatements": [
+          "import eslintPluginVue from 'eslint-plugin-vue'",
+          "import vueEslintParser from 'vue-eslint-parser'",
+          "import globals from 'globals'"
+        ],
+        "configSpread": [
+          "{ languageOptions: { parser: vueEslintParser, globals: { ...globals.browser } }, plugins: { vue: eslintPluginVue }, rules: { ...eslintPluginVue.configs['flat/recommended'].rules } }"
+        ]
+      }
     }
   },
   "formatter": {
-    "prettier": {
-      "plugins": []
-    }
+    "prettier": {}
   }
 }
