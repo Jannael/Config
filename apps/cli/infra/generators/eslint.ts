@@ -73,10 +73,6 @@ const pluginMeta: Record<string, PluginMeta> = {
       languageOptions: { parser: svelteParser },
     },`,
   },
-  'eslint-plugin-astro': {
-    importStatement: `import astro from "eslint-plugin-astro"`,
-    configSpread: `    ...astro.configs.recommended,`,
-  },
   '@typescript-eslint/parser': {
     importStatement: `import tsParser from "@typescript-eslint/parser"`,
     configSpread: `    {
@@ -125,7 +121,7 @@ export function generateEslint({
 }): void {
   const imports: string[] = [`import js from "@eslint/js"`]
   const configEntries: string[] = [
-    `    { ignores: ["dist/**", "node_modules/**", "build/**"] },`,
+    `    { ignores: ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"] },`,
     `    js.configs.recommended,`,
   ]
 
