@@ -26,8 +26,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "paths": {
-      "@/*": ["./apps/cli/*"],
-      "data": ["apps/cli/configs/index.ts"]
+      "@/*": ["./apps/cli/*"]
     }
   },
   "exclude": ["node_modules", "**/node_modules/**", "apps/**/node_modules/**", "dist"]
