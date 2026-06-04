@@ -37,8 +37,6 @@ apps/cli/
 │   ├── solid.json
 │   ├── react-native.json
 │   ├── vue.json
-│   ├── svelte.json
-│   ├── sveltekit.json
 │   ├── astro.json
 │   ├── lit.json
 │   ├── tailwind.json
@@ -67,8 +65,6 @@ const technologies: Record<string, string> = {
   react: 'React',
   'react-native': 'React Native',
   solid: 'Solid',
-  svelte: 'Svelte',
-  sveltekit: 'SvelteKit',
   tailwind: 'Tailwind CSS',
   typescript: 'TypeScript',
   vue: 'Vue',
@@ -96,8 +92,6 @@ Cada JSON tiene la estructura:
 | solid        | eslint (eslint-plugin-solid)                                | prettier                               |
 | react-native | eslint (@react-native/eslint-config)                        | prettier                               |
 | vue          | eslint (eslint-plugin-vue, vue-eslint-parser)               | prettier                               |
-| svelte       | eslint (eslint-plugin-svelte, svelte-eslint-parser)         | prettier (prettier-plugin-svelte)      |
-| sveltekit    | eslint (eslint-plugin-svelte, svelte-eslint-parser)         | prettier (prettier-plugin-svelte)      |
 | astro        | eslint (eslint-plugin-astro, astro-eslint-parser)           | prettier (prettier-plugin-astro)       |
 | lit          | eslint (eslint-plugin-lit, eslint-plugin-wc)                | prettier                               |
 | tailwind     | eslint (eslint-plugin-tailwindcss)                          | prettier (prettier-plugin-tailwindcss) |
@@ -146,7 +140,7 @@ Genera `.prettierrc`:
   "semi": false,
   "singleQuote": true,
   "printWidth": 100,
-  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-svelte", ...]
+  "plugins": ["prettier-plugin-tailwindcss", ...]
 }
 ```
 

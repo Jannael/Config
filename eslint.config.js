@@ -14,7 +14,7 @@ export default [
   },
   ...astro.configs.recommended,
   {
-    files: ['**/*.{js,jsx,ts,tsx,astro,html,vue,svelte}'],
+    files: ['**/*.{js,jsx,ts,tsx,astro,html,vue}'],
     plugins: { tailwindcss: tailwind },
     rules: {
       ...tailwind.configs.recommended.rules,
