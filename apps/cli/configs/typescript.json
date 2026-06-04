@@ -1,16 +1,20 @@
 {
-  "extensions": ["ts"],
+  "label": "TypeScript",
   "linter": {
     "eslint": {
-      "plugins": ["typescript-eslint"]
+      "plugins": ["typescript-eslint"],
+      "config": {
+        "importStatements": ["import typescriptEslint from 'typescript-eslint'"],
+        "configSpread": ["...typescriptEslint.configs.recommended,"],
+        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+        "fileExtensions": [".ts", ".tsx"]
+      }
     },
     "oxlint": {},
     "biome": {}
   },
   "formatter": {
-    "prettier": {
-      "plugins": []
-    },
+    "prettier": {},
     "oxfmt": {},
     "biome": {}
   }
