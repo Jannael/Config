@@ -34,7 +34,6 @@ apps/cli/
 │   ├── index.ts          → Map de tecnologías (nombre archivo → nombre oficial)
 │   ├── react.json        → Configs de linter/formatter por tecnología
 │   ├── next.json
-│   ├── remix.json
 │   ├── solid.json
 │   ├── react-native.json
 │   ├── vue.json
@@ -67,7 +66,6 @@ const technologies: Record<string, string> = {
   next: 'Next.js',
   react: 'React',
   'react-native': 'React Native',
-  remix: 'Remix',
   solid: 'Solid',
   svelte: 'Svelte',
   sveltekit: 'SvelteKit',
@@ -95,7 +93,6 @@ Cada JSON tiene la estructura:
 | ------------ | ----------------------------------------------------------- | -------------------------------------- |
 | react        | eslint (eslint-plugin-react, eslint-plugin-react-hooks)     | prettier                               |
 | next         | eslint (eslint-config-next)                                 | prettier                               |
-| remix        | eslint (eslint-plugin-react, eslint-plugin-react-hooks)     | prettier                               |
 | solid        | eslint (eslint-plugin-solid)                                | prettier                               |
 | react-native | eslint (@react-native/eslint-config)                        | prettier                               |
 | vue          | eslint (eslint-plugin-vue, vue-eslint-parser)               | prettier                               |

@@ -19,5 +19,18 @@
         "source.organizeImports.biome": "explicit"
       }
     }
+  },
+  "oxlint": {
+    "editorConfig": {
+      "editor.codeActionsOnSave": {
+        "source.fixAll.oxc": "always"
+      }
+    }
+  },
+  "oxfmt": {
+    "editorConfig": {
+      "editor.defaultFormatter": "oxc.oxc-vscode",
+      "editor.formatOnSave": true
+    }
   }
 }

@@ -12,7 +12,7 @@
           "{ plugins: { react: eslintPluginReact, 'react-hooks': eslintPluginReactHooks }, rules: { ...eslintPluginReact.configs.recommended.rules, ...eslintPluginReactHooks.configs.recommended.rules }, settings: { react: { version: 'detect' } } },"
         ],
         "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
-        "fileExtensions": [".js", ".jsx"]
+        "fileExtensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     },
     "oxlint": {
