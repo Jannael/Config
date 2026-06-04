@@ -1,12 +1,23 @@
 {
   "extensions": ["css"],
   "linter": {
-    "biome": {}
+    "biome": {
+      "editorConfig": {
+        "editor.codeActionsOnSave": {
+          "source.fixAll.biome": "explicit",
+          "source.organizeImports.biome": "explicit"
+        }
+      }
+    }
   },
   "formatter": {
-    "prettier": {
-      "plugins": []
-    },
-    "biome": {}
+    "biome": {
+      "editorConfig": {
+        "editor.codeActionsOnSave": {
+          "source.fixAll.biome": "explicit",
+          "source.organizeImports.biome": "explicit"
+        }
+      }
+    }
   }
 }
