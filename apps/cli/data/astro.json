@@ -1,5 +1,4 @@
 {
-  "extensions": ["astro"],
   "linter": {
     "eslint": {
       "commands": {
@@ -14,7 +13,8 @@
           "...eslintPluginAstro.configs.recommended",
           "{ languageOptions: { parser: tsParser } }"
         ],
-        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"]
+        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"],
+        "fileExtension": [".ts", ".tsx", ".astro"]
       }
     }
   },
