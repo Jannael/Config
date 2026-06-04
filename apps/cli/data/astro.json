@@ -1,4 +1,5 @@
 {
+  "label": "Astro with TypeScript",
   "linter": {
     "eslint": {
       "commands": {
