@@ -145,21 +145,21 @@ export class Command {
 
   private async WriteLinterConfig(linter: Linters, techs: string[]): Promise<void> {
     if (linter === 'eslint') {
-      await this.repository.writeEslintConfig(techs[0]!)
+      await this.repository.writeEslintConfig(techs)
     } else if (linter === 'oxlint') {
-      await this.repository.writeOxLintConfig(techs[0]!)
+      await this.repository.writeOxLintConfig(techs)
     } else if (linter === 'biome') {
-      await this.repository.writeBiomeConfig(techs[0]!)
+      await this.repository.writeBiomeConfig(techs)
     }
   }
 
   private async WriteFormatterConfig(formatter: Formatters, techs: string[]): Promise<void> {
     if (formatter === 'prettier') {
-      await this.repository.writePrettierConfig(techs[0]!)
+      await this.repository.writePrettierConfig(techs)
     } else if (formatter === 'oxfmt') {
-      await this.repository.writeOxFmtConfig(techs[0]!)
+      await this.repository.writeOxFmtConfig(techs)
     } else if (formatter === 'biome') {
-      await this.repository.writeBiomeConfig(techs[0]!)
+      await this.repository.writeBiomeConfig(techs)
     }
   }
 }

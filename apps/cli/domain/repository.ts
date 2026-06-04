@@ -1,9 +1,9 @@
 export interface Repository {
   installDependencies({ dependencies }: { dependencies: string[] }): Promise<void>
   getPackageManager(): Promise<'npm' | 'yarn' | 'pnpm' | 'bun'>
-  writeBiomeConfig(tech: string): Promise<void>
-  writePrettierConfig(tech: string): Promise<void>
-  writeEslintConfig(tech: string): Promise<void>
-  writeOxLintConfig(tech: string): Promise<void>
-  writeOxFmtConfig(tech: string): Promise<void>
+  writeBiomeConfig(techs: string[]): Promise<void>
+  writePrettierConfig(techs: string[]): Promise<void>
+  writeEslintConfig(techs: string[]): Promise<void>
+  writeOxLintConfig(techs: string[]): Promise<void>
+  writeOxFmtConfig(techs: string[]): Promise<void>
 }
