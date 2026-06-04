@@ -4,7 +4,7 @@
     "eslint": {
       "plugins": ["eslint-plugin-astro", "@typescript-eslint/parser"],
       "config": {
-        "importStatement": [
+        "importStatements": [
           "import eslintPluginAstro from 'eslint-plugin-astro'",
           "import typescriptEslintParser from '@typescript-eslint/parser'"
         ],
