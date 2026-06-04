@@ -44,6 +44,14 @@ export class Command {
 
     await this.WriteFormatterConfig(formatter, selectedConfigs)
     Print.success('Formatter configuration file created successfully.')
+
+    await this.repository.writePackageJsonScripts(formatter, linter)
+    Print.success('package.json scripts updated successfully.')
+
+    
+    // Print.success(
+    //   `All done! Your project is now set up with the selected technologies: ${selectedConfigs.join(', ')}, formatter: ${formatter} and linter: ${linter}.`,
+    // )
   }
 
   private async GetCommonLinters(selectedConfigs: string[]): Promise<string[]> {

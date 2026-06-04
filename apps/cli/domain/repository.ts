@@ -1,3 +1,5 @@
+import { type Linters, type Formatters } from '@/configs/types'
+
 export interface Repository {
   installDependencies({ dependencies }: { dependencies: string[] }): Promise<void>
   getPackageManager(): Promise<'npm' | 'yarn' | 'pnpm' | 'bun'>
@@ -6,4 +8,5 @@ export interface Repository {
   writeEslintConfig(techs: string[]): Promise<void>
   writeOxLintConfig(techs: string[]): Promise<void>
   writeOxFmtConfig(techs: string[]): Promise<void>
+  writePackageJsonScripts(formatter: Formatters, linter: Linters): Promise<void>
 }
