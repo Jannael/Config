@@ -14,7 +14,12 @@
           "{ languageOptions: { parser: tsParser } }"
         ],
         "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"],
-        "fileExtension": [".ts", ".tsx", ".astro"]
+        "fileExtensions": [".ts", ".tsx", ".astro"],
+        "editorConfig": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+          }
+        }
       }
     }
   },
@@ -33,6 +38,10 @@
           "printWidth": 150,
           "plugins": ["prettier-plugin-astro"]
         }
+      },
+      "editorConfig": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
       }
     }
   }
