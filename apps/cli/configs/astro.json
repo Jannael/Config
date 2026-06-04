@@ -4,8 +4,10 @@
     "eslint": {
       "plugins": ["eslint-plugin-astro", "@typescript-eslint/parser"],
       "config": {
-        "path": "eslint.config.js",
-        "importStatement": "import eslintPluginAstro from 'eslint-plugin-astro'\nimport typescriptEslintParser from '@typescript-eslint/parser'",
+        "importStatement": [
+          "import eslintPluginAstro from 'eslint-plugin-astro'",
+          "import typescriptEslintParser from '@typescript-eslint/parser'"
+        ],
         "configSpread": [
           "...eslintPluginAstro.configs.recommended,",
           "{ languageOptions: { parser: tsParser }, },"
