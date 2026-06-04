@@ -1,0 +1,14 @@
+{
+  "eslint": {
+    "commands": {
+      "lint": "eslint .",
+      "lint:fix": "eslint . --fix"
+    }
+  },
+  "prettier": {
+    "commands": {
+      "fmt": "prettier --write .",
+      "fmt:check": "prettier --check ."
+    }
+  }
+}

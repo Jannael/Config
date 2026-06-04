@@ -1,6 +1,12 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+// const baseConfig = {
+//   semi: false,
+//   singleQuote: true,
+//   printWidth: 150,
+// }
+
 export function generatePrettier({
   plugins: formatterPlugins,
   cwd,
