@@ -37,6 +37,13 @@ export class Command {
     })
 
     await this.repository.installDependencies({ dependencies: dependenciesToInstall })
+    Print.success('Dependencies installed successfully.')
+
+    await this.WriteLinterConfig(linter, selectedConfigs)
+    Print.success('Linter configuration file created successfully.')
+
+    await this.WriteFormatterConfig(formatter, selectedConfigs)
+    Print.success('Formatter configuration file created successfully.')
   }
 
   private async GetCommonLinters(selectedConfigs: string[]): Promise<string[]> {
@@ -134,5 +141,25 @@ export class Command {
     })
 
     return dependenciesToInstall
+  }
+
+  private async WriteLinterConfig(linter: Linters, techs: string[]): Promise<void> {
+    if (linter === 'eslint') {
+      await this.repository.writeEslintConfig(techs[0]!)
+    } else if (linter === 'oxlint') {
+      await this.repository.writeOxLintConfig(techs[0]!)
+    } else if (linter === 'biome') {
+      await this.repository.writeBiomeConfig(techs[0]!)
+    }
+  }
+
+  private async WriteFormatterConfig(formatter: Formatters, techs: string[]): Promise<void> {
+    if (formatter === 'prettier') {
+      await this.repository.writePrettierConfig(techs[0]!)
+    } else if (formatter === 'oxfmt') {
+      await this.repository.writeOxFmtConfig(techs[0]!)
+    } else if (formatter === 'biome') {
+      await this.repository.writeBiomeConfig(techs[0]!)
+    }
   }
 }
