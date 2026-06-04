@@ -5,7 +5,7 @@
       "plugins": ["eslint-config-next"],
       "config": {
         "importStatements": ["import eslintConfigNext from 'eslint-config-next'"],
-        "configSpread": ["...eslintConfigNext"],
+        "configSpread": ["...eslintConfigNext,"],
         "ignorePatterns": [
           "**/dist/**",
           "**/node_modules/**",

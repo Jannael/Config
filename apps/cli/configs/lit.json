@@ -10,7 +10,7 @@
         ],
         "configSpread": [
           "...eslintPluginLit['flat/recommended'],",
-          "...eslintPluginWc['flat/recommended']"
+          "...eslintPluginWc['flat/recommended'],"
         ],
         "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
         "fileExtensions": [".ts", ".js"]
