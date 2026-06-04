@@ -2,7 +2,10 @@
   "extensions": ["ts", "js"],
   "linter": {
     "eslint": {
-      "plugins": ["eslint-plugin-lit", "eslint-plugin-wc"]
+      "plugins": ["eslint-plugin-lit", "eslint-plugin-wc"],
+      "config": {
+        "importStatement": "import { configs: eslintPluginLit } from 'eslint-plugin-lit'\n"
+      }
     },
     "oxlint": {},
     "biome": {}
