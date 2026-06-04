@@ -39,10 +39,6 @@ const pluginMeta: Record<string, PluginMeta> = {
     importStatement: `import solid from "eslint-plugin-solid/configs/typescript.js"`,
     configSpread: `    solid,`,
   },
-  'eslint-plugin-qwik': {
-    importStatement: `import qwik from "eslint-plugin-qwik"`,
-    configSpread: `    ...qwik.configs.recommended,`,
-  },
   '@react-native/eslint-config': {
     importStatement: `import reactNative from "@react-native/eslint-config"`,
     configSpread: `    ...reactNative,`,

@@ -36,7 +36,6 @@ apps/cli/
 │   ├── next.json
 │   ├── remix.json
 │   ├── solid.json
-│   ├── qwik.json
 │   ├── react-native.json
 │   ├── vue.json
 │   ├── svelte.json
@@ -66,7 +65,6 @@ const technologies: Record<string, string> = {
   javascript: 'JavaScript',
   lit: 'Lit',
   next: 'Next.js',
-  qwik: 'Qwik',
   react: 'React',
   'react-native': 'React Native',
   remix: 'Remix',
@@ -99,7 +97,6 @@ Cada JSON tiene la estructura:
 | next         | eslint (eslint-config-next)                                 | prettier                               |
 | remix        | eslint (eslint-plugin-react, eslint-plugin-react-hooks)     | prettier                               |
 | solid        | eslint (eslint-plugin-solid)                                | prettier                               |
-| qwik         | eslint (eslint-plugin-qwik)                                 | prettier                               |
 | react-native | eslint (@react-native/eslint-config)                        | prettier                               |
 | vue          | eslint (eslint-plugin-vue, vue-eslint-parser)               | prettier                               |
 | svelte       | eslint (eslint-plugin-svelte, svelte-eslint-parser)         | prettier (prettier-plugin-svelte)      |
