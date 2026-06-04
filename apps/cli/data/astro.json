@@ -13,7 +13,8 @@
         "configSpread": [
           "...eslintPluginAstro.configs.recommended",
           "{ languageOptions: { parser: tsParser } }"
-        ]
+        ],
+        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"]
       }
     }
   },
