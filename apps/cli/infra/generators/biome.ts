@@ -1,5 +1,6 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { FORMAT_CONFIG } from '@/.config/format-config'
 
 export function generateBiome({ cwd }: { cwd: string }): void {
   //this is going to be the baseConfig for biome
@@ -7,14 +8,14 @@ export function generateBiome({ cwd }: { cwd: string }): void {
     $schema: 'https://biomejs.dev/schemas/2.0.0/schema.json',
     formatter: {
       enabled: true,
-      lineWidth: 150,
-      indentStyle: 'tab',
-      indentWidth: 2,
+      lineWidth: FORMAT_CONFIG.lineWidth,
+      indentStyle: FORMAT_CONFIG.indentStyle,
+      indentWidth: FORMAT_CONFIG.indentWidth,
     },
     javascript: {
       formatter: {
         semicolons: 'asNeeded',
-        quoteStyle: 'single',
+        quoteStyle: FORMAT_CONFIG.quoteStyle,
       },
     },
     linter: {

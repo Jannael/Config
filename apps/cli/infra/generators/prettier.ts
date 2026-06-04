@@ -1,5 +1,6 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { FORMAT_CONFIG } from '@/.config/format-config'
 
 // const baseConfig = {
 //   semi: false,
@@ -15,10 +16,10 @@ export function generatePrettier({
   cwd: string
 }): void {
   const config: Record<string, unknown> = {
-    semi: false,
-    singleQuote: true,
-    printWidth: 150,
-    useTabs: true,
+    semi: FORMAT_CONFIG.semicolons,
+    singleQuote: FORMAT_CONFIG.useSingleQuote,
+    printWidth: FORMAT_CONFIG.lineWidth,
+    useTabs: FORMAT_CONFIG.useTabs,
   }
 
   if (formatterPlugins.length > 0) {
