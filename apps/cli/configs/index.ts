@@ -14,22 +14,32 @@ import solid from './techs/solid.json'
 import tailwind from './techs/tailwind.json'
 import typescript from './techs/typescript.json'
 import vue from './techs/vue.json'
+import { type LinterConfig, type FormatterConfig } from './types'
+
+const techs: Record<
+  string,
+  {
+    label: string
+    linter: LinterConfig['linter']
+    formatter: FormatterConfig['formatter']
+  }
+> = {
+  astro,
+  css,
+  html,
+  javascript,
+  lit,
+  next,
+  reactNative,
+  react,
+  solid,
+  tailwind,
+  typescript,
+  vue,
+}
 
 export default {
   editorConfig,
   commands,
-  techs: {
-    astro,
-    css,
-    html,
-    javascript,
-    lit,
-    next,
-    reactNative,
-    react,
-    solid,
-    tailwind,
-    typescript,
-    vue
-  }
+  techs,
 }
