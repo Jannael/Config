@@ -2,33 +2,47 @@ import type { Repository } from '@/domain/repository'
 import configs from 'configs'
 import { MultiSelect } from '@/utils/multiselect'
 import { Select } from '@/utils/select'
-
 import Print from 'print'
+import { Confirm } from '@/utils/confirm'
+
+type Linters = 'eslint' | 'oxlint' | 'biome'
+type Formatters = 'prettier' | 'oxfmt' | 'biome'
 
 export class Command {
   constructor(private readonly repository: Repository) {}
 
   async execute(): Promise<void> {
-    // const packageManager = await this.repository.getPackageManager()
     const selectedConfigs = await MultiSelect({
       message: 'Select your technologies:',
       options: Object.keys(configs.techs).map((key) => ({
         value: key,
-        label: configs.techs[key as keyof typeof configs.techs].label,
+        label: configs.techs[key as keyof typeof configs.techs]?.label || key,
       })),
     })
+
     const formatter = await this.GetFormatter(selectedConfigs)
     const linter = await this.GetLinter(selectedConfigs)
 
     Print.trace(`Selected technologies: ${selectedConfigs.join(', ')}`)
     Print.trace(`Selected formatter: ${formatter}`)
     Print.trace(`Selected linter: ${linter}`)
+
+    const dependenciesToInstall = await this.GetDependenciesToInstall(
+      formatter,
+      linter,
+      selectedConfigs,
+    )
+    await Confirm({
+      message: `The following dependencies will be installed: ${dependenciesToInstall.join(', ')}. Do you want to proceed?`,
+    })
+
+    await this.repository.installDependencies({ dependencies: dependenciesToInstall })
   }
 
   private async GetCommonLinters(selectedConfigs: string[]): Promise<string[]> {
     const allLinterSets = selectedConfigs.map((tech) => {
       const config = configs.techs[tech as keyof typeof configs.techs]
-      return new Set(Object.keys(config.linter))
+      return new Set(Object.keys(config?.linter ?? {}))
     })
 
     const commonLinters = allLinterSets.reduce((acc, set) => {
@@ -41,7 +55,7 @@ export class Command {
   private async GetCommonFormatters(selectedConfigs: string[]): Promise<string[]> {
     const allFormatterSets = selectedConfigs.map((tech) => {
       const config = configs.techs[tech as keyof typeof configs.techs]
-      return new Set(Object.keys(config.formatter))
+      return new Set(Object.keys(config?.formatter ?? {}))
     })
     const commonFormatters = allFormatterSets.reduce((acc, set) => {
       return new Set([...acc].filter((formatter) => set.has(formatter)))
@@ -50,7 +64,7 @@ export class Command {
     return [...commonFormatters]
   }
 
-  private async GetFormatter(selectedConfigs: string[]): Promise<string> {
+  private async GetFormatter(selectedConfigs: string[]): Promise<Formatters> {
     const commonFormatters = await this.GetCommonFormatters(selectedConfigs)
     let formatter: string = commonFormatters.length === 1 ? commonFormatters[0]! : ''
 
@@ -71,10 +85,10 @@ export class Command {
       })
     }
 
-    return formatter
+    return formatter as Formatters
   }
 
-  private async GetLinter(selectedConfigs: string[]): Promise<string> {
+  private async GetLinter(selectedConfigs: string[]): Promise<Linters> {
     const commonLinters = await this.GetCommonLinters(selectedConfigs)
     let linter: string = commonLinters.length === 1 ? commonLinters[0]! : ''
 
@@ -94,6 +108,31 @@ export class Command {
         }),
       })
     }
-    return linter
+    return linter as Linters
+  }
+
+  private async GetDependenciesToInstall(
+    formatter: Formatters,
+    linter: Linters,
+    selectedConfigs: string[],
+  ): Promise<string[]> {
+    const dependenciesToInstall: string[] = []
+
+    selectedConfigs.map((tech) => {
+      // eslint and prettier are the only that can have plugins that need to be installed
+      const config = configs.techs[tech as keyof typeof configs.techs]
+      const formatterConfig = config?.formatter[formatter] as { plugins?: string[] }
+      const linterConfig = config?.linter[linter] as { plugins?: string[] }
+
+      if (formatter === 'prettier' && formatterConfig?.plugins) {
+        dependenciesToInstall.push(...formatterConfig.plugins)
+      }
+
+      if (linter === 'eslint' && linterConfig?.plugins) {
+        dependenciesToInstall.push(...linterConfig.plugins)
+      }
+    })
+
+    return dependenciesToInstall
   }
 }
