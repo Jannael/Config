@@ -26,7 +26,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "paths": {
-      "@/*": ["./apps/cli/*"]
+      "@/*": ["./apps/cli/*"],
+      "print": ["./apps/cli/utils/print"] 
     }
   },
   "exclude": ["node_modules", "**/node_modules/**", "apps/**/node_modules/**", "dist"]
