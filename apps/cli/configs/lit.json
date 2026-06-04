@@ -1,19 +1,26 @@
 {
-  "extensions": ["ts", "js"],
+  "label": "Lit",
   "linter": {
     "eslint": {
       "plugins": ["eslint-plugin-lit", "eslint-plugin-wc"],
       "config": {
-        "importStatement": "import { configs: eslintPluginLit } from 'eslint-plugin-lit'\n"
+        "importStatements": [
+          "import { configs: eslintPluginLit } from 'eslint-plugin-lit'",
+          "import { configs: eslintPluginWc } from 'eslint-plugin-wc'"
+        ],
+        "configSpread": [
+          "...eslintPluginLit['flat/recommended'],",
+          "...eslintPluginWc['flat/recommended']"
+        ],
+        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+        "fileExtensions": [".ts", ".js"]
       }
     },
     "oxlint": {},
     "biome": {}
   },
   "formatter": {
-    "prettier": {
-      "plugins": []
-    },
+    "prettier": {},
     "oxfmt": {},
     "biome": {}
   }
