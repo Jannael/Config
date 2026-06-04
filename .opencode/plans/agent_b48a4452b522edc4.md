@@ -43,7 +43,6 @@ apps/cli/
 │   ├── svelte.json
 │   ├── sveltekit.json
 │   ├── astro.json
-│   ├── angular.json
 │   ├── lit.json
 │   ├── tailwind.json
 │   ├── javascript.json
@@ -64,7 +63,6 @@ apps/cli/
 
 ```ts
 const technologies: Record<string, string> = {
-  angular: 'Angular',
   astro: 'Astro',
   javascript: 'JavaScript',
   lit: 'Lit',
@@ -110,7 +108,6 @@ Cada JSON tiene la estructura:
 | svelte       | eslint (eslint-plugin-svelte, svelte-eslint-parser)         | prettier (prettier-plugin-svelte)      |
 | sveltekit    | eslint (eslint-plugin-svelte, svelte-eslint-parser)         | prettier (prettier-plugin-svelte)      |
 | astro        | eslint (eslint-plugin-astro, astro-eslint-parser)           | prettier (prettier-plugin-astro)       |
-| angular      | eslint (@angular-eslint/\*)                                 | prettier                               |
 | lit          | eslint (eslint-plugin-lit, eslint-plugin-wc)                | prettier                               |
 | tailwind     | eslint (eslint-plugin-tailwindcss)                          | prettier (prettier-plugin-tailwindcss) |
 | javascript   | eslint, oxlint, biome                                       | prettier, oxfmt, biome                 |

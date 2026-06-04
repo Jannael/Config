@@ -1,4 +1,3 @@
-import angular from '@/data/angular.json'
 import astro from '@/data/astro.json'
 import css from '@/data/css.json'
 import html from '@/data/html.json'
@@ -19,7 +18,6 @@ import vue from '@/data/vue.json'
 import type { TechConfig } from '@/domain/types'
 
 const technologies: Record<string, string> = {
-  angular: 'Angular',
   astro: 'Astro',
   css: 'CSS',
   html: 'HTML',
@@ -40,7 +38,6 @@ const technologies: Record<string, string> = {
 }
 
 export const dataMap: Record<string, TechConfig> = {
-  angular,
   astro,
   css,
   html,

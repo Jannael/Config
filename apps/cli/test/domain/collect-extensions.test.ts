@@ -40,18 +40,6 @@ describe('collectExtensions', () => {
     expect(result.length).toBe(new Set(result).size)
   })
 
-  it('angular extensions', () => {
-    /*
-      Flow:
-      1. Call collectExtensions with ['angular']
-      2. Verify result contains ts and html
-    */
-    const result = collectExtensions(['angular'])
-
-    expect(result).toContain('ts')
-    expect(result).toContain('html')
-  })
-
   it('svelte extensions', () => {
     /*
       Flow:
@@ -91,7 +79,7 @@ describe('collectExtensions', () => {
       1. Call collectExtensions with multiple technologies
       2. Verify result is sorted
     */
-    const result = collectExtensions(['react', 'vue', 'angular'])
+    const result = collectExtensions(['react', 'vue'])
 
     const sorted = [...result].sort()
     expect(result).toEqual(sorted)

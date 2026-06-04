@@ -84,22 +84,6 @@ const pluginMeta: Record<string, PluginMeta> = {
       languageOptions: { parser: astroParser },
     },`,
   },
-  'angular-eslint': {
-    importStatement: `import angular from "angular-eslint"`,
-    configSpread: `    {
-      files: ["**/*.ts"],
-      plugins: angular.configs.tsRecommended[0].plugins,
-      languageOptions: angular.configs.tsRecommended[0].languageOptions,
-      rules: { ...angular.configs.tsRecommended[1].rules },
-      processor: angular.processInlineTemplates,
-    },
-    {
-      files: ["**/*.html"],
-      plugins: angular.configs.templateRecommended[0].plugins,
-      languageOptions: angular.configs.templateRecommended[0].languageOptions,
-      rules: { ...angular.configs.templateRecommended[1].rules },
-    },`,
-  },
   'eslint-plugin-lit': {
     importStatement: `import lit from "eslint-plugin-lit"`,
     configSpread: `    {
