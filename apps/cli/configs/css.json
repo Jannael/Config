@@ -1,22 +1,8 @@
 {
   "linter": {
-    "biome": {
-      "editorConfig": {
-        "editor.codeActionsOnSave": {
-          "source.fixAll.biome": "explicit",
-          "source.organizeImports.biome": "explicit"
-        }
-      }
-    }
+    "biome": {}
   },
   "formatter": {
-    "biome": {
-      "editorConfig": {
-        "editor.codeActionsOnSave": {
-          "source.fixAll.biome": "explicit",
-          "source.organizeImports.biome": "explicit"
-        }
-      }
-    }
+    "biome": {}
   }
 }
