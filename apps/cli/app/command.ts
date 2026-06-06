@@ -7,16 +7,16 @@ import { Confirm } from '@/utils/confirm'
 import type { WriteFormatterConfigUseCase } from '@/app/write-formatter-config.use-case'
 import type { WriteLinterConfigUseCase } from '@/app/write-linter-config.use-case'
 import type { GetDependenciesToInstallUseCase } from './get-dependencies-to-install.use-case'
-
-type Linters = 'eslint' | 'oxlint' | 'biome'
-type Formatters = 'prettier' | 'oxfmt' | 'biome'
+import type { GetLinterUseCase } from './get-linter.use-case'
+import type { Formatters } from '@/configs/types'
 
 export class Command {
   constructor(
     private readonly repository: Repository,
     private readonly writeFormatterConfigUseCase: WriteFormatterConfigUseCase,
     private readonly writeLinterConfigUseCase: WriteLinterConfigUseCase,
-    private readonly GetDependenciesToInstall: GetDependenciesToInstallUseCase,
+    private readonly getDependenciesToInstall: GetDependenciesToInstallUseCase,
+    private readonly getLinter: GetLinterUseCase,
   ) {}
 
   async execute(): Promise<void> {
@@ -30,13 +30,13 @@ export class Command {
     })
 
     const formatter = await this.GetFormatter(selectedConfigs)
-    const linter = await this.GetLinter(selectedConfigs)
+    const linter = await this.getLinter.execute(selectedConfigs)
 
     Print.trace(`Selected technologies: ${selectedConfigs.join(', ')}`)
     Print.trace(`Selected formatter: ${formatter}`)
     Print.trace(`Selected linter: ${linter}`)
 
-    const dependenciesToInstall = await this.GetDependenciesToInstall.execute(
+    const dependenciesToInstall = await this.getDependenciesToInstall.execute(
       formatter,
       linter,
       selectedConfigs,
@@ -103,19 +103,6 @@ export class Command {
     )
   }
 
-  private async GetCommonLinters(selectedConfigs: string[]): Promise<string[]> {
-    const allLinterSets = selectedConfigs.map((tech) => {
-      const config = configs.techs[tech as keyof typeof configs.techs]
-      return new Set(Object.keys(config?.linter ?? {}))
-    })
-
-    const commonLinters = allLinterSets.reduce((acc, set) => {
-      return new Set([...acc].filter((linter) => set.has(linter)))
-    }, allLinterSets[0] || new Set<string>())
-
-    return [...commonLinters]
-  }
-
   private async GetCommonFormatters(selectedConfigs: string[]): Promise<string[]> {
     const allFormatterSets = selectedConfigs.map((tech) => {
       const config = configs.techs[tech as keyof typeof configs.techs]
@@ -150,28 +137,5 @@ export class Command {
     }
 
     return formatter as Formatters
-  }
-
-  private async GetLinter(selectedConfigs: string[]): Promise<Linters> {
-    const commonLinters = await this.GetCommonLinters(selectedConfigs)
-    let linter: string = commonLinters.length === 1 ? commonLinters[0]! : ''
-
-    if (commonLinters.length === 0) {
-      Print.error('No common linters found for the selected technologies.')
-      process.exit(1)
-    }
-
-    if (commonLinters.length > 1) {
-      linter = await Select({
-        message: 'Select your linter:',
-        options: commonLinters.map((linter) => {
-          return {
-            value: linter,
-            label: linter,
-          }
-        }),
-      })
-    }
-    return linter as Linters
   }
 }
