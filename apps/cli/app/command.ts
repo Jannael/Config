@@ -4,7 +4,8 @@ import { MultiSelect } from '@/utils/multiselect'
 import { Select } from '@/utils/select'
 import Print from 'print'
 import { Confirm } from '@/utils/confirm'
-import type { WriteFormatterConfigUseCase } from './write-formatter-config.usecase'
+import type { WriteFormatterConfigUseCase } from '@/app/write-formatter-config.use-case'
+import type { WriteLinterConfigUseCase } from '@/app/write-linter-config.use-case'
 
 type Linters = 'eslint' | 'oxlint' | 'biome'
 type Formatters = 'prettier' | 'oxfmt' | 'biome'
@@ -13,6 +14,7 @@ export class Command {
   constructor(
     private readonly repository: Repository,
     private readonly writeFormatterConfigUseCase: WriteFormatterConfigUseCase,
+    private readonly writeLinterConfigUseCase: WriteLinterConfigUseCase,
   ) {}
 
   async execute(): Promise<void> {
@@ -48,7 +50,7 @@ export class Command {
       Print.success('Dependencies installed successfully.')
     }
 
-    await this.WriteLinterConfig(linter, selectedConfigs)
+    await this.writeLinterConfigUseCase.execute(linter, selectedConfigs)
     Print.success('Linter configuration file created successfully.')
 
     await this.writeFormatterConfigUseCase.execute(formatter, selectedConfigs)
@@ -194,15 +196,5 @@ export class Command {
     })
 
     return dependenciesToInstall
-  }
-
-  private async WriteLinterConfig(linter: Linters, techs: string[]): Promise<void> {
-    if (linter === 'eslint') {
-      await this.repository.writeEslintConfig(techs)
-    } else if (linter === 'oxlint') {
-      await this.repository.writeOxLintConfig(techs)
-    } else if (linter === 'biome') {
-      await this.repository.writeBiomeConfig(techs)
-    }
   }
 }
