@@ -4,12 +4,16 @@ import { MultiSelect } from '@/utils/multiselect'
 import { Select } from '@/utils/select'
 import Print from 'print'
 import { Confirm } from '@/utils/confirm'
+import type { WriteFormatterConfigUseCase } from './write-formatter-config.usecase'
 
 type Linters = 'eslint' | 'oxlint' | 'biome'
 type Formatters = 'prettier' | 'oxfmt' | 'biome'
 
 export class Command {
-  constructor(private readonly repository: Repository) {}
+  constructor(
+    private readonly repository: Repository,
+    private readonly writeFormatterConfigUseCase: WriteFormatterConfigUseCase,
+  ) {}
 
   async execute(): Promise<void> {
     const AutoApproveFlag = this.repository.getAutoApproveFlag()
@@ -47,7 +51,7 @@ export class Command {
     await this.WriteLinterConfig(linter, selectedConfigs)
     Print.success('Linter configuration file created successfully.')
 
-    await this.WriteFormatterConfig(formatter, selectedConfigs)
+    await this.writeFormatterConfigUseCase.execute(formatter, selectedConfigs)
     Print.success('Formatter configuration file created successfully.')
 
     await this.repository.writePackageJsonScripts(formatter, linter)
@@ -198,16 +202,6 @@ export class Command {
     } else if (linter === 'oxlint') {
       await this.repository.writeOxLintConfig(techs)
     } else if (linter === 'biome') {
-      await this.repository.writeBiomeConfig(techs)
-    }
-  }
-
-  private async WriteFormatterConfig(formatter: Formatters, techs: string[]): Promise<void> {
-    if (formatter === 'prettier') {
-      await this.repository.writePrettierConfig(techs)
-    } else if (formatter === 'oxfmt') {
-      await this.repository.writeOxFmtConfig(techs)
-    } else if (formatter === 'biome') {
       await this.repository.writeBiomeConfig(techs)
     }
   }
