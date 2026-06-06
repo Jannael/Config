@@ -6,6 +6,7 @@ import Print from 'print'
 import { Confirm } from '@/utils/confirm'
 import type { WriteFormatterConfigUseCase } from '@/app/write-formatter-config.use-case'
 import type { WriteLinterConfigUseCase } from '@/app/write-linter-config.use-case'
+import type { GetDependenciesToInstallUseCase } from './get-dependencies-to-install.use-case'
 
 type Linters = 'eslint' | 'oxlint' | 'biome'
 type Formatters = 'prettier' | 'oxfmt' | 'biome'
@@ -15,6 +16,7 @@ export class Command {
     private readonly repository: Repository,
     private readonly writeFormatterConfigUseCase: WriteFormatterConfigUseCase,
     private readonly writeLinterConfigUseCase: WriteLinterConfigUseCase,
+    private readonly GetDependenciesToInstall: GetDependenciesToInstallUseCase,
   ) {}
 
   async execute(): Promise<void> {
@@ -34,7 +36,7 @@ export class Command {
     Print.trace(`Selected formatter: ${formatter}`)
     Print.trace(`Selected linter: ${linter}`)
 
-    const dependenciesToInstall = await this.GetDependenciesToInstall(
+    const dependenciesToInstall = await this.GetDependenciesToInstall.execute(
       formatter,
       linter,
       selectedConfigs,
@@ -171,30 +173,5 @@ export class Command {
       })
     }
     return linter as Linters
-  }
-
-  private async GetDependenciesToInstall(
-    formatter: Formatters,
-    linter: Linters,
-    selectedConfigs: string[],
-  ): Promise<string[]> {
-    const dependenciesToInstall: string[] = []
-
-    selectedConfigs.map((tech) => {
-      // eslint and prettier are the only that can have plugins that need to be installed
-      const config = configs.techs[tech as keyof typeof configs.techs]
-      const formatterConfig = config?.formatter[formatter] as { plugins?: string[] }
-      const linterConfig = config?.linter[linter] as { plugins?: string[] }
-
-      if (formatter === 'prettier' && formatterConfig?.plugins) {
-        dependenciesToInstall.push(...formatterConfig.plugins)
-      }
-
-      if (linter === 'eslint' && linterConfig?.plugins) {
-        dependenciesToInstall.push(...linterConfig.plugins)
-      }
-    })
-
-    return dependenciesToInstall
   }
 }
