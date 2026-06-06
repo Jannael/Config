@@ -80,6 +80,16 @@ export class Command {
       Print.success('lint-staged configuration file created successfully.')
     }
 
+    const extensions = await this.repository.getEditorExtensions(formatter, linter)
+
+    if (extensions.length > 0) {
+      for (const extension of extensions) {
+        Print.info(`Don't forget to install the recommended editor extension: ${extension.name}\n`)
+        Print.info(`VS Code Marketplace: ${extension.vsc}\n`)
+        Print.info(`Open VSX Registry: ${extension.vsx}\n`)
+      }
+    }
+
     Print.success(
       `All done! Your project is now set up with the selected technologies: ${selectedConfigs.join(', ')}, formatter: ${formatter} and linter: ${linter}.`,
     )
