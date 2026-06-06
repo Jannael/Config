@@ -1,14 +1,13 @@
 import type { Repository } from '@/domain/repository'
 import configs from 'configs'
 import { MultiSelect } from '@/utils/multiselect'
-import { Select } from '@/utils/select'
 import Print from 'print'
 import { Confirm } from '@/utils/confirm'
 import type { WriteFormatterConfigUseCase } from '@/app/write-formatter-config.use-case'
 import type { WriteLinterConfigUseCase } from '@/app/write-linter-config.use-case'
 import type { GetDependenciesToInstallUseCase } from './get-dependencies-to-install.use-case'
 import type { GetLinterUseCase } from './get-linter.use-case'
-import type { Formatters } from '@/configs/types'
+import type { GetFormatterUseCase } from './get-formatter.use-case'
 
 export class Command {
   constructor(
@@ -17,6 +16,7 @@ export class Command {
     private readonly writeLinterConfigUseCase: WriteLinterConfigUseCase,
     private readonly getDependenciesToInstall: GetDependenciesToInstallUseCase,
     private readonly getLinter: GetLinterUseCase,
+    private readonly getFormatter: GetFormatterUseCase,
   ) {}
 
   async execute(): Promise<void> {
@@ -29,7 +29,7 @@ export class Command {
       })),
     })
 
-    const formatter = await this.GetFormatter(selectedConfigs)
+    const formatter = await this.getFormatter.execute(selectedConfigs)
     const linter = await this.getLinter.execute(selectedConfigs)
 
     Print.trace(`Selected technologies: ${selectedConfigs.join(', ')}`)
@@ -101,41 +101,5 @@ export class Command {
     Print.success(
       `All done! Your project is now set up with the selected technologies: ${selectedConfigs.join(', ')}, formatter: ${formatter} and linter: ${linter}.`,
     )
-  }
-
-  private async GetCommonFormatters(selectedConfigs: string[]): Promise<string[]> {
-    const allFormatterSets = selectedConfigs.map((tech) => {
-      const config = configs.techs[tech as keyof typeof configs.techs]
-      return new Set(Object.keys(config?.formatter ?? {}))
-    })
-    const commonFormatters = allFormatterSets.reduce((acc, set) => {
-      return new Set([...acc].filter((formatter) => set.has(formatter)))
-    }, allFormatterSets[0] || new Set<string>())
-
-    return [...commonFormatters]
-  }
-
-  private async GetFormatter(selectedConfigs: string[]): Promise<Formatters> {
-    const commonFormatters = await this.GetCommonFormatters(selectedConfigs)
-    let formatter: string = commonFormatters.length === 1 ? commonFormatters[0]! : ''
-
-    if (commonFormatters.length === 0) {
-      Print.error('No common formatters found for the selected technologies.')
-      process.exit(1)
-    }
-
-    if (commonFormatters.length > 1) {
-      formatter = await Select({
-        message: 'Select your formatter:',
-        options: commonFormatters.map((formatter) => {
-          return {
-            value: formatter,
-            label: formatter,
-          }
-        }),
-      })
-    }
-
-    return formatter as Formatters
   }
 }
