@@ -1,11 +1,16 @@
+import { execSync } from 'node:child_process'
 import type { Formatters, Linters } from '@/configs/types'
 import { type Repository as IRepository } from '@/domain/repository'
+import { getInstallCommand, resolvePackageManager } from './pm-detector'
 
 export class Repository implements IRepository {
   constructor() {}
 
   async installDependencies({ dependencies }: { dependencies: string[] }): Promise<void> {
-    console.log(dependencies)
+    if (dependencies.length === 0) return
+    const pm = await resolvePackageManager()
+    const cmd = `${getInstallCommand({ pm })} ${dependencies.join(' ')}`
+    execSync(cmd, { stdio: 'inherit' })
   }
 
   async writeBiomeConfig(techs: string[]): Promise<void> {
