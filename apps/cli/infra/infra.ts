@@ -68,6 +68,18 @@ export class Repository implements IRepository {
     generatePrettier({ plugins, cwd: this.cwd })
   }
 
+  private static readonly TECH_ORDER = ['javascript', 'typescript', 'html', 'css', 'tailwind']
+
+  private sortTechs(techs: string[]): string[] {
+    return [...techs].sort((a, b) => {
+      const ai = Repository.TECH_ORDER.indexOf(a)
+      const bi = Repository.TECH_ORDER.indexOf(b)
+      const aOrder = ai === -1 ? Repository.TECH_ORDER.length : ai
+      const bOrder = bi === -1 ? Repository.TECH_ORDER.length : bi
+      return aOrder - bOrder
+    })
+  }
+
   private collectEslintConfig(techs: string[]): {
     importStatements: string[]
     configSpread: string[]
@@ -79,7 +91,7 @@ export class Repository implements IRepository {
     const ignorePatterns = new Set<string>()
     const fileExtensions = new Set<string>()
 
-    for (const tech of techs) {
+    for (const tech of this.sortTechs(techs)) {
       const config = configs.techs[tech as keyof typeof configs.techs]
       const eslintConfig = config?.linter?.eslint as
         | {
