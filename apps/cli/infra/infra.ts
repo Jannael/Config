@@ -54,5 +54,7 @@ export class Repository implements IRepository {
   getAutoApproveFlag(): boolean {
     return false
   }
-  async initHusky(): Promise<void> {}
+  async initHusky(): Promise<void> {
+    // add lint-staged to husky pre-commit hook and run husky init
+  }
 }

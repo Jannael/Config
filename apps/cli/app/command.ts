@@ -12,8 +12,8 @@ import type { GetFormatterUseCase } from './get-formatter.use-case'
 export class Command {
   constructor(
     private readonly repository: Repository,
-    private readonly writeFormatterConfigUseCase: WriteFormatterConfigUseCase,
-    private readonly writeLinterConfigUseCase: WriteLinterConfigUseCase,
+    private readonly writeFormatterConfig: WriteFormatterConfigUseCase,
+    private readonly writeLinterConfig: WriteLinterConfigUseCase,
     private readonly getDependenciesToInstall: GetDependenciesToInstallUseCase,
     private readonly getLinter: GetLinterUseCase,
     private readonly getFormatter: GetFormatterUseCase,
@@ -52,10 +52,10 @@ export class Command {
       Print.success('Dependencies installed successfully.')
     }
 
-    await this.writeLinterConfigUseCase.execute(linter, selectedConfigs)
+    await this.writeLinterConfig.execute(linter, selectedConfigs)
     Print.success('Linter configuration file created successfully.')
 
-    await this.writeFormatterConfigUseCase.execute(formatter, selectedConfigs)
+    await this.writeFormatterConfig.execute(formatter, selectedConfigs)
     Print.success('Formatter configuration file created successfully.')
 
     await this.repository.writePackageJsonScripts(formatter, linter)
@@ -83,7 +83,7 @@ export class Command {
       this.repository.installDependencies({ dependencies: ['husky', 'lint-staged'] })
       Print.success('Husky and lint-staged installed successfully.')
       await this.repository.initHusky()
-      Print.success('package.json scripts updated successfully with Husky pre-commit hooks.')
+      Print.success('Husky initialized successfully.')
       await this.repository.writeLintStagedConfig(formatter, linter, selectedConfigs)
       Print.success('lint-staged configuration file created successfully.')
     }
