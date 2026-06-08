@@ -68,7 +68,7 @@ export class Command {
         })
 
     if (editorConfigConfirm || AutoApproveFlag) {
-      this.repository.writeEditorConfig(formatter, linter)
+      this.repository.writeEditorConfig(formatter, linter, selectedConfigs)
       Print.success('Editor configuration file created successfully.')
     }
 

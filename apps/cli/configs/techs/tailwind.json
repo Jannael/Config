@@ -16,5 +16,9 @@
       "plugins": ["prettier-plugin-tailwindcss"]
     }
   },
-  "editorConfig": "{ 'files.associations': { '*.css': 'tailwindcss' }}"
+  "editorConfig": {
+    "files.associations": {
+      "*.css": "tailwindcss"
+    }
+  }
 }

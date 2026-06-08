@@ -131,8 +131,8 @@ export class Repository implements IRepository {
     generateLintStaged({ linter, formatter, extensions, cwd: this.cwd })
   }
 
-  async writeEditorConfig(formatter: Formatters, linter: Linters): Promise<void> {
-    generateVscodeSettings({ formatter, linter, cwd: this.cwd })
+  async writeEditorConfig(formatter: Formatters, linter: Linters, techs: string[]): Promise<void> {
+    generateVscodeSettings({ formatter, linter, techs, cwd: this.cwd })
   }
 
   async writePackageJsonScripts(formatter: Formatters, linter: Linters): Promise<void> {
