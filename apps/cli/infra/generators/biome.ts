@@ -3,7 +3,6 @@ import { join } from 'node:path'
 import { FORMAT_CONFIG } from '@/constants/format-config'
 
 export function generateBiome({ cwd }: { cwd: string }): void {
-  //this is going to be the baseConfig for biome
   const config = {
     $schema: 'https://biomejs.dev/schemas/2.0.0/schema.json',
     formatter: {

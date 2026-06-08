@@ -2,6 +2,7 @@ import { execSync } from 'node:child_process'
 import type { Formatters, Linters } from '@/configs/types'
 import { type Repository as IRepository } from '@/domain/repository'
 import { getInstallCommand, resolvePackageManager } from './pm-detector'
+import { generateBiome } from '@/infra/generators/biome'
 
 export class Repository implements IRepository {
   constructor() {}
@@ -13,8 +14,8 @@ export class Repository implements IRepository {
     execSync(cmd, { stdio: 'inherit' })
   }
 
-  async writeBiomeConfig(techs: string[]): Promise<void> {
-    console.log(techs)
+  async writeBiomeConfig(): Promise<void> {
+    generateBiome({ cwd: process.cwd() })
   }
   async writePrettierConfig(techs: string[]): Promise<void> {
     console.log(techs)
