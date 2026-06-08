@@ -9,37 +9,41 @@ Interactive CLI (`bun run dist/index.js`) that configures linters + formatters f
 | Command             | What                                               |
 | ------------------- | -------------------------------------------------- |
 | `bun run build`     | Bundle `apps/cli/index.ts` → `dist/index.js` (Bun) |
+| `bun run test`      | Vitest (`vitest --run`)                            |
 | `bun run lint`      | ESLint flat config check                           |
 | `bun run fmt`       | Prettier --write                                   |
 | `bun run fmt:check` | Prettier --check                                   |
 
-No tests exist (no test framework configured).
+After changes: `bun run build && bun run lint && bun run test`.
 
 ## Architecture (hexagonal)
 
-`domain/` is pure I/O-free logic (classes + ports). `app/` orchestrates use cases. `infra/` provides adapters. All methods use object params (`{ key: value }`) for readability.
+`domain/` is the port interface. `app/` has use-case classes + the `Command` orchestrator. `infra/` provides the concrete `Repository` implementation. All methods use object params (`{ key: value }`) for readability.
 
 ```
 apps/cli/
-├── index.ts             → wires DI → calls new ConfigureProject(...).run()
+├── index.ts                 → entry point (prints ASCII, wires DI)
 ├── domain/
-│   ├── types.ts         → core types
-│   ├── ports.ts         → Terminal, ConfigWriter, PackageInstaller, PackageManagerDetector interfaces
-│   └── resolver.ts      → class Resolver: resolve(), collectPlugins(), getAllDeps() (pure)
-├── data/
-│   ├── index.ts         → technology/linter/formatter display names
-│   └── *.json           → per-tech linter/formatter compatibility matrices
+│   └── repository.ts        → Repository interface (the port)
+├── configs/
+│   ├── index.ts             → technology/linter/formatter display names
+│   ├── types.d.ts           → Linters, Formatters union types
+│   ├── techs/*.json         → per-tech linter/formatter compatibility matrices
+│   ├── editor-extensions.ts → VS Code extension recommendations
+│   └── commands.json        → shell commands per tool
 ├── app/
-│   └── configure-project.ts → class ConfigureProject (constructor DI + run())
-└── infra/
-    ├── terminal.ts      → class ClackTerminal implements Terminal (@clack/prompts)
-    ├── config-writer.ts → class FileConfigWriter implements ConfigWriter
-    ├── installer.ts     → class NpmInstaller implements PackageInstaller
-    ├── pm-detector.ts   → class PmDetector implements PackageManagerDetector
-    └── *.ts             → per-tool config generators
+│   ├── command.ts           → class Command: main orchestrator (constructor DI + execute())
+│   └── *.use-case.ts        → individual use cases (get-linter, get-formatter, write-config, etc.)
+├── infra/
+│   ├── infra.ts             → class Repository implements domain/Repository
+│   ├── pm-detector.ts       → package manager detection (lockfile → cache, fallback → multiselect)
+│   └── generators/          → per-tool config file generators (biome, eslint, prettier, etc.)
+└── utils/
+    ├── multiselect.ts       → @clack/prompts multiselect wrapper
+    ├── select.ts            → @clack/prompts select wrapper
+    ├── confirm.ts           → @clack/prompts confirm wrapper
+    └── print.ts             → colored console output
 ```
-
-**Resolver:** intersection of linter/formatter keys across selected techs. If only one option survives, auto-select it.
 
 ## Style (hardcoded in generators)
 
@@ -51,15 +55,16 @@ apps/cli/
 ## Toolchain quirks
 
 - **Bun only** — `bun install`, `bun run build`. Not Node/npm.
-- **Path aliases:** `@/*` → `./apps/cli/*`, `data` → `./apps/cli/data/index.ts`
+- **Path aliases:** `@/*` → `./apps/cli/*`, `print` → `./apps/cli/utils/print`, `configs` → `./apps/cli/configs/index`
 - **Lockfile:** `bun.lock` (not package-lock.json)
-- **bunfig.toml:** `minimumReleaseAge = 86400` — may delay fresh package installs
+- **bunfig.toml:** `minimumReleaseAge = 86400`, `exact = true` — pins exact versions, may delay fresh package installs
 - **prepublishOnly:** runs `bun run build`
 - **VSCode:** Prettier default formatter, format-on-save
+- **apps/web/** is a separate Astro app with its own `bun.lock`, `bunfig.toml`, and `node_modules`
 
 ## Git
 
-Conventional commits (feat:, fix:, chore:, refactor:, docs:).
+Conventional commits (feat:, fix:, chore:, refactor:, docs:). Pre-commit runs `bunx lint-staged` (eslint --fix + prettier --write on `*.{astro,css,ts}`).
 
 ## OpenCode
 
