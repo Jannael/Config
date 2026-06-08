@@ -4,10 +4,7 @@
     "eslint": {
       "plugins": ["eslint-plugin-astro"],
       "config": {
-        "importStatements": [
-          "import eslintPluginAstro from 'eslint-plugin-astro'",
-          "import typescriptEslintParser from '@typescript-eslint/parser'"
-        ],
+        "importStatements": ["import eslintPluginAstro from 'eslint-plugin-astro'"],
         "configSpread": ["...eslintPluginAstro.configs.recommended,"],
         "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"],
         "fileExtensions": [".ts", ".tsx", ".astro"]
