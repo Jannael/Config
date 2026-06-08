@@ -48,6 +48,17 @@ const INSTALL_CMD: Record<PackageManager, string> = {
   npm: 'npm install -D',
 }
 
+const EXEC_CMD: Record<PackageManager, string> = {
+  bun: 'bunx',
+  pnpm: 'pnpm exec',
+  yarn: 'yarn exec',
+  npm: 'npx',
+}
+
 export function getInstallCommand({ pm }: { pm: PackageManager }): string {
   return INSTALL_CMD[pm]
+}
+
+export function getExecCommand({ pm }: { pm: PackageManager }): string {
+  return EXEC_CMD[pm]
 }

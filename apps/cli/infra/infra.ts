@@ -13,7 +13,7 @@ import { generateEslint } from '@/infra/generators/linters/eslint'
 import { generateOxlint } from '@/infra/generators/linters/oxlint'
 import { generatePackageScripts } from '@/infra/generators/package-scripts'
 import { generateVscodeSettings } from '@/infra/generators/vscode-settings'
-import { getInstallCommand, resolvePackageManager } from './pm-detector'
+import { getExecCommand, getInstallCommand, resolvePackageManager } from './pm-detector'
 
 export class Repository implements IRepository {
   private readonly cwd = process.cwd()
@@ -160,6 +160,8 @@ export class Repository implements IRepository {
     if (!existsSync(huskyDir)) {
       mkdirSync(huskyDir, { recursive: true })
     }
-    writeFileSync(join(huskyDir, 'pre-commit'), 'npx lint-staged\n')
+    const pm = await resolvePackageManager()
+    const exec = getExecCommand({ pm })
+    writeFileSync(join(huskyDir, 'pre-commit'), `${exec} lint-staged\n`)
   }
 }
