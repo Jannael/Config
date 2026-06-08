@@ -10,7 +10,7 @@ export interface Repository {
   writeOxFmtConfig(techs: string[]): Promise<void>
 
   writeLintStagedConfig(formatter: Formatters, linter: Linters, techs: string[]): Promise<void>
-  writeEditorConfig(techs: string[]): Promise<void>
+  writeEditorConfig(formatter: Formatters, linter: Linters): Promise<void>
 
   writePackageJsonScripts(formatter: Formatters, linter: Linters): Promise<void>
   getEditorExtensions(
