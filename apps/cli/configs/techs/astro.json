@@ -2,7 +2,7 @@
   "label": "Astro with TypeScript",
   "linter": {
     "eslint": {
-      "plugins": ["eslint-plugin-astro", "@typescript-eslint/parser"],
+      "plugins": ["eslint-plugin-astro", "astro-eslint-parser", "@typescript-eslint/parser"],
       "config": {
         "importStatements": [
           "import eslintPluginAstro from 'eslint-plugin-astro'",
@@ -10,7 +10,7 @@
         ],
         "configSpread": [
           "...eslintPluginAstro.configs.recommended,",
-          "{ languageOptions: { parser: typescriptEslintParser }, },"
+          "{ files: ['*.ts', '*.tsx'], languageOptions: { parser: typescriptEslintParser } },"
         ],
         "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"],
         "fileExtensions": [".ts", ".tsx", ".astro"]
