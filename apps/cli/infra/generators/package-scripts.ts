@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import commands from '@/configs/commands.json'
 
 type PackageScriptsOptions = {
   linter: string
@@ -7,35 +8,7 @@ type PackageScriptsOptions = {
   cwd: string
 }
 
-const linterCommands: Record<string, { lint: string; lintFix: string }> = {
-  eslint: {
-    lint: 'eslint .',
-    lintFix: 'eslint . --fix',
-  },
-  oxlint: {
-    lint: 'oxlint',
-    lintFix: 'oxlint --fix',
-  },
-  biome: {
-    lint: 'biome check',
-    lintFix: 'biome check --write',
-  },
-}
-
-const formatterCommands: Record<string, { fmt: string; fmtCheck: string }> = {
-  prettier: {
-    fmt: 'prettier --write .',
-    fmtCheck: 'prettier --check .',
-  },
-  oxfmt: {
-    fmt: 'oxfmt --write .',
-    fmtCheck: 'oxfmt --check .',
-  },
-  biome: {
-    fmt: 'biome format --write',
-    fmtCheck: 'biome format --check',
-  },
-}
+const toolCommands = commands as Record<string, { commands: Record<string, string> }>
 
 export function generatePackageScripts({ linter, formatter, cwd }: PackageScriptsOptions): void {
   const packageJsonPath = join(cwd, 'package.json')
@@ -46,16 +19,16 @@ export function generatePackageScripts({ linter, formatter, cwd }: PackageScript
     packageJson.scripts = {}
   }
 
-  const linterCmd = linterCommands[linter]
+  const linterCmd = toolCommands[linter]?.commands
   if (linterCmd) {
     packageJson.scripts.lint = linterCmd.lint
-    packageJson.scripts['lint:fix'] = linterCmd.lintFix
+    packageJson.scripts['lint:fix'] = linterCmd['lint:fix']
   }
 
-  const formatterCmd = formatterCommands[formatter]
+  const formatterCmd = toolCommands[formatter]?.commands
   if (formatterCmd) {
     packageJson.scripts.fmt = formatterCmd.fmt
-    packageJson.scripts['fmt:check'] = formatterCmd.fmtCheck
+    packageJson.scripts['fmt:check'] = formatterCmd['fmt:check']
   }
 
   writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n')
