@@ -1,12 +1,12 @@
 import type { Formatters, Linters } from '@/configs/types'
 import configs from 'configs'
 
-const MAIN_PACKAGES: Record<string, string> = {
-  eslint: 'eslint',
-  oxlint: 'oxlint',
-  biome: '@biomejs/biome',
-  prettier: 'prettier',
-  oxfmt: 'oxfmt',
+const MAIN_PACKAGES: Record<string, string[]> = {
+  eslint: ['eslint', '@eslint/js'],
+  oxlint: ['oxlint'],
+  biome: ['@biomejs/biome'],
+  prettier: ['prettier'],
+  oxfmt: ['oxfmt'],
 }
 
 export class GetDependenciesToInstallUseCase {
@@ -17,9 +17,9 @@ export class GetDependenciesToInstallUseCase {
   ): Promise<string[]> {
     const dependenciesToInstall = new Set<string>()
 
-    dependenciesToInstall.add(MAIN_PACKAGES[linter]!)
+    MAIN_PACKAGES[linter]?.forEach((p) => dependenciesToInstall.add(p))
     if (formatter !== linter) {
-      dependenciesToInstall.add(MAIN_PACKAGES[formatter]!)
+      MAIN_PACKAGES[formatter]?.forEach((p) => dependenciesToInstall.add(p))
     }
 
     selectedConfigs.map((tech) => {
