@@ -1,5 +1,5 @@
 import { execSync } from 'node:child_process'
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { extensionLinks } from '@/configs/editor-extensions'
 import type { Formatters, Linters } from '@/configs/types'
@@ -168,12 +168,9 @@ export class Repository implements IRepository {
   }
 
   async initHusky(): Promise<void> {
-    const huskyDir = join(this.cwd, '.husky')
-    if (!existsSync(huskyDir)) {
-      mkdirSync(huskyDir, { recursive: true })
-    }
     const pm = await resolvePackageManager()
     const exec = getExecCommand({ pm })
-    writeFileSync(join(huskyDir, 'pre-commit'), `${exec} lint-staged\n`)
+    execSync(`${exec} husky init`, { stdio: 'inherit', cwd: this.cwd })
+    writeFileSync(join(this.cwd, '.husky', 'pre-commit'), `${exec} lint-staged\n`)
   }
 }
