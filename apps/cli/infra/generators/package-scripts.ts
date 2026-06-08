@@ -21,14 +21,14 @@ export function generatePackageScripts({ linter, formatter, cwd }: PackageScript
 
   const linterCmd = toolCommands[linter]?.commands
   if (linterCmd) {
-    packageJson.scripts.lint = linterCmd.lint
-    packageJson.scripts['lint:fix'] = linterCmd['lint:fix']
+    packageJson.scripts.lint = `${linterCmd.lint} .`
+    packageJson.scripts['lint:fix'] = `${linterCmd['lint:fix']} .`
   }
 
   const formatterCmd = toolCommands[formatter]?.commands
   if (formatterCmd) {
-    packageJson.scripts.fmt = formatterCmd.fmt
-    packageJson.scripts['fmt:check'] = formatterCmd['fmt:check']
+    packageJson.scripts.fmt = `${formatterCmd.fmt} .`
+    packageJson.scripts['fmt:check'] = `${formatterCmd['fmt:check']} .`
   }
 
   writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n')
