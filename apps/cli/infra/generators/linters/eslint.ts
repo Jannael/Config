@@ -29,7 +29,7 @@ export function generateEslint({
   }
 
   if (fileExtensions.length > 0) {
-    const exts = fileExtensions.map((e) => `*${e}`).join(', ')
+    const exts = fileExtensions.map((e) => `'*${e}`).join(', ')
     entries.push(`    { files: [${exts}] },`)
   }
 
