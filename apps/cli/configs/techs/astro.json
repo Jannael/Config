@@ -10,7 +10,7 @@
         ],
         "configSpread": [
           "...eslintPluginAstro.configs.recommended,",
-          "{ languageOptions: { parser: typescript }, },"
+          "{ languageOptions: { parser: typescriptEslintParser }, },"
         ],
         "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"],
         "fileExtensions": [".ts", ".tsx", ".astro"]
