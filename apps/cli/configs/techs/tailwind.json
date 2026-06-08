@@ -5,7 +5,7 @@
       "plugins": ["eslint-plugin-tailwindcss"],
       "config": {
         "importStatements": ["import eslintPluginTailwindcss from 'eslint-plugin-tailwindcss'"],
-        "configSpread": ["...eslintPluginTailwindcss.configs['flat/recommended'],"],
+        "configSpread": ["...eslintPluginTailwindcss.configs['flat/recommended'],", "{ settings: { tailwindcss: { config: 'tailwind.config.*' } } },"],
         "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
         "fileExtensions": []
       }
