@@ -9,7 +9,6 @@ Interactive CLI (`bun run dist/index.js`) that configures linters + formatters f
 | Command             | What                                               |
 | ------------------- | -------------------------------------------------- |
 | `bun run build`     | Bundle `apps/cli/index.ts` → `dist/index.js` (Bun) |
-| `bun run test`      | Vitest (`vitest --run`)                            |
 | `bun run lint`      | ESLint flat config check                           |
 | `bun run fmt`       | Prettier --write                                   |
 | `bun run fmt:check` | Prettier --check                                   |
