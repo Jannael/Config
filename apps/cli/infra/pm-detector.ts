@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { MultiSelect } from '@/utils/multiselect'
+import { Select } from '@/utils/select'
 
 export type PackageManager = 'bun' | 'pnpm' | 'yarn' | 'npm'
 
@@ -27,7 +27,7 @@ export async function resolvePackageManager({
     return cached
   }
 
-  const [selected] = await MultiSelect({
+  const [selected] = await Select({
     message: 'No lockfile found. Which package manager do you want to use?',
     options: [
       { value: 'npm', label: 'npm' },
