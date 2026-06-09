@@ -3,7 +3,6 @@ import editorConfig from './editor-config.json'
 import commands from './commands.json'
 
 import astro from './techs/astro.json'
-import css from './techs/css.json'
 import html from './techs/html.json'
 import javascript from './techs/javascript.json'
 import lit from './techs/lit.json'
@@ -25,7 +24,6 @@ const techs: Record<
   }
 > = {
   astro,
-  css,
   html,
   javascript,
   lit,
