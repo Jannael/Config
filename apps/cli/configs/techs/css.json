@@ -1,9 +1,20 @@
 {
   "label": "CSS",
   "linter": {
+    "eslint": {
+      "plugins": ["@eslint/css"],
+      "config": {
+        "importStatements": ["import eslintPluginCss from '@eslint/css'"],
+        "configSpread": ["...eslintPluginCss.configs.recommended,"],
+        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+        "fileExtensions": [".css", ".scss", ".sass"]
+      }
+    },
     "biome": {}
   },
   "formatter": {
-    "biome": {}
+    "biome": {},
+    "oxfmt": {},
+    "prettier": {}
   }
 }
