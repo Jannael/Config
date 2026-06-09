@@ -27,7 +27,7 @@ export async function resolvePackageManager({
     return cached
   }
 
-  const [selected] = await Select({
+  const selected = await Select({
     message: 'No lockfile found. Which package manager do you want to use?',
     options: [
       { value: 'npm', label: 'npm' },
