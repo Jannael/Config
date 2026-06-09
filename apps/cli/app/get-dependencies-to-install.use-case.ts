@@ -36,6 +36,6 @@ export class GetDependenciesToInstallUseCase {
       }
     })
 
-    return [...dependenciesToInstall]
+    return [...dependenciesToInstall].filter(Boolean)
   }
 }
