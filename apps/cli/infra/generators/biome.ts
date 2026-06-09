@@ -4,7 +4,7 @@ import { FORMAT_CONFIG } from '@/constants/format-config'
 
 export function generateBiome({ cwd }: { cwd: string }): void {
   const config = {
-    $schema: 'https://biomejs.dev/schemas/2.0.0/schema.json',
+    $schema: 'https://biomejs.dev/schemas/2.4.16/schema.json',
     formatter: {
       enabled: true,
       lineWidth: FORMAT_CONFIG.lineWidth,

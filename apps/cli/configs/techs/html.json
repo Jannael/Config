@@ -1,9 +1,22 @@
 {
   "label": "HTML",
   "linter": {
+    "eslint": {
+      "plugins": ["@html-eslint/eslint-plugin"],
+      "config": {
+        "importStatements": [
+          "import htmlEslintPlugin from '@html-eslint/eslint-plugin'"
+        ],
+        "configSpread": ["{ files: ['**/*.html'], ...htmlEslintPlugin.configs['flat/recommended'], },"],
+        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+        "fileExtensions": [".html"]
+      }
+    },
     "biome": {}
   },
   "formatter": {
-    "biome": {}
+    "biome": {},
+    "oxfmt": {},
+    "prettier": {}
   }
 }
