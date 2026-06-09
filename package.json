@@ -40,6 +40,7 @@
   "scripts": {
     "build": "bun build ./apps/cli/index.ts --outfile=./dist/index.js --target=bun",
     "prepublishOnly": "bun run build",
+    "test": "bun test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "fmt": "prettier --write .",
