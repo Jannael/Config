@@ -61,10 +61,6 @@
       ' ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝ ',
     ]
     const asciiColors = ['#3f7', '#33d99a', '#2cc492', '#58ddb8', '#6ee8d8', '#89fbff']
-    const asciiHtml = asciiLines
-      .map((line, i) => `<span style="color:${asciiColors[i]}">${line}</span>`)
-      .join('\n')
-    stepDelay(0, asciiHtml)
 
     steps.push({
       type: 'char',
@@ -73,6 +69,12 @@
       charDelay: 80,
       delay: 400,
     })
+
+    const asciiHtml = asciiLines
+      .map((line, i) => `<span style="color:${asciiColors[i]};">${line}</span>`)
+      .join('<br>')
+
+    stepDelay(0, asciiHtml)
 
     // Select technologies
     stepDelay(200, '')
