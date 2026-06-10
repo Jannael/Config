@@ -24,7 +24,7 @@ class Print {
   // ── Classics ─────────────────────────────────────────────────
   static log = (...parts: string[]) => console.log(parts.join(''))
 
-  static info = (text: string) => console.log(Print.BG_BLUE(Print.BOLD(Print.WHITE(` ℹ ${text} `))))
+  static info = (text: string) => console.log(Print.BOLD(Print.WHITE(` ℹ ${text} `)))
 
   static success = (text: string) =>
     console.log(Print.BG_GREEN(Print.BOLD(Print.BLACK(` ✔ ${text} `))))
@@ -47,3 +47,11 @@ class Print {
 }
 
 export default Print
+
+// Print.info('This is an informational message.')
+// Print.error('This is an error message.')
+// Print.success('This is a success message.')
+// Print.warn('This is a warning message.')
+// Print.debug('This is a debug message.')
+// Print.trace('This is a trace message.')
+// Print.section('Section Title')
