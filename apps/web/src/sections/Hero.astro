@@ -5,24 +5,21 @@ import TerminalAnimation from '@/components/terminal-animation.astro'
 <section
   class="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0a0a0a]"
 >
-  <!-- Grid background -->
-  <div class="absolute inset-0 opacity-[0.03]">
-    <div
-      class="size-full"
-      style="background-image: linear-gradient(rgba(34, 197, 94, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.3) 1px, transparent 1px); background-size: 50px 50px;"
-    >
-    </div>
-  </div>
-
   <!-- Glow effects -->
   <div
-    class="absolute top-1/4 left-1/4 size-96 animate-pulse rounded-full bg-green-500/10 blur-3xl"
+    class="absolute top-1/3 left-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green-500/[0.04] blur-[120px]"
   >
   </div>
-  <div
-    class="absolute right-1/4 bottom-1/4 size-96 animate-pulse rounded-full bg-cyan-500/10 blur-3xl"
-    style="animation-delay: 1s;"
-  >
+  <div class="absolute right-0 bottom-0 size-[500px] rounded-full bg-cyan-500/[0.03] blur-[100px]">
+  </div>
+
+  <!-- Subtle grid lines -->
+  <div class="absolute inset-0 opacity-[0.015]">
+    <div
+      class="size-full"
+      style="background-image: linear-gradient(rgba(34, 197, 94, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.5) 1px, transparent 1px); background-size: 60px 60px;"
+    >
+    </div>
   </div>
 
   <div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
@@ -30,7 +27,7 @@ import TerminalAnimation from '@/components/terminal-animation.astro'
       <!-- Left content -->
       <div class="animate-fade-in min-w-0 space-y-6">
         <!-- Title -->
-        <div class="space-y-3">
+        <div class="space-y-2">
           <div class="overflow-hidden">
             <pre
               class="ascii-art origin-left scale-[0.65] font-mono text-sm leading-none sm:scale-[0.8] md:scale-[0.9] lg:scale-100">
@@ -41,19 +38,16 @@ import TerminalAnimation from '@/components/terminal-animation.astro'
 ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝</pre>
           </div>
-          <p class="text-2xl font-semibold text-gray-300 sm:text-3xl lg:text-4xl">
-            One command.<br />
-            <span class="text-cyan-400">Zero configuration.</span>
-          </p>
+          <h1 class="text-3xl font-medium text-white sm:text-4xl lg:text-5xl">
+            Zero configuration.
+          </h1>
         </div>
 
         <!-- Description -->
-        <p class="max-w-lg text-base leading-relaxed text-gray-400 sm:text-lg">
+        <p class="max-w-lg text-sm leading-relaxed text-gray-400 sm:text-base">
           The <span class="font-medium text-white">standard</span> and <span
             class="font-medium text-white">ts-standard</span
           > experience, across Oxlint, Oxfmt, Biome, ESLint and Prettier.
-          <span class="font-medium text-white">Config</span> automatically sets up your linter and formatter
-          with sensible defaults for your JavaScript/TypeScript stack.
         </p>
 
         <!-- Install command -->
@@ -185,10 +179,6 @@ import TerminalAnimation from '@/components/terminal-animation.astro'
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in,
     .animate-slide-up {
-      animation: none;
-    }
-
-    .animate-pulse {
       animation: none;
     }
   }
