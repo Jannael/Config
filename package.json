@@ -22,10 +22,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Jannael/config.git"
+		"url": "git+https://github.com/Jannael/config.git"
 	},
 	"bin": {
-		"@jannael/config": "./dist/index.js"
+		"config": "dist/index.js"
 	},
 	"files": [
 		"dist"
