@@ -159,10 +159,10 @@ Bun transpiles TypeScript on-the-fly; no build step needed.
 ```typescript
 // server.ts
 const server = Bun.serve({
-  port: 3000,
-  fetch(req) {
-    return new Response('Hello!')
-  },
+	port: 3000,
+	fetch(req) {
+		return new Response('Hello!')
+	},
 })
 console.log(`Listening on ${server.url}`)
 ```
@@ -178,7 +178,7 @@ bun run server.ts
 import { test, expect } from 'bun:test'
 
 test('2 + 2 = 4', () => {
-  expect(2 + 2).toBe(4)
+	expect(2 + 2).toBe(4)
 })
 ```
 

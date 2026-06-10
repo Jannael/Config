@@ -1,28 +1,25 @@
 {
-  "label": "React",
-  "linter": {
-    "eslint": {
-      "plugins": ["eslint-plugin-react", "eslint-plugin-react-hooks"],
-      "config": {
-        "importStatements": [
-          "import eslintPluginReact from 'eslint-plugin-react'",
-          "import eslintPluginReactHooks from 'eslint-plugin-react-hooks'"
-        ],
-        "configSpread": [
-          "{ plugins: { react: eslintPluginReact, 'react-hooks': eslintPluginReactHooks }, rules: { ...eslintPluginReact.configs.recommended.rules, ...eslintPluginReactHooks.configs.recommended.rules }, settings: { react: { version: 'detect' } } },"
-        ],
-        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
-        "fileExtensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    },
-    "oxlint": {
-      "plugins": ["react"]
-    },
-    "biome": {}
-  },
-  "formatter": {
-    "prettier": {},
-    "oxfmt": {},
-    "biome": {}
-  }
+	"label": "React",
+	"linter": {
+		"eslint": {
+			"plugins": ["eslint-plugin-react", "eslint-plugin-react-hooks"],
+			"config": {
+				"importStatements": ["import eslintPluginReact from 'eslint-plugin-react'", "import eslintPluginReactHooks from 'eslint-plugin-react-hooks'"],
+				"configSpread": [
+					"{ plugins: { react: eslintPluginReact, 'react-hooks': eslintPluginReactHooks }, rules: { ...eslintPluginReact.configs.recommended.rules, ...eslintPluginReactHooks.configs.recommended.rules }, settings: { react: { version: 'detect' } } },"
+				],
+				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+				"fileExtensions": [".js", ".jsx", ".ts", ".tsx"]
+			}
+		},
+		"oxlint": {
+			"plugins": ["react"]
+		},
+		"biome": {}
+	},
+	"formatter": {
+		"prettier": {},
+		"oxfmt": {},
+		"biome": {}
+	}
 }

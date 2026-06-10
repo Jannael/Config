@@ -7,13 +7,9 @@ Configure content sources for optimal purging:
 ```javascript
 // tailwind.config.js
 export default {
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx,vue,svelte}',
-    './node_modules/@mycompany/ui-lib/**/*.{js,ts,jsx,tsx}',
-  ],
-  // Enable JIT for faster builds
-  jit: true,
+	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,vue,svelte}', './node_modules/@mycompany/ui-lib/**/*.{js,ts,jsx,tsx}'],
+	// Enable JIT for faster builds
+	jit: true,
 }
 ```
 
@@ -30,7 +26,7 @@ export default {
 ```html
 <!-- Use content-visibility for offscreen content -->
 <div class="content-visibility-auto">
-  <div>Heavy content that's initially offscreen</div>
+	<div>Heavy content that's initially offscreen</div>
 </div>
 
 <!-- Optimize images with aspect-ratio -->
@@ -49,16 +45,16 @@ export default {
 @import 'tailwindcss';
 
 @theme {
-  /* Define once, use everywhere */
-  --color-brand: #3b82f6;
-  --font-mono: 'Fira Code', monospace;
+	/* Define once, use everywhere */
+	--color-brand: #3b82f6;
+	--font-mono: 'Fira Code', monospace;
 }
 
 /* Critical CSS for above-the-fold content */
 @layer critical {
-  .hero-title {
-    @apply text-4xl font-bold md:text-6xl;
-  }
+	.hero-title {
+		@apply text-4xl font-bold md:text-6xl;
+	}
 }
 ```
 
@@ -71,17 +67,17 @@ export default {
 ```javascript
 // tailwind.config.js
 module.exports = {
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: ['./src/**/*.html', './src/**/*.jsx', './src/**/*.tsx'],
-    options: {
-      safelist: [
-        'bg-red-500',
-        'text-center',
-        // Classes that shouldn't be purged
-      ],
-    },
-  },
+	purge: {
+		enabled: process.env.NODE_ENV === 'production',
+		content: ['./src/**/*.html', './src/**/*.jsx', './src/**/*.tsx'],
+		options: {
+			safelist: [
+				'bg-red-500',
+				'text-center',
+				// Classes that shouldn't be purged
+			],
+		},
+	},
 }
 ```
 

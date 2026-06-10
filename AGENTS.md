@@ -6,9 +6,9 @@ Interactive CLI (`bun run dist/index.js`) that configures linters + formatters f
 
 ## Commands
 
-| Command             | What                                               |
-| ------------------- | -------------------------------------------------- |
-| `bun run build`     | Bundle `apps/cli/index.ts` → `dist/index.js` (Bun) |
+| Command         | What                                               |
+| --------------- | -------------------------------------------------- |
+| `bun run build` | Bundle `apps/cli/index.ts` → `dist/index.js` (Bun) |
 
 After changes: `bun run build && bun run test`.
 

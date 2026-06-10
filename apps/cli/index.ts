@@ -16,13 +16,6 @@ const getDependenciesToInstall = new GetDependenciesToInstallUseCase()
 const getLinter = new GetLinterUseCase()
 const getFormatter = new GetFormatterUseCase()
 
-const command = new Command(
-  repository,
-  writeFormatterConfig,
-  writeLinterConfig,
-  getDependenciesToInstall,
-  getLinter,
-  getFormatter,
-)
+const command = new Command(repository, writeFormatterConfig, writeLinterConfig, getDependenciesToInstall, getLinter, getFormatter)
 
 await command.execute()

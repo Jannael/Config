@@ -1,19 +1,19 @@
 {
-  "label": "Astro",
-  "linter": {
-    "eslint": {
-      "plugins": ["eslint-plugin-astro"],
-      "config": {
-        "importStatements": ["import eslintPluginAstro from 'eslint-plugin-astro'"],
-        "configSpread": ["...eslintPluginAstro.configs.recommended,"],
-        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"],
-        "fileExtensions": [".ts", ".tsx", ".astro"]
-      }
-    }
-  },
-  "formatter": {
-    "prettier": {
-      "plugins": ["prettier-plugin-astro"]
-    }
-  }
+	"label": "Astro",
+	"linter": {
+		"eslint": {
+			"plugins": ["eslint-plugin-astro"],
+			"config": {
+				"importStatements": ["import eslintPluginAstro from 'eslint-plugin-astro'"],
+				"configSpread": ["...eslintPluginAstro.configs.recommended,"],
+				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"],
+				"fileExtensions": [".ts", ".tsx", ".astro"]
+			}
+		}
+	},
+	"formatter": {
+		"prettier": {
+			"plugins": ["prettier-plugin-astro"]
+		}
+	}
 }

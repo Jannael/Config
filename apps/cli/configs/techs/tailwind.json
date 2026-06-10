@@ -1,24 +1,24 @@
 {
-  "label": "Tailwind CSS",
-  "linter": {
-    "eslint": {
-      "plugins": ["eslint-plugin-tailwindcss"],
-      "config": {
-        "importStatements": ["import eslintPluginTailwindcss from 'eslint-plugin-tailwindcss'"],
-        "configSpread": ["...eslintPluginTailwindcss.configs['flat/recommended'],", "{ settings: { tailwindcss: { config: {} } } },"],
-        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
-        "fileExtensions": []
-      }
-    }
-  },
-  "formatter": {
-    "prettier": {
-      "plugins": ["prettier-plugin-tailwindcss"]
-    }
-  },
-  "editorConfig": {
-    "files.associations": {
-      "*.css": "tailwindcss"
-    }
-  }
+	"label": "Tailwind CSS",
+	"linter": {
+		"eslint": {
+			"plugins": ["eslint-plugin-tailwindcss"],
+			"config": {
+				"importStatements": ["import eslintPluginTailwindcss from 'eslint-plugin-tailwindcss'"],
+				"configSpread": ["...eslintPluginTailwindcss.configs['flat/recommended'],", "{ settings: { tailwindcss: { config: {} } } },"],
+				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+				"fileExtensions": []
+			}
+		}
+	},
+	"formatter": {
+		"prettier": {
+			"plugins": ["prettier-plugin-tailwindcss"]
+		}
+	},
+	"editorConfig": {
+		"files.associations": {
+			"*.css": "tailwindcss"
+		}
+	}
 }

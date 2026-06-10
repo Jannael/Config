@@ -2,186 +2,160 @@
 import TerminalAnimation from '@/components/terminal-animation.astro'
 ---
 
-<section
-  class="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0a0a0a]"
->
-  <!-- Symmetric glow effects -->
-  <div class="absolute top-0 left-0 size-[600px] rounded-full bg-green-500/[0.03] blur-[140px]">
-  </div>
-  <div class="absolute right-0 bottom-0 size-[600px] rounded-full bg-green-500/[0.03] blur-[140px]">
-  </div>
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0a0a0a]">
+	<!-- Symmetric glow effects -->
+	<div class="absolute top-0 left-0 size-[600px] rounded-full bg-green-500/[0.03] blur-[140px]"></div>
+	<div class="absolute right-0 bottom-0 size-[600px] rounded-full bg-green-500/[0.03] blur-[140px]"></div>
 
-  <!-- Subtle grid lines -->
-  <div class="absolute inset-0 opacity-[0.02]">
-    <div
-      class="size-full"
-      style="background-image: linear-gradient(rgba(34, 197, 94, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.4) 1px, transparent 1px); background-size: 80px 80px;"
-    >
-    </div>
-  </div>
+	<!-- Subtle grid lines -->
+	<div class="absolute inset-0 opacity-[0.02]">
+		<div
+			class="size-full"
+			style="background-image: linear-gradient(rgba(34, 197, 94, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.4) 1px, transparent 1px); background-size: 80px 80px;"
+		>
+		</div>
+	</div>
 
-  <div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-      <!-- Left content -->
-      <div class="animate-fade-in min-w-0 space-y-8">
-        <!-- Title -->
-        <div class="space-y-4">
-          <div class="overflow-hidden">
-            <pre
-              class="ascii-art origin-left scale-[0.65] font-mono text-sm leading-none sm:scale-[0.8] md:scale-[0.9] lg:scale-100">
+	<div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+		<div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+			<!-- Left content -->
+			<div class="animate-fade-in min-w-0 space-y-8">
+				<!-- Title -->
+				<div class="space-y-4">
+					<div class="overflow-hidden">
+						<pre
+							class="ascii-art origin-left scale-[0.65] font-mono text-sm leading-none sm:scale-[0.8] md:scale-[0.9] lg:scale-100">
  ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗ 
 ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝ 
 ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
 ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
 ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝</pre>
-          </div>
-          <h1 class="text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
-            Zero configuration.
-          </h1>
-        </div>
+					</div>
+					<h1 class="text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">Zero configuration.</h1>
+				</div>
 
-        <!-- Description -->
-        <p class="max-w-lg text-base leading-relaxed text-gray-300 sm:text-lg">
-          The <span class="font-medium text-white">standard</span> and <span
-            class="font-medium text-white">ts-standard</span
-          > experience, across Oxlint, Oxfmt, Biome, ESLint and Prettier.
-        </p>
+				<!-- Description -->
+				<p class="max-w-lg text-base leading-relaxed text-gray-300 sm:text-lg">
+					The <span class="font-medium text-white">standard</span> and <span class="font-medium text-white">ts-standard</span> experience, across Oxlint,
+					Oxfmt, Biome, ESLint and Prettier.
+				</p>
 
-        <!-- Install command -->
-        <div
-          class="group relative max-w-md overflow-hidden rounded-xl border border-gray-800 bg-[#111] transition-colors hover:border-gray-700"
-        >
-          <div class="flex items-center justify-between px-5 py-4">
-            <div class="flex items-center gap-4">
-              <span class="font-mono text-sm text-gray-600 select-none">$</span>
-              <code class="font-mono text-sm text-green-400 sm:text-base">npx @jannael/config</code>
-            </div>
-            <button
-              id="copy-btn"
-              class="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs text-gray-500 transition-colors hover:bg-gray-800 hover:text-gray-300"
-              aria-label="Copy command"
-            >
-              <svg
-                id="copy-icon"
-                class="size-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                ></path>
-              </svg>
-              <svg
-                id="check-icon"
-                class="hidden size-3.5 text-green-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2.5"
-                  d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span id="copy-label">Copy</span>
-            </button>
-          </div>
-        </div>
-      </div>
+				<!-- Install command -->
+				<div class="group relative max-w-md overflow-hidden rounded-xl border border-gray-800 bg-[#111] transition-colors hover:border-gray-700">
+					<div class="flex items-center justify-between px-5 py-4">
+						<div class="flex items-center gap-4">
+							<span class="font-mono text-sm text-gray-600 select-none">$</span>
+							<code class="font-mono text-sm text-green-400 sm:text-base">npx @jannael/config</code>
+						</div>
+						<button
+							id="copy-btn"
+							class="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs text-gray-500 transition-colors hover:bg-gray-800 hover:text-gray-300"
+							aria-label="Copy command"
+						>
+							<svg id="copy-icon" class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+							</svg>
+							<svg id="check-icon" class="hidden size-3.5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+							</svg>
+							<span id="copy-label">Copy</span>
+						</button>
+					</div>
+				</div>
+			</div>
 
-      <!-- Right: Terminal Animation -->
-      <div class="animate-slide-up min-w-0">
-        <div class="relative">
-          <!-- Subtle glow behind terminal -->
-          <div class="absolute -inset-8 rounded-3xl bg-green-500/[0.04] blur-2xl"></div>
-          <div class="relative">
-            <TerminalAnimation />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+			<!-- Right: Terminal Animation -->
+			<div class="animate-slide-up min-w-0">
+				<div class="relative">
+					<!-- Subtle glow behind terminal -->
+					<div class="absolute -inset-8 rounded-3xl bg-green-500/[0.04] blur-2xl"></div>
+					<div class="relative">
+						<TerminalAnimation />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <script>
-  const btn = document.getElementById('copy-btn')
-  const copyIcon = document.getElementById('copy-icon')
-  const checkIcon = document.getElementById('check-icon')
-  const label = document.getElementById('copy-label')
+	const btn = document.getElementById('copy-btn')
+	const copyIcon = document.getElementById('copy-icon')
+	const checkIcon = document.getElementById('check-icon')
+	const label = document.getElementById('copy-label')
 
-  btn?.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText('npx @jannael/config')
-      copyIcon?.classList.add('hidden')
-      checkIcon?.classList.remove('hidden')
-      if (label) {
-        label.textContent = 'Copied!'
-        label.classList.add('text-green-400')
-      }
-      setTimeout(() => {
-        copyIcon?.classList.remove('hidden')
-        checkIcon?.classList.add('hidden')
-        if (label) {
-          label.textContent = 'Copy'
-          label.classList.remove('text-green-400')
-        }
-      }, 2000)
-    } catch {
-      // clipboard API not available
-    }
-  })
+	btn?.addEventListener('click', async () => {
+		try {
+			await navigator.clipboard.writeText('npx @jannael/config')
+			copyIcon?.classList.add('hidden')
+			checkIcon?.classList.remove('hidden')
+			if (label) {
+				label.textContent = 'Copied!'
+				label.classList.add('text-green-400')
+			}
+			setTimeout(() => {
+				copyIcon?.classList.remove('hidden')
+				checkIcon?.classList.add('hidden')
+				if (label) {
+					label.textContent = 'Copy'
+					label.classList.remove('text-green-400')
+				}
+			}, 2000)
+		} catch {
+			// clipboard API not available
+		}
+	})
 </script>
 
 <style>
-  .ascii-art {
-    background: linear-gradient(135deg, #4ade80 0%, #22c55e 40%, #16a34a 100%);
-    filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.15));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: inline-block;
-  }
+	.ascii-art {
+		background: linear-gradient(135deg, #4ade80 0%, #22c55e 40%, #16a34a 100%);
+		filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.15));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		display: inline-block;
+	}
 
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 
-  @keyframes slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+	@keyframes slide-up {
+		from {
+			opacity: 0;
+			transform: translateY(40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 
-  .animate-fade-in {
-    animation: fade-in 0.8s ease-out;
-  }
+	.animate-fade-in {
+		animation: fade-in 0.8s ease-out;
+	}
 
-  .animate-slide-up {
-    animation: slide-up 1s ease-out 0.2s both;
-  }
+	.animate-slide-up {
+		animation: slide-up 1s ease-out 0.2s both;
+	}
 
-  @media (prefers-reduced-motion: reduce) {
-    .animate-fade-in,
-    .animate-slide-up {
-      animation: none;
-    }
-  }
+	@media (prefers-reduced-motion: reduce) {
+		.animate-fade-in,
+		.animate-slide-up {
+			animation: none;
+		}
+	}
 </style>

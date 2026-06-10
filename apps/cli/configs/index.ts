@@ -16,28 +16,28 @@ import vue from './techs/vue.json'
 import { type LinterConfig, type FormatterConfig } from './types'
 
 const techs: Record<
-  string,
-  {
-    label: string
-    linter: LinterConfig['linter']
-    formatter: FormatterConfig['formatter']
-  }
+	string,
+	{
+		label: string
+		linter: LinterConfig['linter']
+		formatter: FormatterConfig['formatter']
+	}
 > = {
-  astro,
-  html,
-  javascript,
-  lit,
-  next,
-  reactNative,
-  react,
-  solid,
-  tailwind,
-  typescript,
-  vue,
+	astro,
+	html,
+	javascript,
+	lit,
+	next,
+	reactNative,
+	react,
+	solid,
+	tailwind,
+	typescript,
+	vue,
 }
 
 export default {
-  editorConfig,
-  commands,
-  techs,
+	editorConfig,
+	commands,
+	techs,
 }

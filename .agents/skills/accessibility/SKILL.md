@@ -48,14 +48,10 @@ Comprehensive accessibility guidelines based on WCAG 2.2 and Lighthouse accessib
 
 <!-- ✅ Complex image with longer description -->
 <figure>
-  <img
-    src="infographic.png"
-    alt="2024 market trends infographic"
-    aria-describedby="infographic-desc"
-  />
-  <figcaption id="infographic-desc">
-    <!-- Detailed description -->
-  </figcaption>
+	<img src="infographic.png" alt="2024 market trends infographic" aria-describedby="infographic-desc" />
+	<figcaption id="infographic-desc">
+		<!-- Detailed description -->
+	</figcaption>
 </figure>
 ```
 
@@ -64,18 +60,18 @@ Comprehensive accessibility guidelines based on WCAG 2.2 and Lighthouse accessib
 ```html
 <!-- ❌ No accessible name -->
 <button>
-  <svg><!-- menu icon --></svg>
+	<svg><!-- menu icon --></svg>
 </button>
 
 <!-- ✅ Using aria-label -->
 <button aria-label="Open menu">
-  <svg aria-hidden="true"><!-- menu icon --></svg>
+	<svg aria-hidden="true"><!-- menu icon --></svg>
 </button>
 
 <!-- ✅ Using visually hidden text -->
 <button>
-  <svg aria-hidden="true"><!-- menu icon --></svg>
-  <span class="visually-hidden">Open menu</span>
+	<svg aria-hidden="true"><!-- menu icon --></svg>
+	<span class="visually-hidden">Open menu</span>
 </button>
 ```
 
@@ -83,15 +79,15 @@ Comprehensive accessibility guidelines based on WCAG 2.2 and Lighthouse accessib
 
 ```css
 .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
 }
 ```
 
@@ -106,20 +102,20 @@ Comprehensive accessibility guidelines based on WCAG 2.2 and Lighthouse accessib
 ```css
 /* ❌ Low contrast (2.5:1) */
 .low-contrast {
-  color: #999;
-  background: #fff;
+	color: #999;
+	background: #fff;
 }
 
 /* ✅ Sufficient contrast (7:1) */
 .high-contrast {
-  color: #333;
-  background: #fff;
+	color: #333;
+	background: #fff;
 }
 
 /* ✅ Focus states need contrast too */
 :focus-visible {
-  outline: 2px solid #005fcc;
-  outline-offset: 2px;
+	outline: 2px solid #005fcc;
+	outline-offset: 2px;
 }
 ```
 
@@ -129,18 +125,18 @@ Comprehensive accessibility guidelines based on WCAG 2.2 and Lighthouse accessib
 <!-- ❌ Only color indicates error -->
 <input class="error-border" />
 <style>
-  .error-border {
-    border-color: red;
-  }
+	.error-border {
+		border-color: red;
+	}
 </style>
 
 <!-- ✅ Color + icon + text -->
 <div class="field-error">
-  <input aria-invalid="true" aria-describedby="email-error" />
-  <span id="email-error" class="error-message">
-    <svg aria-hidden="true"><!-- error icon --></svg>
-    Please enter a valid email address
-  </span>
+	<input aria-invalid="true" aria-describedby="email-error" />
+	<span id="email-error" class="error-message">
+		<svg aria-hidden="true"><!-- error icon --></svg>
+		Please enter a valid email address
+	</span>
 </div>
 ```
 
@@ -149,18 +145,18 @@ Comprehensive accessibility guidelines based on WCAG 2.2 and Lighthouse accessib
 ```html
 <!-- Video with captions -->
 <video controls>
-  <source src="video.mp4" type="video/mp4" />
-  <track kind="captions" src="captions.vtt" srclang="en" label="English" default />
-  <track kind="descriptions" src="descriptions.vtt" srclang="en" label="Descriptions" />
+	<source src="video.mp4" type="video/mp4" />
+	<track kind="captions" src="captions.vtt" srclang="en" label="English" default />
+	<track kind="descriptions" src="descriptions.vtt" srclang="en" label="Descriptions" />
 </video>
 
 <!-- Audio with transcript -->
 <audio controls>
-  <source src="podcast.mp3" type="audio/mp3" />
+	<source src="podcast.mp3" type="audio/mp3" />
 </audio>
 <details>
-  <summary>Transcript</summary>
-  <p>Full transcript text...</p>
+	<summary>Transcript</summary>
+	<p>Full transcript text...</p>
 </details>
 ```
 
@@ -179,10 +175,10 @@ element.addEventListener('click', handleAction)
 // ✅ Handles both click and keyboard
 element.addEventListener('click', handleAction)
 element.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault()
-    handleAction()
-  }
+	if (e.key === 'Enter' || e.key === ' ') {
+		e.preventDefault()
+		handleAction()
+	}
 })
 ```
 
@@ -193,22 +189,22 @@ element.addEventListener('keydown', (e) => {
 ```css
 /* ❌ Never remove focus outlines */
 *:focus {
-  outline: none;
+	outline: none;
 }
 
 /* ✅ Use :focus-visible for keyboard-only focus */
 :focus {
-  outline: none;
+	outline: none;
 }
 
 :focus-visible {
-  outline: 2px solid #005fcc;
-  outline-offset: 2px;
+	outline: 2px solid #005fcc;
+	outline-offset: 2px;
 }
 
 /* ✅ Or custom focus styles */
 button:focus-visible {
-  box-shadow: 0 0 0 3px rgba(0, 95, 204, 0.5);
+	box-shadow: 0 0 0 3px rgba(0, 95, 204, 0.5);
 }
 ```
 
@@ -219,13 +215,13 @@ When an element receives keyboard focus, it must not be entirely hidden by other
 ```css
 /* ✅ Account for sticky headers when scrolling to focused elements */
 :target {
-  scroll-margin-top: 80px;
+	scroll-margin-top: 80px;
 }
 
 /* ✅ Ensure focused items clear fixed/sticky bars */
 :focus {
-  scroll-margin-top: 80px;
-  scroll-margin-bottom: 60px;
+	scroll-margin-top: 80px;
+	scroll-margin-bottom: 60px;
 }
 ```
 
@@ -243,17 +239,17 @@ button,
 [role='button'],
 input[type='checkbox'] + label,
 input[type='radio'] + label {
-  min-width: 24px;
-  min-height: 24px;
+	min-width: 24px;
+	min-height: 24px;
 }
 
 /* ✅ Comfortable target size (recommended 44×44) */
 .touch-target {
-  min-width: 44px;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+	min-width: 44px;
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 }
 ```
 
@@ -266,15 +262,15 @@ Any action that requires dragging must have a single-pointer alternative (e.g., 
 ```javascript
 // Allow users to extend time limits
 function showSessionWarning() {
-  const modal = createModal({
-    title: 'Session Expiring',
-    content: 'Your session will expire in 2 minutes.',
-    actions: [
-      { label: 'Extend session', action: extendSession },
-      { label: 'Log out', action: logout },
-    ],
-    timeout: 120000,
-  })
+	const modal = createModal({
+		title: 'Session Expiring',
+		content: 'Your session will expire in 2 minutes.',
+		actions: [
+			{ label: 'Extend session', action: extendSession },
+			{ label: 'Log out', action: logout },
+		],
+		timeout: 120000,
+	})
 }
 ```
 
@@ -283,14 +279,14 @@ function showSessionWarning() {
 ```css
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }
 ```
 
@@ -303,11 +299,11 @@ function showSessionWarning() {
 ```html
 <!-- ❌ No language specified -->
 <html>
-  <!-- ✅ Language specified -->
-  <html lang="en">
-    <!-- ✅ Language changes within page -->
-    <p>The French word for hello is <span lang="fr">bonjour</span>.</p>
-  </html>
+	<!-- ✅ Language specified -->
+	<html lang="en">
+		<!-- ✅ Language changes within page -->
+		<p>The French word for hello is <span lang="fr">bonjour</span>.</p>
+	</html>
 </html>
 ```
 
@@ -316,11 +312,11 @@ function showSessionWarning() {
 ```html
 <!-- Navigation should be consistent across pages -->
 <nav aria-label="Main">
-  <ul>
-    <li><a href="/" aria-current="page">Home</a></li>
-    <li><a href="/products">Products</a></li>
-    <li><a href="/about">About</a></li>
-  </ul>
+	<ul>
+		<li><a href="/" aria-current="page">Home</a></li>
+		<li><a href="/products">Products</a></li>
+		<li><a href="/about">About</a></li>
+	</ul>
 </nav>
 ```
 
@@ -343,12 +339,12 @@ Don't force users to re-enter information they already provided in the same sess
 ```html
 <!-- ✅ Auto-fill shipping address from billing -->
 <fieldset>
-  <legend>Shipping address</legend>
-  <label>
-    <input type="checkbox" id="same-as-billing" checked />
-    Same as billing address
-  </label>
-  <!-- Fields auto-populated when checked -->
+	<legend>Shipping address</legend>
+	<label>
+		<input type="checkbox" id="same-as-billing" checked />
+		Same as billing address
+	</label>
+	<!-- Fields auto-populated when checked -->
 </fieldset>
 ```
 

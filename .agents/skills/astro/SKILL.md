@@ -59,7 +59,7 @@ Reference [project structure docs](https://docs.astro.build/en/basics/project-st
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
-  site: 'https://example.com',
+	site: 'https://example.com',
 })
 ```
 
@@ -78,10 +78,10 @@ const title = 'Hello, Astro!'
 ---
 
 <html>
-  <head><title>{title}</title></head>
-  <body>
-    <h1>{title}</h1>
-  </body>
+	<head><title>{title}</title></head>
+	<body>
+		<h1>{title}</h1>
+	</body>
 </html>
 ```
 
@@ -94,8 +94,8 @@ const { title, body } = Astro.props
 ---
 
 <div class="card">
-  <h2>{title}</h2>
-  <p>{body}</p>
+	<h2>{title}</h2>
+	<p>{body}</p>
 </div>
 ```
 

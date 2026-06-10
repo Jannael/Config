@@ -1,20 +1,18 @@
 {
-  "label": "Solid",
-  "linter": {
-    "eslint": {
-      "plugins": ["eslint-plugin-solid"],
-      "config": {
-        "importStatements": [
-          "import eslintPluginSolid from 'eslint-plugin-solid/configs/recommended'"
-        ],
-        "configSpread": ["eslintPluginSolid,"],
-        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
-        "fileExtensions": [".ts", ".tsx", "js", ".jsx"]
-      }
-    }
-  },
-  "formatter": {
-    "prettier": {},
-    "oxfmt": {}
-  }
+	"label": "Solid",
+	"linter": {
+		"eslint": {
+			"plugins": ["eslint-plugin-solid"],
+			"config": {
+				"importStatements": ["import eslintPluginSolid from 'eslint-plugin-solid/configs/recommended'"],
+				"configSpread": ["eslintPluginSolid,"],
+				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+				"fileExtensions": [".ts", ".tsx", "js", ".jsx"]
+			}
+		}
+	},
+	"formatter": {
+		"prettier": {},
+		"oxfmt": {}
+	}
 }

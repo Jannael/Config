@@ -2,40 +2,36 @@ import type { Formatters, Linters } from '@/configs/types'
 import configs from 'configs'
 
 const MAIN_PACKAGES: Record<string, string[]> = {
-  eslint: ['eslint', '@eslint/js'],
-  oxlint: ['oxlint'],
-  biome: ['@biomejs/biome'],
-  prettier: ['prettier'],
-  oxfmt: ['oxfmt'],
+	eslint: ['eslint', '@eslint/js'],
+	oxlint: ['oxlint'],
+	biome: ['@biomejs/biome'],
+	prettier: ['prettier'],
+	oxfmt: ['oxfmt'],
 }
 
 export class GetDependenciesToInstallUseCase {
-  public async execute(
-    formatter: Formatters,
-    linter: Linters,
-    selectedConfigs: string[],
-  ): Promise<string[]> {
-    const dependenciesToInstall = new Set<string>()
+	public async execute(formatter: Formatters, linter: Linters, selectedConfigs: string[]): Promise<string[]> {
+		const dependenciesToInstall = new Set<string>()
 
-    MAIN_PACKAGES[linter]?.forEach((p) => dependenciesToInstall.add(p))
-    if (formatter !== linter) {
-      MAIN_PACKAGES[formatter]?.forEach((p) => dependenciesToInstall.add(p))
-    }
+		MAIN_PACKAGES[linter]?.forEach((p) => dependenciesToInstall.add(p))
+		if (formatter !== linter) {
+			MAIN_PACKAGES[formatter]?.forEach((p) => dependenciesToInstall.add(p))
+		}
 
-    selectedConfigs.map((tech) => {
-      const config = configs.techs[tech as keyof typeof configs.techs]
-      const formatterConfig = config?.formatter[formatter] as { plugins?: string[] }
-      const linterConfig = config?.linter[linter] as { plugins?: string[] }
+		selectedConfigs.map((tech) => {
+			const config = configs.techs[tech as keyof typeof configs.techs]
+			const formatterConfig = config?.formatter[formatter] as { plugins?: string[] }
+			const linterConfig = config?.linter[linter] as { plugins?: string[] }
 
-      if (formatter === 'prettier' && formatterConfig?.plugins) {
-        formatterConfig.plugins.forEach((p) => dependenciesToInstall.add(p))
-      }
+			if (formatter === 'prettier' && formatterConfig?.plugins) {
+				formatterConfig.plugins.forEach((p) => dependenciesToInstall.add(p))
+			}
 
-      if (linter === 'eslint' && linterConfig?.plugins) {
-        linterConfig.plugins.forEach((p) => dependenciesToInstall.add(p))
-      }
-    })
+			if (linter === 'eslint' && linterConfig?.plugins) {
+				linterConfig.plugins.forEach((p) => dependenciesToInstall.add(p))
+			}
+		})
 
-    return [...dependenciesToInstall].filter(Boolean)
-  }
+		return [...dependenciesToInstall].filter(Boolean)
+	}
 }

@@ -1,27 +1,24 @@
 {
-  "label": "Lit",
-  "linter": {
-    "eslint": {
-      "plugins": ["eslint-plugin-lit", "eslint-plugin-wc"],
-      "config": {
-        "importStatements": [
-          "import { configs: eslintPluginLit } from 'eslint-plugin-lit'",
-          "import { configs: eslintPluginWc } from 'eslint-plugin-wc'"
-        ],
-        "configSpread": [
-          "...eslintPluginLit['flat/recommended'],",
-          "...eslintPluginWc['flat/recommended'],"
-        ],
-        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
-        "fileExtensions": [".ts", ".js"]
-      }
-    },
-    "oxlint": {},
-    "biome": {}
-  },
-  "formatter": {
-    "prettier": {},
-    "oxfmt": {},
-    "biome": {}
-  }
+	"label": "Lit",
+	"linter": {
+		"eslint": {
+			"plugins": ["eslint-plugin-lit", "eslint-plugin-wc"],
+			"config": {
+				"importStatements": [
+					"import { configs: eslintPluginLit } from 'eslint-plugin-lit'",
+					"import { configs: eslintPluginWc } from 'eslint-plugin-wc'"
+				],
+				"configSpread": ["...eslintPluginLit['flat/recommended'],", "...eslintPluginWc['flat/recommended'],"],
+				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+				"fileExtensions": [".ts", ".js"]
+			}
+		},
+		"oxlint": {},
+		"biome": {}
+	},
+	"formatter": {
+		"prettier": {},
+		"oxfmt": {},
+		"biome": {}
+	}
 }

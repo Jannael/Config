@@ -58,16 +58,16 @@ apps/cli/
 
 ```ts
 const technologies: Record<string, string> = {
-  astro: 'Astro',
-  javascript: 'JavaScript',
-  lit: 'Lit',
-  next: 'Next.js',
-  react: 'React',
-  'react-native': 'React Native',
-  solid: 'Solid',
-  tailwind: 'Tailwind CSS',
-  typescript: 'TypeScript',
-  vue: 'Vue',
+	astro: 'Astro',
+	javascript: 'JavaScript',
+	lit: 'Lit',
+	next: 'Next.js',
+	react: 'React',
+	'react-native': 'React Native',
+	solid: 'Solid',
+	tailwind: 'Tailwind CSS',
+	typescript: 'TypeScript',
+	vue: 'Vue',
 }
 export default technologies
 ```
@@ -85,18 +85,18 @@ Cada JSON tiene la estructura:
 
 **Regla de soporte completo:** Solo incluir una herramienta si tiene soporte completo y estable para esa tecnología.
 
-| Tecnología   | Linters                                                     | Formatters                             |
-| ------------ | ----------------------------------------------------------- | -------------------------------------- |
-| react        | eslint (eslint-plugin-react, eslint-plugin-react-hooks)     | prettier                               |
-| next         | eslint (eslint-config-next)                                 | prettier                               |
-| solid        | eslint (eslint-plugin-solid)                                | prettier                               |
-| react-native | eslint (@react-native/eslint-config)                        | prettier                               |
-| vue          | eslint (eslint-plugin-vue, vue-eslint-parser)               | prettier                               |
-| astro        | eslint (eslint-plugin-astro, astro-eslint-parser)           | prettier (prettier-plugin-astro)       |
-| lit          | eslint (eslint-plugin-lit, eslint-plugin-wc)                | prettier                               |
-| tailwind     | eslint (eslint-plugin-tailwindcss)                          | prettier (prettier-plugin-tailwindcss) |
-| javascript   | eslint, oxlint, biome                                       | prettier, oxfmt, biome                 |
-| typescript   | eslint (@typescript-eslint/\*), oxlint, biome               | prettier, oxfmt, biome                 |
+| Tecnología   | Linters                                                 | Formatters                             |
+| ------------ | ------------------------------------------------------- | -------------------------------------- |
+| react        | eslint (eslint-plugin-react, eslint-plugin-react-hooks) | prettier                               |
+| next         | eslint (eslint-config-next)                             | prettier                               |
+| solid        | eslint (eslint-plugin-solid)                            | prettier                               |
+| react-native | eslint (@react-native/eslint-config)                    | prettier                               |
+| vue          | eslint (eslint-plugin-vue, vue-eslint-parser)           | prettier                               |
+| astro        | eslint (eslint-plugin-astro, astro-eslint-parser)       | prettier (prettier-plugin-astro)       |
+| lit          | eslint (eslint-plugin-lit, eslint-plugin-wc)            | prettier                               |
+| tailwind     | eslint (eslint-plugin-tailwindcss)                      | prettier (prettier-plugin-tailwindcss) |
+| javascript   | eslint, oxlint, biome                                   | prettier, oxfmt, biome                 |
+| typescript   | eslint (@typescript-eslint/\*), oxlint, biome           | prettier, oxfmt, biome                 |
 
 ## Paso 2: Instalar dependencia
 
@@ -154,13 +154,13 @@ Genera `eslint.config.js` (flat config):
 import js from '@eslint/js'
 // imports de plugins según tecnologías
 export default [
-  js.configs.recommended,
-  // configs de cada plugin
-  {
-    rules: {
-      /* reglas de estilo */
-    },
-  },
+	js.configs.recommended,
+	// configs de cada plugin
+	{
+		rules: {
+			/* reglas de estilo */
+		},
+	},
 ]
 ```
 
@@ -170,23 +170,23 @@ Genera `biome.json`:
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
-  "formatter": {
-    "enabled": true,
-    "lineWidth": 100,
-    "indentStyle": "space",
-    "indentWidth": 2
-  },
-  "javascript": {
-    "formatter": {
-      "semicolons": "asNeeded",
-      "quoteStyle": "single"
-    }
-  },
-  "linter": {
-    "enabled": true,
-    "rules": { "recommended": true }
-  }
+	"$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+	"formatter": {
+		"enabled": true,
+		"lineWidth": 100,
+		"indentStyle": "space",
+		"indentWidth": 2
+	},
+	"javascript": {
+		"formatter": {
+			"semicolons": "asNeeded",
+			"quoteStyle": "single"
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": { "recommended": true }
+	}
 }
 ```
 

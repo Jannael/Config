@@ -1,23 +1,23 @@
 {
-  "label": "Vue",
-  "linter": {
-    "eslint": {
-      "plugins": ["eslint-plugin-vue", "vue-eslint-parser", "globals"],
-      "config": {
-        "importStatements": [
-          "import eslintPluginVue from 'eslint-plugin-vue'",
-          "import vueEslintParser from 'vue-eslint-parser'",
-          "import globals from 'globals'"
-        ],
-        "configSpread": [
-          "{ languageOptions: { parser: vueEslintParser, globals: { ...globals.browser } }, plugins: { vue: eslintPluginVue }, rules: { ...eslintPluginVue.configs['flat/recommended'].rules } }"
-        ],
-        "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
-        "fileExtensions": [".vue", ".js", ".ts"]
-      }
-    }
-  },
-  "formatter": {
-    "prettier": {}
-  }
+	"label": "Vue",
+	"linter": {
+		"eslint": {
+			"plugins": ["eslint-plugin-vue", "vue-eslint-parser", "globals"],
+			"config": {
+				"importStatements": [
+					"import eslintPluginVue from 'eslint-plugin-vue'",
+					"import vueEslintParser from 'vue-eslint-parser'",
+					"import globals from 'globals'"
+				],
+				"configSpread": [
+					"{ languageOptions: { parser: vueEslintParser, globals: { ...globals.browser } }, plugins: { vue: eslintPluginVue }, rules: { ...eslintPluginVue.configs['flat/recommended'].rules } }"
+				],
+				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+				"fileExtensions": [".vue", ".js", ".ts"]
+			}
+		}
+	},
+	"formatter": {
+		"prettier": {}
+	}
 }

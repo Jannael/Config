@@ -40,13 +40,13 @@ Provides actionable patterns for responsive, accessible UIs with Tailwind CSS v4
 
 <!-- Responsive grid -->
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-  <!-- Items -->
+	<!-- Items -->
 </div>
 
 <!-- Card component -->
 <div class="rounded-lg bg-white p-6 shadow-lg">
-  <h3 class="text-xl font-bold">Title</h3>
-  <p class="text-gray-600">Description</p>
+	<h3 class="text-xl font-bold">Title</h3>
+	<p class="text-gray-600">Description</p>
 </div>
 ```
 
@@ -65,17 +65,15 @@ Provides actionable patterns for responsive, accessible UIs with Tailwind CSS v4
 
 ```tsx
 function ProductCard({ product }: { product: Product }) {
-  return (
-    <div className="overflow-hidden rounded-lg bg-white shadow-lg sm:flex">
-      <img className="h-48 w-full object-cover sm:h-auto sm:w-48" src={product.image} />
-      <div className="p-6">
-        <h3 className="text-lg font-semibold">{product.name}</h3>
-        <button className="mt-4 rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
-          Add to Cart
-        </button>
-      </div>
-    </div>
-  )
+	return (
+		<div className="overflow-hidden rounded-lg bg-white shadow-lg sm:flex">
+			<img className="h-48 w-full object-cover sm:h-auto sm:w-48" src={product.image} />
+			<div className="p-6">
+				<h3 className="text-lg font-semibold">{product.name}</h3>
+				<button className="mt-4 rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">Add to Cart</button>
+			</div>
+		</div>
+	)
 }
 ```
 
@@ -83,7 +81,7 @@ function ProductCard({ product }: { product: Product }) {
 
 ```html
 <div class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
-  <h1 class="dark:text-white">Title</h1>
+	<h1 class="dark:text-white">Title</h1>
 </div>
 ```
 
@@ -91,8 +89,8 @@ function ProductCard({ product }: { product: Product }) {
 
 ```html
 <input
-  class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
-  placeholder="you@example.com"
+	class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+	placeholder="you@example.com"
 />
 ```
 

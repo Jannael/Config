@@ -1,13 +1,13 @@
 {
-  "label": "JavaScript",
-  "linter": {
-    "eslint": {},
-    "oxlint": {},
-    "biome": {}
-  },
-  "formatter": {
-    "prettier": {},
-    "oxfmt": {},
-    "biome": {}
-  }
+	"label": "JavaScript",
+	"linter": {
+		"eslint": {},
+		"oxlint": {},
+		"biome": {}
+	},
+	"formatter": {
+		"prettier": {},
+		"oxfmt": {},
+		"biome": {}
+	}
 }

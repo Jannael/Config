@@ -111,8 +111,8 @@
 <a href="/page">Descriptive link text</a>
 <!-- External links -->
 <a href="https://external.com" target="_blank" rel="noopener">
-  External site
-  <span class="visually-hidden">(opens in new tab)</span>
+	External site
+	<span class="visually-hidden">(opens in new tab)</span>
 </a>
 ```
 
@@ -136,10 +136,10 @@
 
 ```html
 <nav aria-label="Main">
-  <ul>
-    <li><a href="/" aria-current="page">Home</a></li>
-    <li><a href="/about">About</a></li>
-  </ul>
+	<ul>
+		<li><a href="/" aria-current="page">Home</a></li>
+		<li><a href="/about">About</a></li>
+	</ul>
 </nav>
 ```
 
@@ -147,8 +147,8 @@
 
 ```html
 <div role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-  <h2 id="dialog-title">Confirm Action</h2>
-  <!-- content -->
+	<h2 id="dialog-title">Confirm Action</h2>
+	<!-- content -->
 </div>
 ```
 
