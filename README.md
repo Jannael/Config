@@ -45,3 +45,7 @@ One of the main goals of `config` is full compatibility across selected technolo
 ## License
 
 [MIT](LICENSE)
+
+---
+
+Thanks to [midudev](https://github.com/midudev) for his [autoskills.sh](https://github.com/midudev/autoskills.sh) project — the terminal animation is inspired by it.
