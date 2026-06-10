@@ -1,6 +1,0 @@
-{
-  "*.{astro,ts,tsx}": [
-    "eslint --fix",
-    "prettier --write"
-  ]
-}
