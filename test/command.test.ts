@@ -226,6 +226,6 @@ describe('Command.execute', () => {
 		const initHuskyOrder = (repo.initHusky as unknown as AnyMock).mock.invocationCallOrder[0]
 		const lintStagedOrder = (repo.writeLintStagedConfig as unknown as AnyMock).mock.invocationCallOrder[0]
 		expect(initHuskyOrder).toBeGreaterThan(0)
-		expect(lintStagedOrder).toBeGreaterThan(initHuskyOrder)
+		expect(lintStagedOrder!).toBeGreaterThan(initHuskyOrder!)
 	})
 })
