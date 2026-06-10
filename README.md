@@ -17,6 +17,12 @@ One command to get your linter and formatter set up.
 bunx @jannael/config
 ```
 
+Use `--yes` or `-y` to auto-approve all prompts:
+
+```bash
+bunx @jannael/config --yes
+```
+
 ## What is Config?
 
 One command to set up your linter, formatter, editor config, and Husky + lint-staged — you only have to choose your technologies.
