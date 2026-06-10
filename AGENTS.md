@@ -9,11 +9,8 @@ Interactive CLI (`bun run dist/index.js`) that configures linters + formatters f
 | Command             | What                                               |
 | ------------------- | -------------------------------------------------- |
 | `bun run build`     | Bundle `apps/cli/index.ts` → `dist/index.js` (Bun) |
-| `bun run lint`      | ESLint flat config check                           |
-| `bun run fmt`       | Prettier --write                                   |
-| `bun run fmt:check` | Prettier --check                                   |
 
-After changes: `bun run build && bun run lint && bun run test`.
+After changes: `bun run build && bun run test`.
 
 ## Architecture (hexagonal)
 
@@ -58,12 +55,11 @@ apps/cli/
 - **Lockfile:** `bun.lock` (not package-lock.json)
 - **bunfig.toml:** `minimumReleaseAge = 86400`, `exact = true` — pins exact versions, may delay fresh package installs
 - **prepublishOnly:** runs `bun run build`
-- **VSCode:** Prettier default formatter, format-on-save
 - **apps/web/** is a separate Astro app with its own `bun.lock`, `bunfig.toml`, and `node_modules`
 
 ## Git
 
-Conventional commits (feat:, fix:, chore:, refactor:, docs:). Pre-commit runs `bunx lint-staged` (eslint --fix + prettier --write on `*.{astro,css,ts}`).
+Conventional commits (feat:, fix:, chore:, refactor:, docs:).
 
 ## OpenCode
 
