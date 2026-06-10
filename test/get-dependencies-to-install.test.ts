@@ -15,7 +15,6 @@ describe('GetDependenciesToInstallUseCase', () => {
 	test('includes the eslint and prettier plugins declared by each selected tech', async () => {
 		const deps = await useCase.execute('prettier', 'eslint', ['typescript', 'tailwind'])
 		expect(deps).toContain('typescript-eslint')
-		expect(deps).toContain('eslint-plugin-tailwindcss')
 		expect(deps).toContain('prettier-plugin-tailwindcss')
 	})
 
@@ -42,11 +41,9 @@ describe('GetDependenciesToInstallUseCase', () => {
 	test('adds eslint plugins only when linter is eslint', async () => {
 		const eslintDeps = await useCase.execute('prettier', 'eslint', ['typescript', 'tailwind'])
 		expect(eslintDeps).toContain('typescript-eslint')
-		expect(eslintDeps).toContain('eslint-plugin-tailwindcss')
 
 		const oxlintDeps = await useCase.execute('prettier', 'oxlint', ['typescript', 'tailwind'])
 		expect(oxlintDeps).not.toContain('typescript-eslint')
-		expect(oxlintDeps).not.toContain('eslint-plugin-tailwindcss')
 		expect(oxlintDeps).toContain('oxlint')
 	})
 

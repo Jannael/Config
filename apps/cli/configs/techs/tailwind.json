@@ -2,11 +2,11 @@
 	"label": "Tailwind CSS",
 	"linter": {
 		"eslint": {
-			"plugins": ["eslint-plugin-tailwindcss"],
+			"plugins": [""],
 			"config": {
-				"importStatements": ["import eslintPluginTailwindcss from 'eslint-plugin-tailwindcss'"],
-				"configSpread": ["...eslintPluginTailwindcss.configs['flat/recommended'],", "{ settings: { tailwindcss: { config: {} } } },", "{ rules: { 'tailwindcss/no-custom-classname': 'off' } },"],
-				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
+				"importStatements": [""],
+				"configSpread": [""],
+				"ignorePatterns": [""],
 				"fileExtensions": []
 			}
 		}
