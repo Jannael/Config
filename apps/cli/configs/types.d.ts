@@ -12,7 +12,7 @@ export interface LinterConfig {
 		oxlint?: {
 			plugins?: string[]
 		}
-		biome?: {}
+		biome?: object
 	}
 }
 
@@ -21,8 +21,8 @@ export interface FormatterConfig {
 		prettier?: {
 			plugins?: string[]
 		}
-		biome?: {}
-		oxfmt?: {}
+		biome?: object
+		oxfmt?: object
 	}
 }
 

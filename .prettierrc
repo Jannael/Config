@@ -1,7 +1,10 @@
 {
-	"semi": false,
-	"singleQuote": true,
-	"printWidth": 150,
-	"useTabs": true,
-	"plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"]
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 150,
+  "useTabs": true,
+  "plugins": [
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss"
+  ]
 }
