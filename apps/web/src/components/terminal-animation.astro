@@ -1,13 +1,13 @@
 <article class="flex w-full flex-col items-center justify-center py-6 font-mono">
   <div
-    class="flex h-95 w-full flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/20 sm:h-95"
+    class="flex h-95 w-full flex-col overflow-hidden rounded-xl border border-zinc-800/80 bg-[#0c0c0c] shadow-2xl shadow-black/40 sm:h-95"
     id="terminal"
     data-version="0.0.0"
   >
-    <div class="flex shrink-0 items-center gap-1.5 rounded-xl border-b border-zinc-800 px-3 py-2">
-      <span class="size-3 rounded-full border border-[#e0443e] bg-[#ff5f56]"></span>
-      <span class="size-3 rounded-full border border-[#dea123] bg-[#ffbd2e]"></span>
-      <span class="size-3 rounded-full border border-[#1aab29] bg-[#27c93f]"></span>
+    <div class="flex shrink-0 items-center gap-1.5 border-b border-zinc-800/60 px-4 py-2.5">
+      <span class="size-2.5 rounded-full bg-[#ff5f56]"></span>
+      <span class="size-2.5 rounded-full bg-[#ffbd2e]"></span>
+      <span class="size-2.5 rounded-full bg-[#27c93f]"></span>
     </div>
     <div
       class="min-h-0 w-full flex-1 overflow-hidden p-3 text-[10px] leading-relaxed break-all whitespace-pre-wrap text-white sm:text-xs lg:p-4"
@@ -22,12 +22,12 @@
   const pkgInstall = 'bunx @jannael/config'
   const space = '   '
   const C = {
-    g: 'color:#666', //gray
-    w: 'color:#ddd', // white
+    g: 'color:#71717a', // zinc-500
+    w: 'color:#e4e4e7', // zinc-200
     em: 'color:#34d399', // emerald-400
     gn: 'color:#22c55e', // green-500
-    cy: 'color:#22d3ee', // cyan-400
-    ct: 'color:#aaffff', // cyan-100
+    cy: 'color:#67e8f9', // cyan-300
+    ct: 'color:#a5f3fc', // cyan-200
     yw: 'color:#facc15', // yellow-400
     pk: 'color:#f472b6', // pink-400,
     r: 'color:#ef4444', // red-500
@@ -119,20 +119,20 @@
     stepDelay(800, s(C.ct, '-'))
 
     // Generating configuration
-    stepDelay(100, '')
-    stepDelay(0, s(C.w, '◌') + space + s(C.w, 'Generating configuration...'))
+    stepDelay(200, '')
+    stepDelay(0, s(C.yw, '◌') + space + s(C.w, 'Generating configuration...'))
     stepDelay(600, s(C.em, '✔') + space + s(C.em, 'Configuration generated'))
 
     // Installing dependencies
     stepDelay(200, '')
-    stepDelay(0, s(C.w, '◌') + space + s(C.w, 'Installing dependencies...'))
+    stepDelay(0, s(C.yw, '◌') + space + s(C.w, 'Installing dependencies...'))
     stepDelay(800, s(C.em, '✔') + space + s(C.em, 'Dependencies installed'))
 
     // Extension links
     stepDelay(200, '')
-    stepDelay(0, s(C.ct, 'ℹ') + space + s(C.w, 'Install the ESLint extension in your IDE:'))
+    stepDelay(0, s(C.cy, 'ℹ') + space + s(C.w, 'Install the ESLint extension in your IDE:'))
     stepDelay(0, s(C.g, '  VSCode: ') + s(C.cy, 'https://marketplace.visualstudio.com/...'))
-    stepDelay(0, s(C.ct, 'ℹ') + space + s(C.w, 'Install the Prettier extension in your IDE:'))
+    stepDelay(0, s(C.cy, 'ℹ') + space + s(C.w, 'Install the Prettier extension in your IDE:'))
     stepDelay(0, s(C.g, '  VSCode: ') + s(C.cy, 'https://marketplace.visualstudio.com/...'))
 
     // VSCode settings
@@ -142,11 +142,11 @@
       s(C.ct, '◆') + space + s(C.w, 'Add extension configuration to .vscode/settings.json?'),
     )
     stepDelay(100, s(C.ct, '└') + space + s(C.gn, 'Yes') + s(C.g, ' / No'))
-    stepDelay(600, s(C.em, 'ℹ') + space + s(C.em, 'VSCode settings configured'))
+    stepDelay(600, s(C.em, '✔') + space + s(C.em, 'VSCode settings configured'))
 
     // Package scripts
     stepDelay(200, '')
-    stepDelay(0, s(C.em, 'ℹ') + space + s(C.em, 'Package scripts configured'))
+    stepDelay(0, s(C.em, '✔') + space + s(C.em, 'Package scripts configured'))
     stepDelay(0, s(C.g, '  lint, lint:fix, fmt, fmt:check'))
 
     // Done
