@@ -1,6 +1,6 @@
 {
 	"name": "@jannael/config",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"private": false,
 	"description": "One command to get linter and formatter setup for your project.",
 	"keywords": [
