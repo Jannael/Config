@@ -8,15 +8,22 @@ import { WriteFormatterConfigUseCase } from '@/app/write-formatter-config.use-ca
 import { WriteLinterConfigUseCase } from '@/app/write-linter-config.use-case'
 import { Repository } from '@/infra/infra'
 
-printAscii()
+async function main() {
+	printAscii()
 
-const repository = new Repository()
-const writeFormatterConfig = new WriteFormatterConfigUseCase(repository)
-const writeLinterConfig = new WriteLinterConfigUseCase(repository)
-const getDependenciesToInstall = new GetDependenciesToInstallUseCase()
-const getLinter = new GetLinterUseCase()
-const getFormatter = new GetFormatterUseCase()
+	const repository = new Repository()
+	const writeFormatterConfig = new WriteFormatterConfigUseCase(repository)
+	const writeLinterConfig = new WriteLinterConfigUseCase(repository)
+	const getDependenciesToInstall = new GetDependenciesToInstallUseCase()
+	const getLinter = new GetLinterUseCase()
+	const getFormatter = new GetFormatterUseCase()
 
-const command = new Command(repository, writeFormatterConfig, writeLinterConfig, getDependenciesToInstall, getLinter, getFormatter)
+	const command = new Command(repository, writeFormatterConfig, writeLinterConfig, getDependenciesToInstall, getLinter, getFormatter)
 
-await command.execute()
+	await command.execute()
+}
+
+main().catch((error) => {
+	console.error(error)
+	process.exit(1)
+})
