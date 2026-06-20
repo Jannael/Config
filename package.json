@@ -38,7 +38,7 @@
 		"access": "public"
 	},
 	"scripts": {
-		"build": "bun build ./apps/cli/index.ts --outfile=./dist/index.js --target=bun",
+		"build": "bun build ./apps/cli/index.ts --outfile=./dist/index.js --target=node --packages=external",
 		"prepublishOnly": "bun run build",
 		"test": "bun test",
 		"lint": "eslint .",
@@ -68,6 +68,7 @@
 		"typescript": "6.0.3"
 	},
 	"engines": {
-		"bun": ">=1.0.0"
+		"bun": ">=1.0.0",
+		"node": ">=18"
 	}
 }
