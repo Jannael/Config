@@ -1,3 +1,4 @@
+#!/usr/bin/env bun
 import { printAscii } from '@/ascii'
 import { Command } from '@/app/command'
 import { GetDependenciesToInstallUseCase } from '@/app/get-dependencies-to-install.use-case'
