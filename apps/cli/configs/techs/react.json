@@ -4,9 +4,9 @@
 		"eslint": {
 			"plugins": ["eslint-plugin-react", "eslint-plugin-react-hooks"],
 			"config": {
-				"importStatements": ["import eslintPluginReact from 'eslint-plugin-react'", "import eslintPluginReactHooks from 'eslint-plugin-react-hooks'"],
+				"importStatements": ["import react from 'eslint-plugin-react'", "import reactHooks from 'eslint-plugin-react-hooks'"],
 				"configSpread": [
-					"{ plugins: { react: eslintPluginReact, 'react-hooks': eslintPluginReactHooks }, rules: { ...eslintPluginReact.configs.recommended.rules, ...eslintPluginReactHooks.configs.recommended.rules }, settings: { react: { version: 'detect' } } },"
+					"{ files: ['**/*.tsx', '**/*.jsx'], plugins: { react, 'react-hooks': reactHooks, }, languageOptions: { parserOptions: { ecmaFeatures: { jsx: true, }, }, }, settings: { react: { version: '19.0', }, }, },"
 				],
 				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
 				"fileExtensions": [".js", ".jsx", ".ts", ".tsx"]
