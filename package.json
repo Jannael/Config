@@ -1,6 +1,6 @@
 {
 	"name": "@jannael/config",
-	"version": "0.0.4",
+	"version": "0.0.6",
 	"private": false,
 	"description": "One command to get linter and formatter setup for your project.",
 	"keywords": [
@@ -25,7 +25,7 @@
 		"url": "git+https://github.com/Jannael/config.git"
 	},
 	"bin": {
-		"@jannael/config": "dist/index.js"
+		"config": "dist/index.js"
 	},
 	"files": [
 		"dist"
