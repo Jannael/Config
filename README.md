@@ -55,3 +55,8 @@ One of the main goals of `config` is full compatibility across selected technolo
 ---
 
 Thanks to [midudev](https://github.com/midudev) for his [autoskills.sh](https://github.com/midudev/autoskills.sh) project — the terminal animation is inspired by it.
+
+## TODO
+
+- [ ] refactor config spread to only affect the files of that technology
+- [ ] refactor config spread to use objects instead of strings
