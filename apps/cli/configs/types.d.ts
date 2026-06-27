@@ -5,7 +5,7 @@ export interface LinterConfig {
 			config?: {
 				importStatements: string[]
 				configSpread: string[]
-				configObject: string[]
+				configObject?: string[]
 				ignorePatterns: string[]
 				fileExtensions: string[]
 			}
