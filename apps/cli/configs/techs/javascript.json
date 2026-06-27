@@ -2,11 +2,11 @@
 	"label": "JavaScript",
 	"linter": {
 		"eslint": {
-			"plugins": ["@eslint/js"],
+			"plugins": [],
 			"config": {
-				"importStatements": ["import js from '@eslint/js'"],
+				"importStatements": [],
 				"configSpread": [],
-				"configObject": ["{ files: ['**/*.js'], plugins: { js, }, extends: ['js/recommended'], rules: { }, },"],
+				"configObject": [],
 				"ignorePatterns": ["**/dist/**", "**/node_modules/**"],
 				"fileExtensions": [".js", ".mjs", ".cjs"]
 			}
