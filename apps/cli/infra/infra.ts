@@ -59,9 +59,20 @@ export class Repository implements IRepository {
 		generateBiome({ cwd: this.cwd })
 	}
 
+	private collectIgnorePatterns(techs: string[]): string[] {
+		const patterns = new Set<string>()
+		for (const tech of techs) {
+			const config = configs.techs[tech as keyof typeof configs.techs]
+			const eslintConfig = config?.linter?.eslint as { config?: { ignorePatterns?: string[] } } | undefined
+			eslintConfig?.config?.ignorePatterns?.forEach((p) => patterns.add(p))
+		}
+		return [...patterns]
+	}
+
 	async writePrettierConfig(techs: string[]): Promise<void> {
 		const plugins = this.collectFormatterPlugins(techs, 'prettier')
-		generatePrettier({ plugins, cwd: this.cwd })
+		const ignorePatterns = this.collectIgnorePatterns(techs)
+		generatePrettier({ plugins, ignorePatterns, cwd: this.cwd })
 	}
 
 	private static readonly TECH_ORDER = ['javascript', 'typescript', 'html', 'css', 'tailwind']
