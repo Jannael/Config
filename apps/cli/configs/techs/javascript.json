@@ -15,7 +15,7 @@
 		"biome": {}
 	},
 	"formatter": {
-		"prettier": {}, 
+		"prettier": {},
 		"oxfmt": {},
 		"biome": {}
 	}

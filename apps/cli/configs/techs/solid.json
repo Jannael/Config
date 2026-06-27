@@ -4,10 +4,7 @@
 		"eslint": {
 			"plugins": ["eslint-plugin-solid", "@typescript-eslint/parser"],
 			"config": {
-				"importStatements": [
-					"import solid from 'eslint-plugin-solid/configs/typescript'",
-					"import * as tsParser from '@typescript-eslint/parser'"
-				],
+				"importStatements": ["import solid from 'eslint-plugin-solid/configs/typescript'", "import * as tsParser from '@typescript-eslint/parser'"],
 				"configSpread": [],
 				"configObject": [
 					"{ files: ['**/*.{ts,tsx}'], ...solid, languageOptions: { parser: tsParser, parserOptions: { project: 'tsconfig.json', }, }, },"
