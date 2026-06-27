@@ -4,12 +4,14 @@ import { join } from 'node:path'
 export function generateEslint({
 	importStatements,
 	configSpread,
+	configObject,
 	ignorePatterns,
 	fileExtensions,
 	cwd,
 }: {
 	importStatements: string[]
 	configSpread: string[]
+	configObject: string[]
 	ignorePatterns: string[]
 	fileExtensions: string[]
 	cwd: string
@@ -26,6 +28,10 @@ export function generateEslint({
 
 	for (const spread of configSpread) {
 		entries.push(`    ${spread}`)
+	}
+
+	for (const obj of configObject) {
+		entries.push(`    ${obj}`)
 	}
 
 	if (fileExtensions.length > 0) {

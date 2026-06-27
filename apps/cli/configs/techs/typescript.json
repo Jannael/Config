@@ -2,10 +2,11 @@
 	"label": "TypeScript",
 	"linter": {
 		"eslint": {
-			"plugins": ["typescript-eslint"],
+			"plugins": ["typescript-eslint", "@eslint/js"],
 			"config": {
-				"importStatements": ["import typescriptEslint from 'typescript-eslint'"],
-				"configSpread": ["...typescriptEslint.configs.recommended,"],
+				"importStatements": ["import typescriptEslint from 'typescript-eslint'", "import js from '@eslint/js'"],
+				"configSpread": ["js.config.recommended", "...typescriptEslint.configs.recommended,"],
+				"configObject": ["{ files: ['**/*.ts', '**/*.tsx'], languageOptions: { parser: typescriptEslint.parser } },"],
 				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
 				"fileExtensions": [".ts", ".tsx"]
 			}

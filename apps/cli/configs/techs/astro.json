@@ -6,6 +6,7 @@
 			"config": {
 				"importStatements": ["import eslintPluginAstro from 'eslint-plugin-astro'"],
 				"configSpread": ["...eslintPluginAstro.configs.recommended,"],
+				"configObject": ["{ files: ['**/*.astro'], languageOptions: { parserOptions: { parser: '@typescript-eslint/parser' } } },"],
 				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**", "**/.astro/**"],
 				"fileExtensions": [".ts", ".tsx", ".astro"]
 			}

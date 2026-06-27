@@ -4,8 +4,9 @@
 		"eslint": {
 			"plugins": ["@html-eslint/eslint-plugin"],
 			"config": {
-				"importStatements": ["import htmlEslintPlugin from '@html-eslint/eslint-plugin'"],
-				"configSpread": ["{ files: ['**/*.html'], ...htmlEslintPlugin.configs['flat/recommended'], },"],
+				"importStatements": ["import html from '@html-eslint/eslint-plugin'"],
+				"configSpread": [],
+				"configObject": ["{ files: ['**/*.html'], plugins: { html, }, extends: ['html/recommended'], language: 'html/html', rules: { } },"],
 				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
 				"fileExtensions": [".html"]
 			}

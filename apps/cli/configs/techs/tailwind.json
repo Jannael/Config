@@ -1,15 +1,7 @@
 {
 	"label": "Tailwind CSS",
 	"linter": {
-		"eslint": {
-			"plugins": [""],
-			"config": {
-				"importStatements": [""],
-				"configSpread": [""],
-				"ignorePatterns": [""],
-				"fileExtensions": []
-			}
-		}
+		"eslint": {}
 	},
 	"formatter": {
 		"prettier": {

@@ -1,12 +1,21 @@
 {
 	"label": "JavaScript",
 	"linter": {
-		"eslint": {},
+		"eslint": {
+			"plugins": ["@eslint/js"],
+			"config": {
+				"importStatements": ["import js from '@eslint/js'"],
+				"configSpread": [],
+				"configObject": ["{ files: ['**/*.js'], plugins: { js, }, extends: ['js/recommended'], rules: { }, },"],
+				"ignorePatterns": ["**/dist/**", "**/node_modules/**"],
+				"fileExtensions": [".js", ".mjs", ".cjs"]
+			}
+		},
 		"oxlint": {},
 		"biome": {}
 	},
 	"formatter": {
-		"prettier": {},
+		"prettier": {}, 
 		"oxfmt": {},
 		"biome": {}
 	}

@@ -4,14 +4,9 @@
 		"eslint": {
 			"plugins": ["eslint-plugin-vue", "vue-eslint-parser", "globals"],
 			"config": {
-				"importStatements": [
-					"import eslintPluginVue from 'eslint-plugin-vue'",
-					"import vueEslintParser from 'vue-eslint-parser'",
-					"import globals from 'globals'"
-				],
-				"configSpread": [
-					"{ languageOptions: { parser: vueEslintParser, globals: { ...globals.browser } }, plugins: { vue: eslintPluginVue }, rules: { ...eslintPluginVue.configs['flat/recommended'].rules } }"
-				],
+				"importStatements": ["import eslintPluginVue from 'eslint-plugin-vue'", "import globals from 'globals'"],
+				"configSpread": ["...eslintPluginVue.configs['flat/recommended']"],
+				"configObject": ["{ languageOptions: { sourceType: 'module', globals: { ...globals.browser } } },"],
 				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
 				"fileExtensions": [".vue", ".js", ".ts"]
 			}

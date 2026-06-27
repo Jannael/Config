@@ -79,11 +79,13 @@ export class Repository implements IRepository {
 	private collectEslintConfig(techs: string[]): {
 		importStatements: string[]
 		configSpread: string[]
+		configObject: string[]
 		ignorePatterns: string[]
 		fileExtensions: string[]
 	} {
 		const importStatements = new Set<string>()
 		const configSpread = new Set<string>()
+		const configObject: string[] = []
 		const ignorePatterns = new Set<string>()
 		const fileExtensions = new Set<string>()
 
@@ -94,6 +96,7 @@ export class Repository implements IRepository {
 						config?: {
 							importStatements?: string[]
 							configSpread?: string[]
+							configObject?: string[]
 							ignorePatterns?: string[]
 							fileExtensions?: string[]
 						}
@@ -104,6 +107,7 @@ export class Repository implements IRepository {
 
 			eslintConfig.config.importStatements?.forEach((s) => importStatements.add(s))
 			eslintConfig.config.configSpread?.forEach((s) => configSpread.add(s))
+			eslintConfig.config.configObject?.forEach((s) => configObject.push(s))
 			eslintConfig.config.ignorePatterns?.forEach((s) => ignorePatterns.add(s))
 			eslintConfig.config.fileExtensions?.forEach((s) => fileExtensions.add(s))
 		}
@@ -111,6 +115,7 @@ export class Repository implements IRepository {
 		return {
 			importStatements: [...importStatements],
 			configSpread: [...configSpread],
+			configObject,
 			ignorePatterns: [...ignorePatterns],
 			fileExtensions: [...fileExtensions],
 		}

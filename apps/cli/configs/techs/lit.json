@@ -8,7 +8,11 @@
 					"import { configs: eslintPluginLit } from 'eslint-plugin-lit'",
 					"import { configs: eslintPluginWc } from 'eslint-plugin-wc'"
 				],
-				"configSpread": ["...eslintPluginLit['flat/recommended'],", "...eslintPluginWc['flat/recommended'],"],
+				"configSpread": [],
+				"configObject": [
+					"{ files: ['**/*.ts', '**/*.js'], ...eslintPluginLit['flat/recommended'] },",
+					"{ files: ['**/*.ts', '**/*.js'], ...eslintPluginWc['flat/recommended'] }"
+				],
 				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
 				"fileExtensions": [".ts", ".js"]
 			}

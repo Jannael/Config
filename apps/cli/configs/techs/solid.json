@@ -2,10 +2,17 @@
 	"label": "Solid",
 	"linter": {
 		"eslint": {
-			"plugins": ["eslint-plugin-solid"],
+			"plugins": ["@eslint/js", "eslint-plugin-solid", "@typescript-eslint/parser"],
 			"config": {
-				"importStatements": ["import eslintPluginSolid from 'eslint-plugin-solid/configs/recommended'"],
-				"configSpread": ["eslintPluginSolid,"],
+				"importStatements": [
+					"import js from '@eslint/js'",
+					"import solid from 'eslint-plugin-solid/configs/typescript'",
+					"import * as tsParser from '@typescript-eslint/parser'"
+				],
+				"configSpread": ["js.config.recommended,"],
+				"configObject": [
+					"{ files: ['**/*.{ts,tsx}'], ...solid, languageOptions: { parser: tsParser, parserOptions: { project: 'tsconfig.json', }, }, },"
+				],
 				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
 				"fileExtensions": [".ts", ".tsx", "js", ".jsx"]
 			}

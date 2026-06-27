@@ -82,15 +82,13 @@ describe('Repository.collectEslintConfig (integration: order propagates to impor
 		expect(astroSpreadIdx).toBeGreaterThan(tsSpreadIdx)
 	})
 
-	test('vue parser comes AFTER typescript in importStatements', () => {
+	test('vue import comes AFTER typescript in importStatements', () => {
 		const cfg = collectEslintConfig(['vue', 'typescript'])
 		const tsImportIdx = cfg.importStatements.indexOf("import typescriptEslint from 'typescript-eslint'")
 		const vueImportIdx = cfg.importStatements.indexOf("import eslintPluginVue from 'eslint-plugin-vue'")
-		const vueParserIdx = cfg.importStatements.indexOf("import vueEslintParser from 'vue-eslint-parser'")
 
 		expect(tsImportIdx).toBeGreaterThanOrEqual(0)
 		expect(vueImportIdx).toBeGreaterThan(tsImportIdx)
-		expect(vueParserIdx).toBeGreaterThan(tsImportIdx)
 	})
 
 	test('input order does not affect output — reversing input still produces the same sorted result', () => {

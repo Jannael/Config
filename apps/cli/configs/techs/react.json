@@ -5,8 +5,9 @@
 			"plugins": ["eslint-plugin-react", "eslint-plugin-react-hooks"],
 			"config": {
 				"importStatements": ["import react from 'eslint-plugin-react'", "import reactHooks from 'eslint-plugin-react-hooks'"],
-				"configSpread": [
-					"{ files: ['**/*.tsx', '**/*.jsx'], plugins: { react, 'react-hooks': reactHooks, }, languageOptions: { parserOptions: { ecmaFeatures: { jsx: true, }, }, }, settings: { react: { version: '19.0', }, }, },"
+				"configSpread": [],
+				"configObject": [
+					"{ files: ['**/*.tsx', '**/*.jsx'], plugins: { react, 'react-hooks': reactHooks }, languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } }, settings: { react: { version: '19.0' } } },"
 				],
 				"ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/build/**"],
 				"fileExtensions": [".js", ".jsx", ".ts", ".tsx"]
