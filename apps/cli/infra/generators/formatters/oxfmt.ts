@@ -8,7 +8,7 @@ export function generateOxfmt({ cwd }: { cwd: string }): void {
 		lineWidth: FORMAT_CONFIG.lineWidth,
 		indentStyle: FORMAT_CONFIG.indentStyle,
 		indentWidth: FORMAT_CONFIG.indentWidth,
-		semicolons: FORMAT_CONFIG.semicolons,
+		semi: FORMAT_CONFIG.semicolons,
 		singleQuote: FORMAT_CONFIG.useSingleQuote,
 		useTabs: FORMAT_CONFIG.useTabs,
 	}
